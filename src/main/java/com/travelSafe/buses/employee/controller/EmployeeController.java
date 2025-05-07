@@ -1,7 +1,7 @@
 package com.travelSafe.buses.employee.controller;
 
 import com.travelSafe.buses.employee.model.Employee;
-import com.travelSafe.buses.employee.model.DTO.EmployeeDTO;
+import com.travelSafe.buses.employee.model.DTO.EmployeeResponseDTO;
 import com.travelSafe.buses.employee.model.DTO.EmployeePaycheckDTO;
 import com.travelSafe.buses.employee.model.DTO.UpdateEmployeeDTO;
 import com.travelSafe.buses.employee.services.CreateEmployeeService;
@@ -45,15 +45,15 @@ public class EmployeeController {
   }
 
   @PostMapping
-  public ResponseEntity<EmployeeDTO> createEmployee(@RequestBody Employee employee) {
+  public ResponseEntity<EmployeeResponseDTO> createEmployee(@RequestBody Employee employee) {
     final Employee savedEmployee = createEmployeeService.execute(employee);
-    return ResponseEntity.ok(new EmployeeDTO(savedEmployee));
+    return ResponseEntity.ok(new EmployeeResponseDTO(savedEmployee));
   }
 
   @GetMapping("/{id}")
-  public ResponseEntity<EmployeeDTO> getEmployee(@PathVariable Long id) {
+  public ResponseEntity<EmployeeResponseDTO> getEmployee(@PathVariable Long id) {
     final Employee employee = getEmployeeService.execute(id);
-    return ResponseEntity.ok(new EmployeeDTO(employee));
+    return ResponseEntity.ok(new EmployeeResponseDTO(employee));
   }
 
   @GetMapping("/salary/{id}")
@@ -63,11 +63,11 @@ public class EmployeeController {
   }
 
   @PutMapping()
-  public ResponseEntity<EmployeeDTO> updateEmployee(@RequestParam Long empId,
+  public ResponseEntity<EmployeeResponseDTO> updateEmployee(@RequestParam Long empId,
       @RequestBody Employee updatedEmployee) {
     final Employee employee = updateEmployeeService.execute(
         new UpdateEmployeeDTO(empId, updatedEmployee));
-    return ResponseEntity.ok(new EmployeeDTO(employee));
+    return ResponseEntity.ok(new EmployeeResponseDTO(employee));
   }
 
   @DeleteMapping("/{id}")

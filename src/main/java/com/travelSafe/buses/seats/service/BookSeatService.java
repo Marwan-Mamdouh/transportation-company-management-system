@@ -5,7 +5,7 @@ import com.travelSafe.buses.employee.model.Employee;
 import com.travelSafe.buses.employee.services.get.GetEmployeeService;
 import com.travelSafe.buses.exceptions.seat.SeatAlreadyBookedException;
 import com.travelSafe.buses.seats.SeatsRepository;
-import com.travelSafe.buses.seats.model.dto.BookSeatDto;
+import com.travelSafe.buses.seats.model.dto.BookSeatDTO;
 import com.travelSafe.buses.trip.model.Trip;
 import com.travelSafe.buses.trip.service.GetTripService;
 import jakarta.transaction.Transactional;
@@ -15,7 +15,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 @Service
-public class BookSeatService implements Command<BookSeatDto, BookSeatDto> {
+public class BookSeatService implements Command<BookSeatDTO, BookSeatDTO> {
 
   private final SeatsRepository tripSeatRepository;
   private final GetEmployeeService getEmployeeService;
@@ -32,7 +32,7 @@ public class BookSeatService implements Command<BookSeatDto, BookSeatDto> {
 
   @Override
   @Transactional
-  public BookSeatDto execute(BookSeatDto input) {
+  public BookSeatDTO execute(BookSeatDTO input) {
     logger.info("Executing: {} with input: {}", getClass(), input);
     final Trip trip = getTripService.execute(input.tripId());
     final Employee employee = getEmployeeService.execute(input.ssn());

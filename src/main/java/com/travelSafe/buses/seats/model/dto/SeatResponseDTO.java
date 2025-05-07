@@ -6,16 +6,16 @@ import lombok.Getter;
 
 @Data
 @Getter
-public class SeatDTO {
+public class SeatResponseDTO {
 
   private final Integer tripId, seatNumber;
 
-  public SeatDTO(Seat seat) {
+  public SeatResponseDTO(Seat seat) {
     this.tripId = seat.getTripId().getTripId();
     this.seatNumber = seat.getTripSeatId().getSeatNumber();
   }
 
-  public SeatDTO(BookSeatDto seatDto) {
+  public SeatResponseDTO(BookSeatDTO seatDto) {
     this.tripId = seatDto.tripId();
     this.seatNumber = seatDto.seatNo();
   }

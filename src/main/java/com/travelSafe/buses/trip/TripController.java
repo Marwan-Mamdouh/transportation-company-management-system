@@ -1,9 +1,9 @@
 package com.travelSafe.buses.trip;
 
-import com.travelSafe.buses.seats.model.dto.SearchFreeSeatsDto;
+import com.travelSafe.buses.seats.model.dto.SearchFreeSeatsDTO;
 import com.travelSafe.buses.trip.model.DTO.CreateTripDTO;
 import com.travelSafe.buses.trip.model.DTO.TripAvailabilityDTO;
-import com.travelSafe.buses.trip.model.DTO.TripDto;
+import com.travelSafe.buses.trip.model.DTO.TripResponseDTO;
 import com.travelSafe.buses.trip.model.DTO.UpdateTripDTO;
 import com.travelSafe.buses.trip.model.Trip;
 import com.travelSafe.buses.trip.model.projection.TripAvailabilityProjection;
@@ -43,15 +43,15 @@ public class TripController {
   }
 
   @PostMapping
-  public ResponseEntity<TripDto> createTrip(@Valid @RequestBody CreateTripDTO trip) {
+  public ResponseEntity<TripResponseDTO> createTrip(@Valid @RequestBody CreateTripDTO trip) {
     final Trip savedTrip = createTripService.execute(trip);
-    return ResponseEntity.ok(new TripDto(savedTrip));
+    return ResponseEntity.ok(new TripResponseDTO(savedTrip));
   }
 
   @PutMapping("/{tripId}")
-  public ResponseEntity<TripDto> updateTrip(@RequestBody UpdateTripDTO trip) {
+  public ResponseEntity<TripResponseDTO> updateTrip(@RequestBody UpdateTripDTO trip) {
     final Trip updatedTrip = updateTripService.execute(trip);
-    return ResponseEntity.ok(new TripDto(updatedTrip));
+    return ResponseEntity.ok(new TripResponseDTO(updatedTrip));
   }
 
 //  @GetMapping("/{tripId}")
@@ -69,7 +69,7 @@ public class TripController {
 
   @GetMapping("/available/trips")
   public ResponseEntity<List<TripAvailabilityDTO>> searchForTrips(
-      @Valid @RequestBody SearchFreeSeatsDto info) {
+      @Valid @RequestBody SearchFreeSeatsDTO info) {
     final List<TripAvailabilityProjection> tripSeats = searchForTripsService.execute(info);
     return ResponseEntity.ok(
         tripSeats.stream().map(trip -> new TripAvailabilityDTO(trip.getTrip(), trip.getSeatCount()))

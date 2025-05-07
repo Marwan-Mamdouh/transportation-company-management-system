@@ -1,5 +1,5 @@
 package com.travelSafe.buses.seats.model.dto;
 
-public record UpdateTripSeatDto() {
+public record UpdateTripSeatDTO() {
 
 }

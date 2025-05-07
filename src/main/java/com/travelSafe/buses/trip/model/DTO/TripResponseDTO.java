@@ -5,12 +5,12 @@ import java.time.LocalDateTime;
 import lombok.Data;
 
 @Data
-public class TripDto {
+public class TripResponseDTO {
 
   private final Integer tripId, price;
   private final LocalDateTime travelDateAndTime;
 
-  public TripDto(Trip trip) {
+  public TripResponseDTO(Trip trip) {
     this.tripId = trip.getTripId();
     this.price = trip.getPrice();
     this.travelDateAndTime = trip.getTravelDateAndTime();

@@ -1,7 +1,7 @@
 package com.travelSafe.buses.trip.service;
 
 import com.travelSafe.buses.Query;
-import com.travelSafe.buses.seats.model.dto.SearchFreeSeatsDto;
+import com.travelSafe.buses.seats.model.dto.SearchFreeSeatsDTO;
 import com.travelSafe.buses.trip.TripRepository;
 import com.travelSafe.buses.trip.model.projection.TripAvailabilityProjection;
 import java.util.List;
@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class SearchForTripsService implements
-    Query<SearchFreeSeatsDto, List<TripAvailabilityProjection>> {
+    Query<SearchFreeSeatsDTO, List<TripAvailabilityProjection>> {
 
   private final TripRepository tripRepository;
 
@@ -22,7 +22,7 @@ public class SearchForTripsService implements
   }
 
   @Override
-  public List<TripAvailabilityProjection> execute(SearchFreeSeatsDto input) {
+  public List<TripAvailabilityProjection> execute(SearchFreeSeatsDTO input) {
     logger.info("Executing: {} with input: {}", getClass(), input);
     return tripRepository.findAvailableTripsForGavinSearch(input.startFrom(), input.destination(),
         input.travelDate());

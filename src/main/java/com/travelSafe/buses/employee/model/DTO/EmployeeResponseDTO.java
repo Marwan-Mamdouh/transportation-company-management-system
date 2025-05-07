@@ -4,12 +4,12 @@ import com.travelSafe.buses.employee.model.Employee;
 import lombok.Data;
 
 @Data
-public class EmployeeDTO {
+public class EmployeeResponseDTO {
 
   private final Long ssn;
   private final String fName, lName, email, phoneNumber, departmentName;
 
-  public EmployeeDTO(Employee employee) {
+  public EmployeeResponseDTO(Employee employee) {
     this.ssn = employee.getSsn();
     this.fName = employee.getFirstName();
     this.lName = employee.getLastName();

@@ -1,7 +1,7 @@
 package com.travelSafe.buses.employee.controller;
 
 import com.travelSafe.buses.employee.model.Employee;
-import com.travelSafe.buses.employee.model.DTO.EmployeeDTO;
+import com.travelSafe.buses.employee.model.DTO.EmployeeResponseDTO;
 import com.travelSafe.buses.employee.model.DTO.EmployeePaycheckDTO;
 import com.travelSafe.buses.employee.services.get.CountEmployeesService;
 import com.travelSafe.buses.employee.services.get.GetEmployeesByDepartmentIdService;
@@ -40,9 +40,9 @@ public class EmployeesController {
   }
 
   @GetMapping()
-  public ResponseEntity<List<EmployeeDTO>> getEmployees() {
+  public ResponseEntity<List<EmployeeResponseDTO>> getEmployees() {
     final List<Employee> employees = getEmployeesService.execute(null);
-    return ResponseEntity.ok(employees.stream().map(EmployeeDTO::new).toList());
+    return ResponseEntity.ok(employees.stream().map(EmployeeResponseDTO::new).toList());
   }
 
   @GetMapping("/salaries")
@@ -52,14 +52,14 @@ public class EmployeesController {
   }
 
   @GetMapping("/by/department")
-  public ResponseEntity<List<EmployeeDTO>> getEmployeeByDepartment(@RequestParam Integer id) {
+  public ResponseEntity<List<EmployeeResponseDTO>> getEmployeeByDepartment(@RequestParam Integer id) {
     final List<Employee> employees = getEmployeesByDepartmentIdService.execute(id);
-    return ResponseEntity.ok(employees.stream().map(EmployeeDTO::new).toList());
+    return ResponseEntity.ok(employees.stream().map(EmployeeResponseDTO::new).toList());
   }
 
   @GetMapping("/by/supervisor")
-  public ResponseEntity<List<EmployeeDTO>> getEmployeeBySupervisor(@RequestParam Long id) {
+  public ResponseEntity<List<EmployeeResponseDTO>> getEmployeeBySupervisor(@RequestParam Long id) {
     final List<Employee> employees = getEmployeesBySupervisorService.execute(id);
-    return ResponseEntity.ok(employees.stream().map(EmployeeDTO::new).toList());
+    return ResponseEntity.ok(employees.stream().map(EmployeeResponseDTO::new).toList());
   }
 }

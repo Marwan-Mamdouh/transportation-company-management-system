@@ -1,8 +1,8 @@
 package com.travelSafe.buses.travelLine;
 
 import com.travelSafe.buses.travelLine.model.TravelLine;
-import com.travelSafe.buses.travelLine.model.TravelLineDTO;
-import com.travelSafe.buses.travelLine.model.UpdateTravelLineCommand;
+import com.travelSafe.buses.travelLine.model.dto.TravelLineResponseDTO;
+import com.travelSafe.buses.travelLine.model.dto.UpdateTravelLineDTO;
 import com.travelSafe.buses.travelLine.service.CreateTravelLineService;
 import com.travelSafe.buses.travelLine.service.DeleteTravelLineService;
 import com.travelSafe.buses.travelLine.service.GetTravelLineService;
@@ -42,29 +42,29 @@ public class TravelLineController {
   }
 
   @GetMapping("/travel-line/{id}")
-  public ResponseEntity<TravelLineDTO> getTravelLine(@PathVariable Integer id) {
+  public ResponseEntity<TravelLineResponseDTO> getTravelLine(@PathVariable Integer id) {
     final TravelLine travelLine = getTravelLineService.execute(id);
-    return ResponseEntity.ok(new TravelLineDTO(travelLine));
+    return ResponseEntity.ok(new TravelLineResponseDTO(travelLine));
   }
 
   @GetMapping("/travel-lines")
-  public ResponseEntity<List<TravelLineDTO>> getTravelLines() {
+  public ResponseEntity<List<TravelLineResponseDTO>> getTravelLines() {
     final List<TravelLine> travelLines = getTravelLinesService.execute(null);
-    return ResponseEntity.ok(travelLines.stream().map(TravelLineDTO::new).toList());
+    return ResponseEntity.ok(travelLines.stream().map(TravelLineResponseDTO::new).toList());
   }
 
   @PutMapping("/travel-line/{id}")
-  public ResponseEntity<TravelLineDTO> updateTravelLine(@PathVariable Integer id,
+  public ResponseEntity<TravelLineResponseDTO> updateTravelLine(@PathVariable Integer id,
       @RequestBody TravelLine travelLine) {
     final TravelLine savedTravelLine = updateTravelLineService.execute(
-        new UpdateTravelLineCommand(id, travelLine));
-    return ResponseEntity.ok(new TravelLineDTO(savedTravelLine));
+        new UpdateTravelLineDTO(id, travelLine));
+    return ResponseEntity.ok(new TravelLineResponseDTO(savedTravelLine));
   }
 
   @PostMapping("/travel-line")
-  public ResponseEntity<TravelLineDTO> createTravelLine(@RequestBody TravelLine travelLine) {
+  public ResponseEntity<TravelLineResponseDTO> createTravelLine(@RequestBody TravelLine travelLine) {
     final TravelLine savedTravelLine = createTravelLineService.execute(travelLine);
-    return ResponseEntity.ok(new TravelLineDTO(savedTravelLine));
+    return ResponseEntity.ok(new TravelLineResponseDTO(savedTravelLine));
   }
 
   @DeleteMapping("/travel-line/{id}")

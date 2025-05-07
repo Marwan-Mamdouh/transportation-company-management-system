@@ -8,11 +8,11 @@ import lombok.Getter;
 @Getter
 public class TripAvailabilityDTO {
 
-  private final TripDto trip;
+  private final TripResponseDTO trip;
   private final Long availableSeatCount;
 
   public TripAvailabilityDTO(Trip trip, Long count) {
-    this.trip = new TripDto(trip);
+    this.trip = new TripResponseDTO(trip);
     this.availableSeatCount = count;
   }
 }

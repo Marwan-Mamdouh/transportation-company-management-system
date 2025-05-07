@@ -7,14 +7,14 @@ import java.time.LocalDateTime;
 import lombok.Data;
 
 @Data
-public class TripSeatDTO {
+public class BookedSeatDTO {
 
   private final Integer seatNumber, ticketPrice;
   private final LocalDateTime travelDate;
   private final LocalDateTime orderTime;
   private final String from, to;
 
-  public TripSeatDTO(Seat tripSeat) {
+  public BookedSeatDTO(Seat tripSeat) {
     this.seatNumber = tripSeat.getTripSeatId().getSeatNumber();
     this.orderTime = tripSeat.getOrderTime();
     final Trip trip = tripSeat.getTripId();

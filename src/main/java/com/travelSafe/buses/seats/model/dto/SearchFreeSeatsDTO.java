@@ -5,7 +5,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import java.time.LocalDate;
 
-public record SearchFreeSeatsDto(@FutureOrPresent @NotNull LocalDate travelDate,
+public record SearchFreeSeatsDTO(@FutureOrPresent @NotNull LocalDate travelDate,
                                  @NotBlank String startFrom, @NotBlank String destination) {
 
 }

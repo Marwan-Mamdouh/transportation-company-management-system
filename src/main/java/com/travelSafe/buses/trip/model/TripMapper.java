@@ -3,7 +3,7 @@ package com.travelSafe.buses.trip.model;
 import com.travelSafe.buses.employee.model.Employee;
 import com.travelSafe.buses.travelLine.model.TravelLine;
 import com.travelSafe.buses.trip.model.DTO.CreateTripDTO;
-import com.travelSafe.buses.trip.model.DTO.TripDto;
+import com.travelSafe.buses.trip.model.DTO.TripResponseDTO;
 import com.travelSafe.buses.trip.model.DTO.UpdateTripDTO;
 import com.travelSafe.buses.vehicle.model.Vehicle;
 import org.mapstruct.Mapper;
@@ -11,7 +11,7 @@ import org.mapstruct.Mapper;
 @Mapper(componentModel = "spring")
 public interface TripMapper {
 
-  TripDto toDto(Trip trip);
+  TripResponseDTO toDto(Trip trip);
 
   Trip toEntity(CreateTripDTO tripDTO);
 

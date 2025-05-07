@@ -1,8 +1,8 @@
 package com.travelSafe.buses.seats;
 
 import com.travelSafe.buses.seats.model.Seat;
-import com.travelSafe.buses.seats.model.dto.BookSeatDto;
-import com.travelSafe.buses.seats.model.dto.SeatDTO;
+import com.travelSafe.buses.seats.model.dto.BookSeatDTO;
+import com.travelSafe.buses.seats.model.dto.SeatResponseDTO;
 import com.travelSafe.buses.seats.service.BookSeatService;
 import com.travelSafe.buses.seats.service.SearchForSeatsByTripId;
 import jakarta.validation.Valid;
@@ -29,14 +29,14 @@ public class SeatsController {
   }
 
   @GetMapping("/free/{tripId}")
-  public ResponseEntity<List<SeatDTO>> findAvailableSeatsByTrip(@PathVariable Integer tripId) {
+  public ResponseEntity<List<SeatResponseDTO>> findAvailableSeatsByTrip(@PathVariable Integer tripId) {
     final List<Seat> seats = searchForSeatsInByTripStartAndTo.execute(tripId);
-    return ResponseEntity.ok(seats.stream().map(SeatDTO::new).toList());
+    return ResponseEntity.ok(seats.stream().map(SeatResponseDTO::new).toList());
   }
 
   @PostMapping("/book/seat")
-  public ResponseEntity<SeatDTO> bookSeat(@Valid @RequestBody BookSeatDto bookSeatDto) {
-    final BookSeatDto seat = bookSeatService.execute(bookSeatDto);
-    return ResponseEntity.ok(new SeatDTO(seat));
+  public ResponseEntity<SeatResponseDTO> bookSeat(@Valid @RequestBody BookSeatDTO bookSeatDto) {
+    final BookSeatDTO seat = bookSeatService.execute(bookSeatDto);
+    return ResponseEntity.ok(new SeatResponseDTO(seat));
   }
 }
