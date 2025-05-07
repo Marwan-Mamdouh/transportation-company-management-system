@@ -4,14 +4,12 @@ import com.travelSafe.buses.vehicle.model.Vehicle;
 import lombok.Data;
 
 @Data
-public class VehicleDTO {
+public class ResponseVehicleDTO {
 
-  private final Integer vehicleId;
-  private final Integer capacity;
-  private final String vehicleLevel;
-  private final String plateNumber;
+  private final Integer vehicleId, capacity;
+  private final String vehicleLevel, plateNumber;
 
-  public VehicleDTO(Vehicle vehicle) {
+  public ResponseVehicleDTO(Vehicle vehicle) {
     this.vehicleId = vehicle.getVehicleId();
     this.capacity = vehicle.getCapacity();
     this.vehicleLevel = vehicle.getVehicleLevel();
