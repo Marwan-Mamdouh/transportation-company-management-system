@@ -1,5 +1,6 @@
-package com.travelSafe.buses.vehicle.model;
+package com.travelSafe.buses.vehicle.model.dto;
 
+import com.travelSafe.buses.vehicle.model.Vehicle;
 import lombok.Data;
 
 @Data
