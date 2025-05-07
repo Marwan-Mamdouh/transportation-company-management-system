@@ -1,7 +1,7 @@
 package com.travelSafe.buses.department.controller;
 
 import com.travelSafe.buses.department.model.DTO.CreateDepartmentDto;
-import com.travelSafe.buses.department.model.DTO.DepartmentDTO;
+import com.travelSafe.buses.department.model.DTO.DepartmentResponseDTO;
 import com.travelSafe.buses.department.model.DTO.PromoteManagerDTO;
 import com.travelSafe.buses.department.model.DTO.UpdatedDepartmentDTO;
 import com.travelSafe.buses.department.model.Department;
@@ -48,31 +48,31 @@ public class DepartmentController {
   }
 
   @PostMapping
-  public ResponseEntity<DepartmentDTO> createDepartment(
+  public ResponseEntity<DepartmentResponseDTO> createDepartment(
       @Valid @RequestBody CreateDepartmentDto department) {
     final Department savedDepartment = createDepartmentService.execute(department);
-    return ResponseEntity.ok(new DepartmentDTO(savedDepartment));
+    return ResponseEntity.ok(new DepartmentResponseDTO(savedDepartment));
   }
 
   @GetMapping("/{id}")
-  public ResponseEntity<DepartmentDTO> getDepartment(@PathVariable @Positive Integer id) {
+  public ResponseEntity<DepartmentResponseDTO> getDepartment(@PathVariable @Positive Integer id) {
     final Department department = searchDepartmentByIdService.execute(id);
-    return ResponseEntity.ok(new DepartmentDTO(department));
+    return ResponseEntity.ok(new DepartmentResponseDTO(department));
   }
 
   @PutMapping("/update/{id}")
-  public ResponseEntity<DepartmentDTO> updateDepartment(
+  public ResponseEntity<DepartmentResponseDTO> updateDepartment(
       @Valid @RequestBody UpdatedDepartmentDTO department) {
     final Department updatedDepartment = updateDepartmentService.execute(department);
-    return ResponseEntity.ok(new DepartmentDTO(updatedDepartment));
+    return ResponseEntity.ok(new DepartmentResponseDTO(updatedDepartment));
   }
 
   @PutMapping("promote/manager/{id}")
-  public ResponseEntity<DepartmentDTO> promoteManager(@PathVariable @Positive Long id,
+  public ResponseEntity<DepartmentResponseDTO> promoteManager(@PathVariable @Positive Long id,
       @Valid @RequestBody Department department) {
     final Department updatedDepartment = promoteManagerService.execute(
         new PromoteManagerDTO(id, department));
-    return ResponseEntity.ok(new DepartmentDTO(updatedDepartment));
+    return ResponseEntity.ok(new DepartmentResponseDTO(updatedDepartment));
   }
 
   @DeleteMapping("/delete/{id}")

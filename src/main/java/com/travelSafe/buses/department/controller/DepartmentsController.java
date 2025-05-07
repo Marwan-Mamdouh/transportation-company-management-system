@@ -1,6 +1,6 @@
 package com.travelSafe.buses.department.controller;
 
-import com.travelSafe.buses.department.model.DTO.DepartmentDTO;
+import com.travelSafe.buses.department.model.DTO.DepartmentResponseDTO;
 import com.travelSafe.buses.department.model.Department;
 import com.travelSafe.buses.department.service.GetDepartmentsService;
 import java.util.List;
@@ -20,8 +20,8 @@ public class DepartmentsController {
   }
 
   @GetMapping
-  public ResponseEntity<List<DepartmentDTO>> getDepartments() {
+  public ResponseEntity<List<DepartmentResponseDTO>> getDepartments() {
     final List<Department> department = getDepartmentsService.execute(null);
-    return ResponseEntity.ok(department.stream().map(DepartmentDTO::new).toList());
+    return ResponseEntity.ok(department.stream().map(DepartmentResponseDTO::new).toList());
   }
 }

@@ -1,7 +1,7 @@
 package com.travelSafe.buses.department.model;
 
 import com.travelSafe.buses.department.model.DTO.CreateDepartmentDto;
-import com.travelSafe.buses.department.model.DTO.DepartmentDTO;
+import com.travelSafe.buses.department.model.DTO.DepartmentResponseDTO;
 import com.travelSafe.buses.department.model.DTO.UpdatedDepartmentDTO;
 import org.mapstruct.Mapper;
 
@@ -14,5 +14,5 @@ public interface DepartmentMapper {
 
   Department toEntity(UpdatedDepartmentDTO department);
 
-  DepartmentDTO toBaseDto(Department department);
+  DepartmentResponseDTO toBaseDto(Department department);
 }
