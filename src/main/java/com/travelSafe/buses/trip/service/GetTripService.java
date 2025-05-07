@@ -7,15 +7,13 @@ import com.travelSafe.buses.trip.model.Trip;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.cache.annotation.Cacheable;
-import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.stereotype.Service;
 
 @Service
 public class GetTripService implements Query<Integer, Trip> {
 
-  private final TripRepository tripRepository;
-
   private static final Logger logger = LoggerFactory.getLogger(GetTripService.class);
+  private final TripRepository tripRepository;
 
   public GetTripService(TripRepository tripRepository) {
     this.tripRepository = tripRepository;

@@ -13,11 +13,10 @@ import org.springframework.stereotype.Service;
 @Service
 public class UpdateTripService implements Command<UpdateTripDTO, Trip> {
 
+  private static final Logger logger = LoggerFactory.getLogger(UpdateTripService.class);
   private final TripRepository tripRepository;
   private final GetTripService getTripService;
   private final TripMapper tripMapper;
-
-  private static final Logger logger = LoggerFactory.getLogger(UpdateTripService.class);
 
   public UpdateTripService(TripRepository tripRepository, GetTripService getTripService,
       TripMapper tripMapper) {

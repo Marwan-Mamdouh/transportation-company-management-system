@@ -12,11 +12,10 @@ import org.springframework.stereotype.Service;
 @Service
 public class UpdateVehicleService implements Command<UpdateVehicleDto, Vehicle> {
 
+  private static final Logger logger = LoggerFactory.getLogger(UpdateVehicleService.class);
   private final VehicleRepository vehicleRepository;
   private final GetVehicleService getVehicleService;
   private final VehicleMapper vehicleMapper;
-
-  private static final Logger logger = LoggerFactory.getLogger(UpdateVehicleService.class);
 
   public UpdateVehicleService(VehicleRepository vehicleRepository,
       GetVehicleService getVehicleService, VehicleMapper vehicleMapper) {

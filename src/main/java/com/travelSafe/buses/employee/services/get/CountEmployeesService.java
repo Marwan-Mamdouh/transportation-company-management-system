@@ -9,9 +9,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class CountEmployeesService implements Query<Void, Long> {
 
-  private final EmployeeRepository employeeRepository;
-
   private static final Logger logger = LoggerFactory.getLogger(CountEmployeesService.class);
+  private final EmployeeRepository employeeRepository;
 
   public CountEmployeesService(EmployeeRepository employeeRepository) {
     this.employeeRepository = employeeRepository;

@@ -11,9 +11,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class GetTravelLinesService implements Query<Void, List<TravelLine>> {
 
-  private final TravelLineRepository travelLineRepository;
-
   private static final Logger logger = LoggerFactory.getLogger(GetTravelLinesService.class);
+  private final TravelLineRepository travelLineRepository;
 
   public GetTravelLinesService(TravelLineRepository travelLineRepository) {
     this.travelLineRepository = travelLineRepository;

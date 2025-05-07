@@ -11,10 +11,9 @@ import org.springframework.stereotype.Service;
 @Service
 public class DeleteTravelLineService implements Command<Integer, Void> {
 
+  private static final Logger logger = LoggerFactory.getLogger(DeleteTravelLineService.class);
   private final TravelLineRepository travelLineRepository;
   private final GetTravelLineService getTravelLineService;
-
-  private static final Logger logger = LoggerFactory.getLogger(DeleteTravelLineService.class);
 
   public DeleteTravelLineService(TravelLineRepository travelLineRepository,
       GetTravelLineService getTravelLineService) {

@@ -19,13 +19,12 @@ import org.springframework.stereotype.Service;
 @Service
 public class CreateTripService implements Command<CreateTripDTO, Trip> {
 
+  private static final Logger logger = LoggerFactory.getLogger(CreateTripService.class);
   private final TripMapper tripMapper;
   private final TripRepository tripRepository;
   private final GetVehicleService getVehicleService;
   private final GetEmployeeService getEmployeeService;
   private final GetTravelLineService getTravelLineService;
-
-  private static final Logger logger = LoggerFactory.getLogger(CreateTripService.class);
 
   public CreateTripService(TripRepository tripRepository, TripMapper tripMapper,
       GetVehicleService getVehicleService, GetEmployeeService getEmployeeService,

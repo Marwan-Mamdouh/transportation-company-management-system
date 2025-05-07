@@ -13,9 +13,8 @@ import org.springframework.stereotype.Service;
 public class SearchForTripsService implements
     Query<SearchFreeSeatsDTO, List<TripAvailabilityProjection>> {
 
-  private final TripRepository tripRepository;
-
   private static final Logger logger = LoggerFactory.getLogger(SearchForTripsService.class);
+  private final TripRepository tripRepository;
 
   public SearchForTripsService(TripRepository tripRepository) {
     this.tripRepository = tripRepository;

@@ -17,11 +17,10 @@ import org.springframework.stereotype.Service;
 @Service
 public class BookSeatService implements Command<BookSeatDTO, BookSeatDTO> {
 
+  private static final Logger logger = LoggerFactory.getLogger(BookSeatService.class);
   private final SeatsRepository tripSeatRepository;
   private final GetEmployeeService getEmployeeService;
   private final GetTripService getTripService;
-
-  private static final Logger logger = LoggerFactory.getLogger(BookSeatService.class);
 
   public BookSeatService(SeatsRepository tripSeatRepository,
       GetEmployeeService getEmployeeService, GetTripService getTripService) {

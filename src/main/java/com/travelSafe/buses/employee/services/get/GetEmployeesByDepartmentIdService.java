@@ -12,11 +12,10 @@ import org.springframework.stereotype.Service;
 @Service
 public class GetEmployeesByDepartmentIdService implements Query<Integer, List<Employee>> {
 
-  private final EmployeeRepository employeeRepository;
-  private final GetDepartmentService getDepartmentService;
-
   private static final Logger logger = LoggerFactory.getLogger(
       GetEmployeesByDepartmentIdService.class);
+  private final EmployeeRepository employeeRepository;
+  private final GetDepartmentService getDepartmentService;
 
   public GetEmployeesByDepartmentIdService(EmployeeRepository employeeRepository,
       GetDepartmentService getDepartmentService) {

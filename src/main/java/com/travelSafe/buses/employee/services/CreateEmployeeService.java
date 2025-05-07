@@ -14,9 +14,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class CreateEmployeeService implements Command<Employee, Employee> {
 
-  private final EmployeeRepository employeeRepository;
-
   private static final Logger logger = LoggerFactory.getLogger(CreateEmployeeService.class);
+  private final EmployeeRepository employeeRepository;
 
   public CreateEmployeeService(EmployeeRepository employeeRepository) {
     this.employeeRepository = employeeRepository;

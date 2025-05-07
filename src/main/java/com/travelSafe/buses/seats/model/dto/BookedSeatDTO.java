@@ -1,8 +1,8 @@
 package com.travelSafe.buses.seats.model.dto;
 
+import com.travelSafe.buses.seats.model.Seat;
 import com.travelSafe.buses.travelLine.model.TravelLine;
 import com.travelSafe.buses.trip.model.Trip;
-import com.travelSafe.buses.seats.model.Seat;
 import java.time.LocalDateTime;
 import lombok.Data;
 

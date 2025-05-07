@@ -12,10 +12,9 @@ import org.springframework.stereotype.Service;
 @Service
 public class DeleteEmployeeService implements Command<Long, Void> {
 
+  private static final Logger logger = LoggerFactory.getLogger(DeleteEmployeeService.class);
   private final EmployeeRepository employeeRepository;
   private final GetEmployeeService getEmployeeService;
-
-  private static final Logger logger = LoggerFactory.getLogger(DeleteEmployeeService.class);
 
   public DeleteEmployeeService(EmployeeRepository employeeRepository,
       GetEmployeeService getEmployeeService) {

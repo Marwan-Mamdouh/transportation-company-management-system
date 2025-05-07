@@ -13,10 +13,9 @@ import org.springframework.stereotype.Service;
 @Service
 public class CreateVehicleService implements Command<CreateVehicleDto, Vehicle> {
 
+  private static final Logger logger = LoggerFactory.getLogger(CreateVehicleService.class);
   private final VehicleRepository vehicleRepository;
   private final VehicleMapper vehicleMapper;
-
-  private static final Logger logger = LoggerFactory.getLogger(CreateVehicleService.class);
 
   public CreateVehicleService(VehicleRepository vehicleRepository, VehicleMapper vehicleMapper) {
     this.vehicleRepository = vehicleRepository;

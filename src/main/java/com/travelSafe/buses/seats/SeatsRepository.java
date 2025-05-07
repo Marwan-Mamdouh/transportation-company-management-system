@@ -1,9 +1,9 @@
 package com.travelSafe.buses.seats;
 
 import com.travelSafe.buses.employee.model.Employee;
-import com.travelSafe.buses.trip.model.Trip;
 import com.travelSafe.buses.seats.model.Seat;
 import com.travelSafe.buses.seats.model.SeatId;
+import com.travelSafe.buses.trip.model.Trip;
 import jakarta.transaction.Transactional;
 import java.time.LocalDate;
 import java.time.LocalDateTime;

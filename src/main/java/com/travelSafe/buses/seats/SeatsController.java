@@ -29,7 +29,8 @@ public class SeatsController {
   }
 
   @GetMapping("/free/{tripId}")
-  public ResponseEntity<List<SeatResponseDTO>> findAvailableSeatsByTrip(@PathVariable Integer tripId) {
+  public ResponseEntity<List<SeatResponseDTO>> findAvailableSeatsByTrip(
+      @PathVariable Integer tripId) {
     final List<Seat> seats = searchForSeatsInByTripStartAndTo.execute(tripId);
     return ResponseEntity.ok(seats.stream().map(SeatResponseDTO::new).toList());
   }

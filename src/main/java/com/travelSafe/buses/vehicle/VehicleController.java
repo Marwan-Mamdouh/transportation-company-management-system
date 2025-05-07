@@ -43,7 +43,8 @@ public class VehicleController {
   }
 
   @PostMapping("/vehicle")
-  public ResponseEntity<ResponseVehicleDTO> createVehicle(@Valid @RequestBody CreateVehicleDto vehicle) {
+  public ResponseEntity<ResponseVehicleDTO> createVehicle(
+      @Valid @RequestBody CreateVehicleDto vehicle) {
     final Vehicle savedVehicle = createVehicleService.execute(vehicle);
     return ResponseEntity.ok(new ResponseVehicleDTO(savedVehicle));
   }

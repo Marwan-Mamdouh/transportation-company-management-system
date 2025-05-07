@@ -1,8 +1,8 @@
 package com.travelSafe.buses.employee.controller;
 
-import com.travelSafe.buses.employee.model.Employee;
-import com.travelSafe.buses.employee.model.DTO.EmployeeResponseDTO;
 import com.travelSafe.buses.employee.model.DTO.EmployeePaycheckDTO;
+import com.travelSafe.buses.employee.model.DTO.EmployeeResponseDTO;
+import com.travelSafe.buses.employee.model.Employee;
 import com.travelSafe.buses.employee.services.get.CountEmployeesService;
 import com.travelSafe.buses.employee.services.get.GetEmployeesByDepartmentIdService;
 import com.travelSafe.buses.employee.services.get.GetEmployeesBySupervisorService;
@@ -52,7 +52,8 @@ public class EmployeesController {
   }
 
   @GetMapping("/by/department")
-  public ResponseEntity<List<EmployeeResponseDTO>> getEmployeeByDepartment(@RequestParam Integer id) {
+  public ResponseEntity<List<EmployeeResponseDTO>> getEmployeeByDepartment(
+      @RequestParam Integer id) {
     final List<Employee> employees = getEmployeesByDepartmentIdService.execute(id);
     return ResponseEntity.ok(employees.stream().map(EmployeeResponseDTO::new).toList());
   }

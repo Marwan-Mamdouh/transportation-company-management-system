@@ -1,8 +1,8 @@
 package com.travelSafe.buses.trip.model;
 
 import com.travelSafe.buses.employee.model.Employee;
-import com.travelSafe.buses.travelLine.model.TravelLine;
 import com.travelSafe.buses.seats.model.Seat;
+import com.travelSafe.buses.travelLine.model.TravelLine;
 import com.travelSafe.buses.vehicle.model.Vehicle;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;

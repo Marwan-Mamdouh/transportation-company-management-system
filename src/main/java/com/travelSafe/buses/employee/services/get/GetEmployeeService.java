@@ -11,9 +11,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class GetEmployeeService implements Query<Long, Employee> {
 
-  private final EmployeeRepository employeeRepository;
-
   private static final Logger logger = LoggerFactory.getLogger(GetEmployeeService.class);
+  private final EmployeeRepository employeeRepository;
 
   public GetEmployeeService(EmployeeRepository employeeRepository) {
     this.employeeRepository = employeeRepository;

@@ -11,9 +11,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class CreateTravelLineService implements Command<TravelLine, TravelLine> {
 
-  private final TravelLineRepository travelLineRepository;
-
   private static final Logger logger = LoggerFactory.getLogger(CreateTravelLineService.class);
+  private final TravelLineRepository travelLineRepository;
 
   public CreateTravelLineService(TravelLineRepository travelLineRepository) {
     this.travelLineRepository = travelLineRepository;

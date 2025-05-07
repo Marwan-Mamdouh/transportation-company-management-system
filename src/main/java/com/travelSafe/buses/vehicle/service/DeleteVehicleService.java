@@ -9,10 +9,9 @@ import org.springframework.stereotype.Service;
 @Service
 public class DeleteVehicleService implements Command<Integer, Void> {
 
+  private static final Logger logger = LoggerFactory.getLogger(DeleteVehicleService.class);
   private final VehicleRepository vehicleRepository;
   private final GetVehicleService getVehicleService;
-
-  private static final Logger logger = LoggerFactory.getLogger(DeleteVehicleService.class);
 
   public DeleteVehicleService(VehicleRepository vehicleRepository,
       GetVehicleService getVehicleService) {

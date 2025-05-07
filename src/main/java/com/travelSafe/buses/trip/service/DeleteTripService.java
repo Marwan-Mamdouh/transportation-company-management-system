@@ -9,10 +9,9 @@ import org.springframework.stereotype.Service;
 @Service
 public class DeleteTripService implements Command<Integer, Void> {
 
+  private static final Logger logger = LoggerFactory.getLogger(DeleteTripService.class);
   private final TripRepository tripRepository;
   private final GetTripService getTripService;
-
-  private static final Logger logger = LoggerFactory.getLogger(DeleteTripService.class);
 
   public DeleteTripService(TripRepository tripRepository, GetTripService getTripService) {
     this.tripRepository = tripRepository;

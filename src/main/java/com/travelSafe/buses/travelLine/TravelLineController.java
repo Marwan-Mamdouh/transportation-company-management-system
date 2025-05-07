@@ -62,7 +62,8 @@ public class TravelLineController {
   }
 
   @PostMapping("/travel-line")
-  public ResponseEntity<TravelLineResponseDTO> createTravelLine(@RequestBody TravelLine travelLine) {
+  public ResponseEntity<TravelLineResponseDTO> createTravelLine(
+      @RequestBody TravelLine travelLine) {
     final TravelLine savedTravelLine = createTravelLineService.execute(travelLine);
     return ResponseEntity.ok(new TravelLineResponseDTO(savedTravelLine));
   }

@@ -12,9 +12,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class UpdateTravelLineService implements Command<UpdateTravelLineDTO, TravelLine> {
 
-  private final TravelLineRepository travelLineRepository;
-
   private static final Logger logger = LoggerFactory.getLogger(UpdateTravelLineService.class);
+  private final TravelLineRepository travelLineRepository;
 
   public UpdateTravelLineService(TravelLineRepository travelLineRepository) {
     this.travelLineRepository = travelLineRepository;

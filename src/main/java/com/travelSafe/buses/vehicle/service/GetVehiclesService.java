@@ -11,9 +11,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class GetVehiclesService implements Query<Void, List<Vehicle>> {
 
-  private final VehicleRepository vehicleRepository;
-
   private static final Logger logger = LoggerFactory.getLogger(GetVehiclesService.class);
+  private final VehicleRepository vehicleRepository;
 
   public GetVehiclesService(VehicleRepository vehicleRepository) {
     this.vehicleRepository = vehicleRepository;

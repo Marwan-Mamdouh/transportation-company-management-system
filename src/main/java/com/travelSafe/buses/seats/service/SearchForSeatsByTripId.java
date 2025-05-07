@@ -11,9 +11,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class SearchForSeatsByTripId implements Query<Integer, List<Seat>> {
 
-  private final SeatsRepository tripSeatRepository;
-
   private static final Logger logger = LoggerFactory.getLogger(SearchForSeatsByTripId.class);
+  private final SeatsRepository tripSeatRepository;
 
   public SearchForSeatsByTripId(SeatsRepository tripSeatRepository) {
     this.tripSeatRepository = tripSeatRepository;
