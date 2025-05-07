@@ -1,0 +1,33 @@
+package com.travelSafe.buses.employee.services.get;
+
+import com.travelSafe.buses.Query;
+import com.travelSafe.buses.department.service.GetDepartmentService;
+import com.travelSafe.buses.employee.EmployeeRepository;
+import com.travelSafe.buses.employee.model.Employee;
+import java.util.List;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Service;
+
+@Service
+public class GetEmployeesByDepartmentIdService implements Query<Integer, List<Employee>> {
+
+  private final EmployeeRepository employeeRepository;
+  private final GetDepartmentService getDepartmentService;
+
+  private static final Logger logger = LoggerFactory.getLogger(
+      GetEmployeesByDepartmentIdService.class);
+
+  public GetEmployeesByDepartmentIdService(EmployeeRepository employeeRepository,
+      GetDepartmentService getDepartmentService) {
+    this.employeeRepository = employeeRepository;
+    this.getDepartmentService = getDepartmentService;
+  }
+
+  @Override
+  public List<Employee> execute(Integer input) {
+    logger.info("Executing: {} with input: {}", getClass(), input);
+    getDepartmentService.execute(input);
+    return employeeRepository.findByDepartmentId(input);
+  }
+}

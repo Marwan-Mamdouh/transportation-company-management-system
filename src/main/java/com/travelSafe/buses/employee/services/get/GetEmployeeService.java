@@ -1,0 +1,27 @@
+package com.travelSafe.buses.employee.services.get;
+
+import com.travelSafe.buses.Query;
+import com.travelSafe.buses.employee.EmployeeRepository;
+import com.travelSafe.buses.employee.model.Employee;
+import com.travelSafe.buses.exceptions.employee.EmployeeNotFoundException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Service;
+
+@Service
+public class GetEmployeeService implements Query<Long, Employee> {
+
+  private final EmployeeRepository employeeRepository;
+
+  private static final Logger logger = LoggerFactory.getLogger(GetEmployeeService.class);
+
+  public GetEmployeeService(EmployeeRepository employeeRepository) {
+    this.employeeRepository = employeeRepository;
+  }
+
+  @Override
+  public Employee execute(Long input) {
+    logger.info("Executing: {} with input:{}", getClass(), input);
+    return employeeRepository.findById(input).orElseThrow(EmployeeNotFoundException::new);
+  }
+}

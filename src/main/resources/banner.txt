@@ -6,5 +6,5 @@
  |  _ <| | | / __|/ _ \/ __|
  | |_) | |_| \__ \  __/\__ \
  |____/ \__,_|___/\___||___/
-      Marwan AbdAlMagied
- Java 24 & Spring Boot 3.4.4
+    Marwan.AbdAlMagied.Dev
+ Java 24 & Spring Boot 3.4.5
