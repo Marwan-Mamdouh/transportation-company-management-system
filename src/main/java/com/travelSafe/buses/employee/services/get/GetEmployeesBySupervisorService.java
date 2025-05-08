@@ -3,7 +3,6 @@ package com.travelSafe.buses.employee.services.get;
 import com.travelSafe.buses.Query;
 import com.travelSafe.buses.employee.EmployeeRepository;
 import com.travelSafe.buses.employee.model.Employee;
-import com.travelSafe.buses.exceptions.employee.SupervisorNotFoundException;
 import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,22 +14,14 @@ public class GetEmployeesBySupervisorService implements Query<Long, List<Employe
   private static final Logger logger = LoggerFactory.getLogger(
       GetEmployeesBySupervisorService.class);
   private final EmployeeRepository employeeRepository;
-  private final GetEmployeeService getEmployeeService;
 
-  public GetEmployeesBySupervisorService(EmployeeRepository employeeRepository,
-      GetEmployeeService getEmployeeService) {
+  public GetEmployeesBySupervisorService(EmployeeRepository employeeRepository) {
     this.employeeRepository = employeeRepository;
-    this.getEmployeeService = getEmployeeService;
   }
 
   @Override
   public List<Employee> execute(Long input) {
     logger.info("Executing: {} with input: {}", getClass(), input);
-//    getEmployeeService.execute(input);
-
-    if (employeeRepository.existsBySupervisor_EmployeeId(input)) {
-      return employeeRepository.findBySupervisor_EmployeeId(input);
-    }
-    throw new SupervisorNotFoundException();
+    return employeeRepository.findBySupervisor_EmployeeId(input);
   }
 }
