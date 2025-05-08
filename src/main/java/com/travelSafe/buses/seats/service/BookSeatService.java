@@ -12,6 +12,7 @@ import jakarta.transaction.Transactional;
 import java.time.LocalDateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.cache.annotation.CachePut;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -22,8 +23,8 @@ public class BookSeatService implements Command<BookSeatDTO, BookSeatDTO> {
   private final GetEmployeeService getEmployeeService;
   private final GetTripService getTripService;
 
-  public BookSeatService(SeatsRepository tripSeatRepository,
-      GetEmployeeService getEmployeeService, GetTripService getTripService) {
+  public BookSeatService(SeatsRepository tripSeatRepository, GetEmployeeService getEmployeeService,
+      GetTripService getTripService) {
     this.tripSeatRepository = tripSeatRepository;
     this.getEmployeeService = getEmployeeService;
     this.getTripService = getTripService;
@@ -31,6 +32,7 @@ public class BookSeatService implements Command<BookSeatDTO, BookSeatDTO> {
 
   @Override
   @Transactional
+  @CachePut(value = "seatCache", key = "#input")
   public BookSeatDTO execute(BookSeatDTO input) {
     logger.info("Executing: {} with input: {}", getClass(), input);
     final Trip trip = getTripService.execute(input.tripId());

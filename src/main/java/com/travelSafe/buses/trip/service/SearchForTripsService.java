@@ -7,7 +7,7 @@ import com.travelSafe.buses.trip.model.projection.TripAvailabilityProjection;
 import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -22,7 +22,7 @@ public class SearchForTripsService implements
   }
 
   @Override
-  @CachePut(value = "tripCache", key = "#input")
+  @Cacheable(value = "tripCache")
   public List<TripAvailabilityProjection> execute(SearchFreeSeatsDTO input) {
     logger.info("Executing: {} with input: {}", getClass(), input);
     return tripRepository.findAvailableTripsForGavinSearch(input.startFrom(), input.destination(),

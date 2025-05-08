@@ -6,6 +6,7 @@ import com.travelSafe.buses.seats.model.Seat;
 import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -19,6 +20,7 @@ public class SearchForSeatsByTripIdService implements Query<Integer, List<Seat>>
   }
 
   @Override
+  @Cacheable("seatCache")
   public List<Seat> execute(Integer input) {
     logger.info("Executing: {} with input: {}", getClass(), input);
     return tripSeatRepository.findByTripSeatId_TripIdAndBookedBy(input);
