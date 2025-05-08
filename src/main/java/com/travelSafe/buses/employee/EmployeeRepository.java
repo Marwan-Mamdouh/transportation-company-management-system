@@ -20,16 +20,9 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long> {
   @Query("select (count(e) > 0) from Employee e where e.phoneNumber = :phoneNumber")
   boolean existsByPhoneNumber(@Param("phoneNumber") @NonNull String phoneNumber);
 
-  @Query("select (count(e) > 0) from Employee e where e.department.id = :id")
-  boolean existsByDepartment_Id(@Param("id") @NonNull Integer id);
-
-  @Query("select (count(e) > 0) from Employee e where e.supervisor.ssn = :employeeId")
-  boolean existsBySupervisor_EmployeeId(@Param("employeeId") @NonNull Long employeeId);
-
   @Query("select e from Employee e where e.supervisor.ssn = :employeeId")
   List<Employee> findBySupervisor_EmployeeId(@Param("employeeId") @NonNull Long employeeId);
 
   @Query("select e from Employee e where e.department.id = :id")
   List<Employee> findByDepartmentId(@Param("id") @NonNull Integer id);
-
 }
