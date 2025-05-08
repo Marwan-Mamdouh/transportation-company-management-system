@@ -4,7 +4,7 @@ import com.travelSafe.buses.seats.model.Seat;
 import com.travelSafe.buses.seats.model.dto.BookSeatDTO;
 import com.travelSafe.buses.seats.model.dto.SeatResponseDTO;
 import com.travelSafe.buses.seats.service.BookSeatService;
-import com.travelSafe.buses.seats.service.SearchForSeatsByTripId;
+import com.travelSafe.buses.seats.service.SearchForSeatsByTripIdService;
 import jakarta.validation.Valid;
 import java.util.List;
 import org.springframework.http.ResponseEntity;
@@ -19,10 +19,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/seats")
 public class SeatsController {
 
-  private final SearchForSeatsByTripId searchForSeatsInByTripStartAndTo;
+  private final SearchForSeatsByTripIdService searchForSeatsInByTripStartAndTo;
   private final BookSeatService bookSeatService;
 
-  public SeatsController(SearchForSeatsByTripId searchForSeatsInByTripStartAndTo,
+  public SeatsController(SearchForSeatsByTripIdService searchForSeatsInByTripStartAndTo,
       BookSeatService bookSeatService) {
     this.searchForSeatsInByTripStartAndTo = searchForSeatsInByTripStartAndTo;
     this.bookSeatService = bookSeatService;

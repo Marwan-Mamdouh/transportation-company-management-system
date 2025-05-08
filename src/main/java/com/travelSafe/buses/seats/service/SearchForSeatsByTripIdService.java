@@ -9,12 +9,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 @Service
-public class SearchForSeatsByTripId implements Query<Integer, List<Seat>> {
+public class SearchForSeatsByTripIdService implements Query<Integer, List<Seat>> {
 
-  private static final Logger logger = LoggerFactory.getLogger(SearchForSeatsByTripId.class);
+  private static final Logger logger = LoggerFactory.getLogger(SearchForSeatsByTripIdService.class);
   private final SeatsRepository tripSeatRepository;
 
-  public SearchForSeatsByTripId(SeatsRepository tripSeatRepository) {
+  public SearchForSeatsByTripIdService(SeatsRepository tripSeatRepository) {
     this.tripSeatRepository = tripSeatRepository;
   }
 
