@@ -23,7 +23,7 @@ public class CacheConfiguration {
     return manager;
   }
 
-  @CacheEvict(value = "tripCache")
+  @CacheEvict(value = "tripCache", allEntries = true)
   @Scheduled(fixedDelay = 10000, initialDelay = 0)
   public void evictingCache() {
     System.out.println("Evicting tripCache cache.");
