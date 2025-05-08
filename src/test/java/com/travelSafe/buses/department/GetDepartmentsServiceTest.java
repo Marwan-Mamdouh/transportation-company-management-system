@@ -6,17 +6,16 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import com.travelSafe.buses.department.model.Department;
-import com.travelSafe.buses.department.model.DTO.DepartmentDTO;
 import com.travelSafe.buses.department.service.GetDepartmentsService;
 import com.travelSafe.buses.employee.model.Employee;
 import java.util.List;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
-import org.springframework.http.ResponseEntity;
+import org.mockito.junit.jupiter.MockitoExtension;
 
+@ExtendWith(MockitoExtension.class)
 public class GetDepartmentsServiceTest {
 
   @Mock
@@ -24,11 +23,6 @@ public class GetDepartmentsServiceTest {
 
   @InjectMocks
   private GetDepartmentsService getDepartmentsService;
-
-  @BeforeEach
-  protected void setup() {
-    MockitoAnnotations.openMocks(this);
-  }
 
   @Test
   public void gavin_departments_exists_when_get_departments_service_called_return_dto() {
@@ -45,12 +39,10 @@ public class GetDepartmentsServiceTest {
 
     // when
     when(departmentRepository.findAll()).thenReturn(departments);
-    ResponseEntity<List<DepartmentDTO>> response = getDepartmentsService.execute(null);
+    List<Department> response = getDepartmentsService.execute(null);
 
     // then
-    final List<DepartmentDTO> departmentDTOS = departments.stream().map(DepartmentDTO::new)
-        .toList();
-    assertEquals(ResponseEntity.ok(departmentDTOS), response);
+    assertEquals(departments, response);
     verify(departmentRepository, times(1)).findAll();
   }
 
@@ -58,10 +50,10 @@ public class GetDepartmentsServiceTest {
   public void gavin_departments_does_not_exists_when_get_customers_service_return_empty_list() {
     // gavin &when
     when(departmentRepository.findAll()).thenReturn(List.of());
-    ResponseEntity<List<DepartmentDTO>> response = getDepartmentsService.execute(null);
+    List<Department> response = getDepartmentsService.execute(null);
 
     // then
-    assertEquals(ResponseEntity.ok(List.of()), response);
+    assertEquals(List.of(), response);
     verify(departmentRepository, times(1)).findAll();
   }
 }

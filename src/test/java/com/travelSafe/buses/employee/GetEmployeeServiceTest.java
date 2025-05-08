@@ -8,18 +8,17 @@ import static org.mockito.Mockito.when;
 
 import com.travelSafe.buses.department.model.Department;
 import com.travelSafe.buses.employee.model.Employee;
-import com.travelSafe.buses.employee.model.DTO.EmployeeDTO;
 import com.travelSafe.buses.employee.services.get.GetEmployeeService;
 import com.travelSafe.buses.exceptions.employee.EmployeeNotFoundException;
 import java.time.LocalDate;
 import java.util.Optional;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
-import org.springframework.http.ResponseEntity;
+import org.mockito.junit.jupiter.MockitoExtension;
 
+@ExtendWith(MockitoExtension.class)
 public class GetEmployeeServiceTest {
 
   @Mock
@@ -28,25 +27,21 @@ public class GetEmployeeServiceTest {
   @InjectMocks
   private GetEmployeeService getEmployeeService;
 
-  @BeforeEach
-  protected void setup() {
-    MockitoAnnotations.openMocks(this);
-  }
-
   @Test
   public void gavin_Employee_exists_when_get_employee_called_return_dto() {
 
-    final Long empId = 90876543218906L;
     // gavin
+    final Long empId = 90876543218906L;
     final Employee employee = new Employee(90876543218906L, "testFirst", "testLast",
-        "test@gamil.com", "01142703335", LocalDate.parse("2012-09-15"), null, new Department());
+        "test@gamil.com", "01142703335", null, LocalDate.parse("2012-09-15"), null,
+        new Department());
 
     // when
     when(employeeRepository.findById(empId)).thenReturn(Optional.of(employee));
-    final ResponseEntity<EmployeeDTO> response = getEmployeeService.execute(empId);
+    final Employee response = getEmployeeService.execute(empId);
 
     // then
-    assertEquals(ResponseEntity.ok(new EmployeeDTO(employee)), response);
+    assertEquals(employee, response);
     verify(employeeRepository, times(1)).findById(empId);
   }
 

@@ -6,17 +6,16 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import com.travelSafe.buses.vehicle.model.Vehicle;
-import com.travelSafe.buses.vehicle.model.VehicleDTO;
 import com.travelSafe.buses.vehicle.service.GetVehiclesService;
 import java.time.LocalDate;
 import java.util.List;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
-import org.springframework.http.ResponseEntity;
+import org.mockito.junit.jupiter.MockitoExtension;
 
+@ExtendWith(MockitoExtension.class)
 public class GetVehiclesServiceTest {
 
   @Mock
@@ -24,11 +23,6 @@ public class GetVehiclesServiceTest {
 
   @InjectMocks
   private GetVehiclesService getVehiclesService;
-
-  @BeforeEach
-  protected void setup() {
-    MockitoAnnotations.openMocks(this);
-  }
 
   @Test
   public void gavin_vehicles_exist_when_get_vehicles_service_called_return_dto_list() {
@@ -42,11 +36,10 @@ public class GetVehiclesServiceTest {
 
     // when
     when(vehicleRepository.findAll()).thenReturn(vehicles);
-    final ResponseEntity<List<VehicleDTO>> response = getVehiclesService.execute(null);
-    final List<VehicleDTO> vehicleDTOS = vehicles.stream().map(VehicleDTO::new).toList();
+    final List<Vehicle> response = getVehiclesService.execute(null);
 
     // then
-    assertEquals(ResponseEntity.ok(vehicleDTOS), response);
+    assertEquals(vehicles, response);
     verify(vehicleRepository, times(1)).findAll();
   }
 
@@ -56,10 +49,10 @@ public class GetVehiclesServiceTest {
 
     // when
     when(vehicleRepository.findAll()).thenReturn(List.of());
-    final ResponseEntity<List<VehicleDTO>> response = getVehiclesService.execute(null);
+    final List<Vehicle> response = getVehiclesService.execute(null);
 
     // then
-    assertEquals(ResponseEntity.ok(List.of()), response);
+    assertEquals(List.of(), response);
     verify(vehicleRepository, times(1)).findAll();
   }
 }

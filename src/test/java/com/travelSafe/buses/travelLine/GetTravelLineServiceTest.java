@@ -8,17 +8,16 @@ import static org.mockito.Mockito.when;
 
 import com.travelSafe.buses.exceptions.travelLine.TravelLineNotFoundException;
 import com.travelSafe.buses.travelLine.model.TravelLine;
-import com.travelSafe.buses.travelLine.model.TravelLineDTO;
 import com.travelSafe.buses.travelLine.service.GetTravelLineService;
 import java.util.List;
 import java.util.Optional;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
-import org.springframework.http.ResponseEntity;
+import org.mockito.junit.jupiter.MockitoExtension;
 
+@ExtendWith(MockitoExtension.class)
 public class GetTravelLineServiceTest {
 
   @Mock
@@ -26,11 +25,6 @@ public class GetTravelLineServiceTest {
 
   @InjectMocks
   private GetTravelLineService getTravelLineService;
-
-  @BeforeEach
-  protected void setup() {
-    MockitoAnnotations.openMocks(this);
-  }
 
   @Test
   public void gavin_travel_line_exists_when_get_travel_line_called_return_dto() {
@@ -41,10 +35,10 @@ public class GetTravelLineServiceTest {
 
     // when
     when(travelLineRepository.findById(travelId)).thenReturn(Optional.of(travelLine));
-    final ResponseEntity<TravelLineDTO> response = getTravelLineService.execute(travelId);
+    final TravelLine response = getTravelLineService.execute(travelId);
 
     // then
-    assertEquals(ResponseEntity.ok(new TravelLineDTO(travelLine)), response);
+    assertEquals(travelLine, response);
     verify(travelLineRepository, times(1)).findById(travelId);
   }
 

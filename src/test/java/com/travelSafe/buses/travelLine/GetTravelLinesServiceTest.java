@@ -6,17 +6,16 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import com.travelSafe.buses.travelLine.model.TravelLine;
-import com.travelSafe.buses.travelLine.model.TravelLineDTO;
 import com.travelSafe.buses.travelLine.service.GetTravelLinesService;
 import java.util.ArrayList;
 import java.util.List;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
-import org.springframework.http.ResponseEntity;
+import org.mockito.junit.jupiter.MockitoExtension;
 
+@ExtendWith(MockitoExtension.class)
 public class GetTravelLinesServiceTest {
 
   @Mock
@@ -24,11 +23,6 @@ public class GetTravelLinesServiceTest {
 
   @InjectMocks
   private GetTravelLinesService getTravelLinesService;
-
-  @BeforeEach
-  protected void setup() {
-    MockitoAnnotations.openMocks(this);
-  }
 
   @Test
   public void gavin_travel_line_exist_when_get_travel_lines_called_return_dto_list() {
@@ -39,12 +33,10 @@ public class GetTravelLinesServiceTest {
 
     // when
     when(travelLineRepository.findAll()).thenReturn(travelLines);
-    final ResponseEntity<List<TravelLineDTO>> response = getTravelLinesService.execute(null);
-    final List<TravelLineDTO> travelLineDTOS = travelLines.stream().map(TravelLineDTO::new)
-        .toList();
+    final List<TravelLine> response = getTravelLinesService.execute(null);
 
     // then
-    assertEquals(ResponseEntity.ok(travelLineDTOS), response);
+    assertEquals(travelLines, response);
     verify(travelLineRepository, times(1)).findAll();
   }
 
@@ -52,10 +44,10 @@ public class GetTravelLinesServiceTest {
   public void gavin_travel_line_does_not_exist_when_get_travel_lines_called_return_empty_list() {
     // gavin & when
     when(travelLineRepository.findAll()).thenReturn(List.of());
-    final ResponseEntity<List<TravelLineDTO>> response = getTravelLinesService.execute(null);
+    final List<TravelLine> response = getTravelLinesService.execute(null);
 
     // then
-    assertEquals(ResponseEntity.ok(List.of()), response);
+    assertEquals(List.of(), response);
     verify(travelLineRepository, times(1)).findAll();
   }
 }

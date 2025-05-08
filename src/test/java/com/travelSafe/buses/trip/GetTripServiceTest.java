@@ -8,22 +8,21 @@ import static org.mockito.Mockito.when;
 
 import com.travelSafe.buses.employee.model.Employee;
 import com.travelSafe.buses.exceptions.trip.TripNotFoundException;
+import com.travelSafe.buses.seats.model.Seat;
 import com.travelSafe.buses.travelLine.model.TravelLine;
 import com.travelSafe.buses.trip.model.Trip;
-import com.travelSafe.buses.trip.model.DTO.TripDto;
 import com.travelSafe.buses.trip.service.GetTripService;
-import com.travelSafe.buses.seats.model.Seat;
 import com.travelSafe.buses.vehicle.model.Vehicle;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
-import org.springframework.http.ResponseEntity;
+import org.mockito.junit.jupiter.MockitoExtension;
 
+@ExtendWith(MockitoExtension.class)
 public class GetTripServiceTest {
 
   @Mock
@@ -31,11 +30,6 @@ public class GetTripServiceTest {
 
   @InjectMocks
   private GetTripService getTripService;
-
-  @BeforeEach
-  protected void setup() {
-    MockitoAnnotations.openMocks(this);
-  }
 
   @Test
   public void gavin_trip_exist_when_get_trip_called_return_dto() {
@@ -46,10 +40,10 @@ public class GetTripServiceTest {
 
     // when
     when(tripRepository.findById(tripId)).thenReturn(Optional.of(trip));
-    final ResponseEntity<TripDto> response = getTripService.execute(tripId);
+    final Trip response = getTripService.execute(tripId);
 
     // then
-    assertEquals(ResponseEntity.ok(new TripDto(trip)), response);
+    assertEquals(trip, response);
     verify(tripRepository, times(1)).findById(tripId);
   }
 

@@ -7,19 +7,17 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import com.travelSafe.buses.department.model.Department;
-import com.travelSafe.buses.department.model.DTO.DepartmentDTO;
 import com.travelSafe.buses.department.service.GetDepartmentService;
 import com.travelSafe.buses.employee.model.Employee;
 import com.travelSafe.buses.exceptions.department.DepartmentNotFoundException;
 import java.util.Optional;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.mockito.junit.jupiter.MockitoExtension;
 
+@ExtendWith(MockitoExtension.class)
 public class GetDepartmentServiceTest {
 
   @Mock
@@ -27,11 +25,6 @@ public class GetDepartmentServiceTest {
 
   @InjectMocks
   private GetDepartmentService getDepartmentService;
-
-  @BeforeEach
-  protected void setup() {
-    MockitoAnnotations.openMocks(this);
-  }
 
   @Test
   public void gavin_department_exists_when_get_search_department_service_return_dto() {
@@ -44,11 +37,10 @@ public class GetDepartmentServiceTest {
 
     // when
     when(departmentRepository.findById(wantedId)).thenReturn(Optional.of(department));
-    final ResponseEntity<DepartmentDTO> response = getDepartmentService.execute(wantedId);
+    final Department response = getDepartmentService.execute(wantedId);
 
     // then
-    assertEquals(ResponseEntity.status(HttpStatus.OK).body(new DepartmentDTO(department)),
-        response);
+    assertEquals(department, response);
     verify(departmentRepository, times(1)).findById(wantedId);
   }
 

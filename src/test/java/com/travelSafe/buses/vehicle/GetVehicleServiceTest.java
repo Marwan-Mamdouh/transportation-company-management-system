@@ -8,17 +8,16 @@ import static org.mockito.Mockito.when;
 
 import com.travelSafe.buses.exceptions.vehicle.VehicleNotFoundException;
 import com.travelSafe.buses.vehicle.model.Vehicle;
-import com.travelSafe.buses.vehicle.model.VehicleDTO;
 import com.travelSafe.buses.vehicle.service.GetVehicleService;
 import java.time.LocalDate;
 import java.util.Optional;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
-import org.springframework.http.ResponseEntity;
+import org.mockito.junit.jupiter.MockitoExtension;
 
+@ExtendWith(MockitoExtension.class)
 public class GetVehicleServiceTest {
 
   @Mock
@@ -27,11 +26,6 @@ public class GetVehicleServiceTest {
   @InjectMocks
   private GetVehicleService getVehicleService;
 
-  @BeforeEach
-  protected void setup() {
-    MockitoAnnotations.openMocks(this);
-  }
-
   @Test
   public void gavin_vehicle_exist_when_get_vehicle_service_called_return_dto() {
     final Integer vehicleId = 15;
@@ -39,9 +33,9 @@ public class GetVehicleServiceTest {
         LocalDate.parse("2027-05-09"));
 
     when(vehicleRepository.findById(vehicleId)).thenReturn(Optional.of(vehicle));
-    final ResponseEntity<VehicleDTO> response = getVehicleService.execute(vehicleId);
+    final Vehicle response = getVehicleService.execute(vehicleId);
 
-    assertEquals(ResponseEntity.ok(new VehicleDTO(vehicle)), response);
+    assertEquals(vehicle, response);
     verify(vehicleRepository, times(1)).findById(vehicleId);
   }
 
