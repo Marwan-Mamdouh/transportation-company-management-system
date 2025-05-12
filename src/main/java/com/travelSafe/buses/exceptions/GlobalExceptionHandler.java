@@ -1,59 +1,33 @@
 package com.travelSafe.buses.exceptions;
 
-import com.travelSafe.buses.exceptions.department.DepartmentNotFoundException;
-import com.travelSafe.buses.exceptions.travelLine.TravelLineNotFoundException;
-import com.travelSafe.buses.exceptions.travelLine.TravelLineNotValidException;
-import com.travelSafe.buses.exceptions.trip.TripNotFoundException;
-import com.travelSafe.buses.exceptions.trip.TripNotValidException;
-import jakarta.validation.ConstraintViolationException;
+import java.time.LocalDateTime;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.stream.Collectors;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.context.request.WebRequest;
+import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 @ControllerAdvice
-public class GlobalExceptionHandler {
+public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
-  @ResponseBody
-  @ResponseStatus(HttpStatus.BAD_REQUEST)
-  @ExceptionHandler(ConstraintViolationException.class)
-  public ErrorResponse handleCustomerNotValidException(ConstraintViolationException exception) {
-    return new ErrorResponse(exception.getConstraintViolations().iterator().next().getMessage());
-  }
+  @Override
+  protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
+      HttpHeaders headers, HttpStatusCode status, WebRequest request) {
+    Map<String, Object> body = new LinkedHashMap<>();
+    body.put("timestamp", LocalDateTime.now()); // Use actual timestamp logic
+    body.put("status", status.value());
+    body.put("error", HttpStatus.BAD_REQUEST.getReasonPhrase());
+    body.put("message", ex.getBindingResult().getFieldErrors().stream()
+        .map(fe -> fe.getField() + " Error: " + fe.getDefaultMessage())
+        .collect(Collectors.joining("; "))); // Your custom message
+    body.put("path", request.getDescription(false).replace("uri=", "")); // Extract path
 
-  @ResponseBody
-  @ResponseStatus(HttpStatus.NOT_FOUND)
-  @ExceptionHandler(DepartmentNotFoundException.class)
-  public ErrorResponse handleDepartmentNotFoundException(DepartmentNotFoundException exception) {
-    return new ErrorResponse(exception.getMessage());
-  }
-
-  @ResponseBody
-  @ResponseStatus(HttpStatus.BAD_REQUEST)
-  @ExceptionHandler(TravelLineNotValidException.class)
-  private ErrorResponse handleTravelLineNotValidException(TravelLineNotValidException exception) {
-    return new ErrorResponse(exception.getMessage());
-  }
-
-  @ResponseBody
-  @ResponseStatus(HttpStatus.NOT_FOUND)
-  @ExceptionHandler(TravelLineNotFoundException.class)
-  public ErrorResponse handleTravelLineNotFoundException(TravelLineNotFoundException exception) {
-    return new ErrorResponse(exception.getMessage());
-  }
-
-  @ResponseBody
-  @ResponseStatus(HttpStatus.NOT_FOUND)
-  @ExceptionHandler(TripNotFoundException.class)
-  public ErrorResponse handleTripNotFoundException(TripNotFoundException exception) {
-    return new ErrorResponse(exception.getMessage());
-  }
-
-  @ResponseBody
-  @ResponseStatus(HttpStatus.NOT_FOUND)
-  @ExceptionHandler(TripNotValidException.class)
-  public ErrorResponse handleTripNotValidException(TripNotValidException exception) {
-    return new ErrorResponse(exception.getMessage());
+    return new ResponseEntity<>(body, headers, status);
   }
 }
