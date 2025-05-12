@@ -26,7 +26,7 @@ public final class Employee {
   @Id
   private Long ssn;
 
-  @Column(name = "first_name",nullable = false)
+  @Column(name = "first_name", nullable = false)
   private String firstname;
 
   @Column(name = "last_name", nullable = false)
