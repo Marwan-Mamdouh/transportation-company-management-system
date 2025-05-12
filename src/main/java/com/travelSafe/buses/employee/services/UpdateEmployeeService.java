@@ -2,8 +2,9 @@ package com.travelSafe.buses.employee.services;
 
 import com.travelSafe.buses.Command;
 import com.travelSafe.buses.employee.EmployeeRepository;
-import com.travelSafe.buses.employee.model.DTO.UpdateEmployeeDTO;
+import com.travelSafe.buses.employee.model.DTO.InputEmployeeDTO;
 import com.travelSafe.buses.employee.model.Employee;
+import com.travelSafe.buses.employee.model.EmployeeMapper;
 import com.travelSafe.buses.employee.services.get.GetEmployeeService;
 import jakarta.transaction.Transactional;
 import org.slf4j.Logger;
@@ -11,28 +12,28 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 @Service
-public class UpdateEmployeeService implements Command<UpdateEmployeeDTO, Employee> {
+public class UpdateEmployeeService implements Command<InputEmployeeDTO, Employee> {
 
   private static final Logger logger = LoggerFactory.getLogger(UpdateEmployeeService.class);
   private final EmployeeRepository employeeRepository;
   private final GetEmployeeService getEmployeeService;
+  private final EmployeeMapper employeeMapper;
 
   public UpdateEmployeeService(EmployeeRepository employeeRepository,
-      GetEmployeeService getEmployeeService) {
+      GetEmployeeService getEmployeeService, EmployeeMapper employeeMapper) {
     this.employeeRepository = employeeRepository;
     this.getEmployeeService = getEmployeeService;
+    this.employeeMapper = employeeMapper;
   }
 
   @Override
   @Transactional
-  public Employee execute(UpdateEmployeeDTO command) {
-    logger.info("Executing: {} with input: {}", getClass(), command);
+  public Employee execute(InputEmployeeDTO input) {
+    logger.info("Executing: {} with input: {}", getClass(), input);
     // check & validate Employee before save it to db
-    final Long id = command.id();
+    final Long id = input.ssn();
     getEmployeeService.execute(id);
     // save & return
-    final Employee employee = command.updateedEmployee();
-    employee.setSsn(id);
-    return employeeRepository.save(employee);
+    return employeeRepository.save(employeeMapper.employeeFromInputDTO(input));
   }
 }

@@ -2,14 +2,13 @@ package com.travelSafe.buses.employee.controller;
 
 import com.travelSafe.buses.employee.model.DTO.EmployeePaycheckDTO;
 import com.travelSafe.buses.employee.model.DTO.EmployeeResponseDTO;
-import com.travelSafe.buses.employee.model.DTO.UpdateEmployeeDTO;
+import com.travelSafe.buses.employee.model.DTO.InputEmployeeDTO;
 import com.travelSafe.buses.employee.model.Employee;
 import com.travelSafe.buses.employee.services.CreateEmployeeService;
 import com.travelSafe.buses.employee.services.DeleteEmployeeService;
 import com.travelSafe.buses.employee.services.UpdateEmployeeService;
 import com.travelSafe.buses.employee.services.get.GetEmployeeService;
-import com.travelSafe.buses.employee.services.get.GetEmployeesByDepartmentIdService;
-import com.travelSafe.buses.employee.services.get.GetEmployeesBySupervisorService;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,7 +17,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -35,8 +33,6 @@ public class EmployeeController {
 
   public EmployeeController(CreateEmployeeService createEmployeeService,
       DeleteEmployeeService deleteEmployeeService, GetEmployeeService getEmployeeService,
-      GetEmployeesByDepartmentIdService getEmployeesByDepartmentIdService,
-      GetEmployeesBySupervisorService getEmployeesBySupervisorService,
       UpdateEmployeeService updateEmployeeService) {
     this.createEmployeeService = createEmployeeService;
     this.deleteEmployeeService = deleteEmployeeService;
@@ -45,7 +41,8 @@ public class EmployeeController {
   }
 
   @PostMapping
-  public ResponseEntity<EmployeeResponseDTO> createEmployee(@RequestBody Employee employee) {
+  public ResponseEntity<EmployeeResponseDTO> createEmployee(
+      @Valid @RequestBody InputEmployeeDTO employee) {
     final Employee savedEmployee = createEmployeeService.execute(employee);
     return ResponseEntity.ok(new EmployeeResponseDTO(savedEmployee));
   }
@@ -63,10 +60,9 @@ public class EmployeeController {
   }
 
   @PutMapping()
-  public ResponseEntity<EmployeeResponseDTO> updateEmployee(@RequestParam Long empId,
-      @RequestBody Employee updatedEmployee) {
-    final Employee employee = updateEmployeeService.execute(
-        new UpdateEmployeeDTO(empId, updatedEmployee));
+  public ResponseEntity<EmployeeResponseDTO> updateEmployee(
+      @Valid @RequestBody InputEmployeeDTO updatedEmployee) {
+    final Employee employee = updateEmployeeService.execute(updatedEmployee);
     return ResponseEntity.ok(new EmployeeResponseDTO(employee));
   }
 
