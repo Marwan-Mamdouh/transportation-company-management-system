@@ -32,7 +32,7 @@ public class PromoteManagerService implements Command<PromoteManagerDTO, Departm
     logger.info("Executing: {} with input: {}", getClass(), input);
     // check
     final Employee foundEmployee = getEmployeeService.execute(input.managerId());
-    final Department foundDepartment = getDepartmentService.execute(input.department().getId());
+    final Department foundDepartment = getDepartmentService.execute(input.departmentId());
     // save
     foundDepartment.setDepartmentManager(foundEmployee);
     // return
