@@ -12,8 +12,8 @@ public class EmployeePaycheckDTO {
 
   public EmployeePaycheckDTO(Employee employee) {
     this.ssn = employee.getSsn();
-    this.firstname = employee.getFirstName();
-    this.lastname = employee.getLastName();
+    this.firstname = employee.getFirstname();
+    this.lastname = employee.getLastname();
     this.salary = employee.getDepartment() == null ? null : employee.getDepartment().getSalary();
   }
 }

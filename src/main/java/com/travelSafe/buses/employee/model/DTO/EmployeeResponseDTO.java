@@ -7,15 +7,13 @@ import lombok.Data;
 public class EmployeeResponseDTO {
 
   private final Long ssn;
-  private final String fName, lName, email, phoneNumber, departmentName;
+  private final String fName, lName, email, phoneNumber;
 
   public EmployeeResponseDTO(Employee employee) {
     this.ssn = employee.getSsn();
-    this.fName = employee.getFirstName();
-    this.lName = employee.getLastName();
+    this.fName = employee.getFirstname();
+    this.lName = employee.getLastname();
     this.email = employee.getEmail();
     this.phoneNumber = employee.getPhoneNumber();
-    this.departmentName =
-        employee.getDepartment() == null ? "no department" : employee.getDepartment().getName();
   }
 }
