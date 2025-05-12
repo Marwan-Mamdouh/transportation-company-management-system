@@ -37,7 +37,7 @@ public class SeatsController {
 
   @PostMapping("/book/seat")
   public ResponseEntity<SeatResponseDTO> bookSeat(@Valid @RequestBody BookSeatDTO bookSeatDto) {
-    final BookSeatDTO seat = bookSeatService.execute(bookSeatDto);
+    final Seat seat = bookSeatService.execute(bookSeatDto);
     return ResponseEntity.ok(new SeatResponseDTO(seat));
   }
 }
