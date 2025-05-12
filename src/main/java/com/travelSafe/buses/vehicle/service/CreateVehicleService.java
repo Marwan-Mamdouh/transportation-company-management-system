@@ -5,13 +5,13 @@ import com.travelSafe.buses.exceptions.vehicle.DuplicateVehiclePlateNumberExcept
 import com.travelSafe.buses.vehicle.VehicleRepository;
 import com.travelSafe.buses.vehicle.model.Vehicle;
 import com.travelSafe.buses.vehicle.model.VehicleMapper;
-import com.travelSafe.buses.vehicle.model.dto.CreateVehicleDto;
+import com.travelSafe.buses.vehicle.model.dto.CreateVehicleDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 @Service
-public class CreateVehicleService implements Command<CreateVehicleDto, Vehicle> {
+public class CreateVehicleService implements Command<CreateVehicleDTO, Vehicle> {
 
   private static final Logger logger = LoggerFactory.getLogger(CreateVehicleService.class);
   private final VehicleRepository vehicleRepository;
@@ -23,7 +23,7 @@ public class CreateVehicleService implements Command<CreateVehicleDto, Vehicle> 
   }
 
   @Override
-  public Vehicle execute(CreateVehicleDto input) {
+  public Vehicle execute(CreateVehicleDTO input) {
     logger.info("Executing: {} with input: {}", getClass(), input);
     if (vehicleRepository.existsByPlateNumberIgnoreCase(input.plateNumber())) {
       throw new DuplicateVehiclePlateNumberException();

@@ -1,9 +1,9 @@
 package com.travelSafe.buses.vehicle;
 
 import com.travelSafe.buses.vehicle.model.Vehicle;
-import com.travelSafe.buses.vehicle.model.dto.CreateVehicleDto;
-import com.travelSafe.buses.vehicle.model.dto.ResponseVehicleDTO;
-import com.travelSafe.buses.vehicle.model.dto.UpdateVehicleDto;
+import com.travelSafe.buses.vehicle.model.dto.CreateVehicleDTO;
+import com.travelSafe.buses.vehicle.model.dto.UpdateVehicleDTO;
+import com.travelSafe.buses.vehicle.model.dto.VehicleResponseDTO;
 import com.travelSafe.buses.vehicle.service.CreateVehicleService;
 import com.travelSafe.buses.vehicle.service.DeleteVehicleService;
 import com.travelSafe.buses.vehicle.service.GetVehicleService;
@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController("/vehicle")
+@RestController
 public class VehicleController {
 
   private final CreateVehicleService createVehicleService;
@@ -43,29 +43,29 @@ public class VehicleController {
   }
 
   @PostMapping("/vehicle")
-  public ResponseEntity<ResponseVehicleDTO> createVehicle(
-      @Valid @RequestBody CreateVehicleDto vehicle) {
+  public ResponseEntity<VehicleResponseDTO> createVehicle(
+      @Valid @RequestBody CreateVehicleDTO vehicle) {
     final Vehicle savedVehicle = createVehicleService.execute(vehicle);
-    return ResponseEntity.ok(new ResponseVehicleDTO(savedVehicle));
+    return ResponseEntity.ok(new VehicleResponseDTO(savedVehicle));
   }
 
   @GetMapping("/vehicles")
-  public ResponseEntity<List<ResponseVehicleDTO>> getVehicles() {
+  public ResponseEntity<List<VehicleResponseDTO>> getVehicles() {
     final List<Vehicle> vehicles = getVehiclesService.execute(null);
-    return ResponseEntity.ok(vehicles.stream().map(ResponseVehicleDTO::new).toList());
+    return ResponseEntity.ok(vehicles.stream().map(VehicleResponseDTO::new).toList());
   }
 
   @GetMapping("/vehicle/{vehicleId}")
-  public ResponseEntity<ResponseVehicleDTO> getVehicle(@PathVariable Integer vehicleId) {
+  public ResponseEntity<VehicleResponseDTO> getVehicle(@PathVariable Integer vehicleId) {
     final Vehicle vehicle = getVehicleService.execute(vehicleId);
-    return ResponseEntity.ok(new ResponseVehicleDTO(vehicle));
+    return ResponseEntity.ok(new VehicleResponseDTO(vehicle));
   }
 
   @PutMapping("/vehicle")
-  public ResponseEntity<ResponseVehicleDTO> updateVehicle(
-      @Valid @RequestBody UpdateVehicleDto vehicleDto) {
+  public ResponseEntity<VehicleResponseDTO> updateVehicle(
+      @Valid @RequestBody UpdateVehicleDTO vehicleDto) {
     final Vehicle updatedVehicle = updateVehicleService.execute(vehicleDto);
-    return ResponseEntity.ok(new ResponseVehicleDTO(updatedVehicle));
+    return ResponseEntity.ok(new VehicleResponseDTO(updatedVehicle));
   }
 
   @DeleteMapping("/vehicle/{vehicleId}")
