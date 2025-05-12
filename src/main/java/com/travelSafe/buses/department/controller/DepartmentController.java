@@ -60,18 +60,17 @@ public class DepartmentController {
     return ResponseEntity.ok(new DepartmentResponseDTO(department));
   }
 
-  @PutMapping("/update/{id}")
+  @PutMapping("/update")
   public ResponseEntity<DepartmentResponseDTO> updateDepartment(
       @Valid @RequestBody UpdatedDepartmentDTO department) {
     final Department updatedDepartment = updateDepartmentService.execute(department);
     return ResponseEntity.ok(new DepartmentResponseDTO(updatedDepartment));
   }
 
-  @PutMapping("promote/manager/{id}")
-  public ResponseEntity<DepartmentResponseDTO> promoteManager(@PathVariable @Positive Long id,
-      @Valid @RequestBody Department department) {
-    final Department updatedDepartment = promoteManagerService.execute(
-        new PromoteManagerDTO(id, department));
+  @PutMapping("promote/manager")
+  public ResponseEntity<DepartmentResponseDTO> promoteManager(
+      @Valid @RequestBody PromoteManagerDTO dto) {
+    final Department updatedDepartment = promoteManagerService.execute(dto);
     return ResponseEntity.ok(new DepartmentResponseDTO(updatedDepartment));
   }
 
