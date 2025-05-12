@@ -1,13 +1,14 @@
 package com.travelSafe.buses.travelLine;
 
 import com.travelSafe.buses.travelLine.model.TravelLine;
+import com.travelSafe.buses.travelLine.model.dto.InputTravelLineDTO;
 import com.travelSafe.buses.travelLine.model.dto.TravelLineResponseDTO;
-import com.travelSafe.buses.travelLine.model.dto.UpdateTravelLineDTO;
 import com.travelSafe.buses.travelLine.service.CreateTravelLineService;
 import com.travelSafe.buses.travelLine.service.DeleteTravelLineService;
 import com.travelSafe.buses.travelLine.service.GetTravelLineService;
 import com.travelSafe.buses.travelLine.service.GetTravelLinesService;
 import com.travelSafe.buses.travelLine.service.UpdateTravelLineService;
+import jakarta.validation.Valid;
 import java.util.List;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -54,17 +55,16 @@ public class TravelLineController {
   }
 
   @PutMapping("/travel-line/{id}")
-  public ResponseEntity<TravelLineResponseDTO> updateTravelLine(@PathVariable Integer id,
-      @RequestBody TravelLine travelLine) {
-    final TravelLine savedTravelLine = updateTravelLineService.execute(
-        new UpdateTravelLineDTO(id, travelLine));
+  public ResponseEntity<TravelLineResponseDTO> updateTravelLine(
+      @Valid @RequestBody InputTravelLineDTO dto) {
+    final TravelLine savedTravelLine = updateTravelLineService.execute(dto);
     return ResponseEntity.ok(new TravelLineResponseDTO(savedTravelLine));
   }
 
   @PostMapping("/travel-line")
   public ResponseEntity<TravelLineResponseDTO> createTravelLine(
-      @RequestBody TravelLine travelLine) {
-    final TravelLine savedTravelLine = createTravelLineService.execute(travelLine);
+      @Valid @RequestBody InputTravelLineDTO dto) {
+    final TravelLine savedTravelLine = createTravelLineService.execute(dto);
     return ResponseEntity.ok(new TravelLineResponseDTO(savedTravelLine));
   }
 

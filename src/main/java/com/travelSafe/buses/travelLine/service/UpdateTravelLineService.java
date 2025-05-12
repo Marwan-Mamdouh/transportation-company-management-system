@@ -4,13 +4,13 @@ import com.travelSafe.buses.Command;
 import com.travelSafe.buses.exceptions.travelLine.TravelLineNotFoundException;
 import com.travelSafe.buses.travelLine.TravelLineRepository;
 import com.travelSafe.buses.travelLine.model.TravelLine;
-import com.travelSafe.buses.travelLine.model.dto.UpdateTravelLineDTO;
+import com.travelSafe.buses.travelLine.model.dto.InputTravelLineDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 @Service
-public class UpdateTravelLineService implements Command<UpdateTravelLineDTO, TravelLine> {
+public class UpdateTravelLineService implements Command<InputTravelLineDTO, TravelLine> {
 
   private static final Logger logger = LoggerFactory.getLogger(UpdateTravelLineService.class);
   private final TravelLineRepository travelLineRepository;
@@ -20,12 +20,9 @@ public class UpdateTravelLineService implements Command<UpdateTravelLineDTO, Tra
   }
 
   @Override
-  public TravelLine execute(UpdateTravelLineDTO input) {
+  public TravelLine execute(InputTravelLineDTO input) {
     logger.info("Executing: {} with input:{}", getClass(), input);
-    final Integer lineId = input.id();
-    travelLineRepository.findById(lineId).orElseThrow(TravelLineNotFoundException::new);
-    final TravelLine updatedTravelLine = input.updatedTravelLine();
-    updatedTravelLine.setLineId(lineId);
-    return travelLineRepository.save(updatedTravelLine);
+    travelLineRepository.findById(input.lineId()).orElseThrow(TravelLineNotFoundException::new);
+    return travelLineRepository.save(input.toTravelLine());
   }
 }
