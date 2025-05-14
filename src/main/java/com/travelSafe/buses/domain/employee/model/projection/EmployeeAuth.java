@@ -5,4 +5,6 @@ public interface EmployeeAuth {
   String getEmail();
 
   String getPassword();
+
+  String getRole();
 }
