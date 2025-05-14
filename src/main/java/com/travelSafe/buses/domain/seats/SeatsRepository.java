@@ -1,9 +1,9 @@
-package com.travelSafe.buses.domin.seats;
+package com.travelSafe.buses.domain.seats;
 
-import com.travelSafe.buses.domin.employee.model.Employee;
-import com.travelSafe.buses.domin.seats.model.Seat;
-import com.travelSafe.buses.domin.seats.model.SeatId;
-import com.travelSafe.buses.domin.trip.model.Trip;
+import com.travelSafe.buses.domain.employee.model.Employee;
+import com.travelSafe.buses.domain.seats.model.Seat;
+import com.travelSafe.buses.domain.seats.model.SeatId;
+import com.travelSafe.buses.domain.trip.model.Trip;
 import jakarta.transaction.Transactional;
 import java.time.LocalDateTime;
 import java.util.List;

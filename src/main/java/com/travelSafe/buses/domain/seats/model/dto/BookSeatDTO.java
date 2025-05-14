@@ -1,6 +1,6 @@
-package com.travelSafe.buses.domin.seats.model.dto;
+package com.travelSafe.buses.domain.seats.model.dto;
 
-import com.travelSafe.buses.domin.seats.model.SeatId;
+import com.travelSafe.buses.domain.seats.model.SeatId;
 import com.travelSafe.buses.validator.PatternLong;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.NotNull;

@@ -1,4 +1,4 @@
-package com.travelSafe.buses.domin.seats.model;
+package com.travelSafe.buses.domain.seats.model;
 
 import jakarta.persistence.Embeddable;
 import java.io.Serializable;

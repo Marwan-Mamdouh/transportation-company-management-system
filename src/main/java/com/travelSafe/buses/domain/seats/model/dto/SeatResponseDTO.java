@@ -1,6 +1,6 @@
-package com.travelSafe.buses.domin.seats.model.dto;
+package com.travelSafe.buses.domain.seats.model.dto;
 
-import com.travelSafe.buses.domin.seats.model.Seat;
+import com.travelSafe.buses.domain.seats.model.Seat;
 import lombok.Data;
 import lombok.Getter;
 

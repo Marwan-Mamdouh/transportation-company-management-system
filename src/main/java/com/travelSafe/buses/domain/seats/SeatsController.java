@@ -1,10 +1,10 @@
-package com.travelSafe.buses.domin.seats;
+package com.travelSafe.buses.domain.seats;
 
-import com.travelSafe.buses.domin.seats.model.Seat;
-import com.travelSafe.buses.domin.seats.model.dto.BookSeatDTO;
-import com.travelSafe.buses.domin.seats.model.dto.SeatResponseDTO;
-import com.travelSafe.buses.domin.seats.service.BookSeatService;
-import com.travelSafe.buses.domin.seats.service.SearchForSeatsByTripIdService;
+import com.travelSafe.buses.domain.seats.model.Seat;
+import com.travelSafe.buses.domain.seats.model.dto.BookSeatDTO;
+import com.travelSafe.buses.domain.seats.model.dto.SeatResponseDTO;
+import com.travelSafe.buses.domain.seats.service.BookSeatService;
+import com.travelSafe.buses.domain.seats.service.SearchForSeatsByTripIdService;
 import jakarta.validation.Valid;
 import java.util.List;
 import org.springframework.http.ResponseEntity;

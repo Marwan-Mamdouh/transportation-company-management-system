@@ -1,7 +1,7 @@
-package com.travelSafe.buses.domin.seats.model;
+package com.travelSafe.buses.domain.seats.model;
 
-import com.travelSafe.buses.domin.employee.model.Employee;
-import com.travelSafe.buses.domin.trip.model.Trip;
+import com.travelSafe.buses.domain.employee.model.Employee;
+import com.travelSafe.buses.domain.trip.model.Trip;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;

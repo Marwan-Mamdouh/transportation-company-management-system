@@ -1,4 +1,4 @@
-package com.travelSafe.buses.domin.seats.model.dto;
+package com.travelSafe.buses.domain.seats.model.dto;
 
 public record UpdateTripSeatDTO() {
 
