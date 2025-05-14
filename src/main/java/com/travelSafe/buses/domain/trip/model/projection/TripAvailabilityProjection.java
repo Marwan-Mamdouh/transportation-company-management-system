@@ -1,6 +1,6 @@
-package com.travelSafe.buses.domin.trip.model.projection;
+package com.travelSafe.buses.domain.trip.model.projection;
 
-import com.travelSafe.buses.domin.trip.model.Trip;
+import com.travelSafe.buses.domain.trip.model.Trip;
 
 public interface TripAvailabilityProjection {
 

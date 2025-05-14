@@ -1,6 +1,6 @@
-package com.travelSafe.buses.domin.trip.model.DTO;
+package com.travelSafe.buses.domain.trip.model.DTO;
 
-import com.travelSafe.buses.domin.trip.model.Trip;
+import com.travelSafe.buses.domain.trip.model.Trip;
 import lombok.Data;
 import lombok.Getter;
 

@@ -1,4 +1,4 @@
-package com.travelSafe.buses.domin.vehicle.model.dto;
+package com.travelSafe.buses.domain.vehicle.model.dto;
 
 import jakarta.validation.constraints.FutureOrPresent;
 import jakarta.validation.constraints.Max;

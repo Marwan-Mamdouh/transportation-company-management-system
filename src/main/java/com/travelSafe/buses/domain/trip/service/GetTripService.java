@@ -1,9 +1,9 @@
-package com.travelSafe.buses.domin.trip.service;
+package com.travelSafe.buses.domain.trip.service;
 
 import com.travelSafe.buses.Query;
 import com.travelSafe.buses.exceptions.trip.TripNotFoundException;
-import com.travelSafe.buses.domin.trip.TripRepository;
-import com.travelSafe.buses.domin.trip.model.Trip;
+import com.travelSafe.buses.domain.trip.TripRepository;
+import com.travelSafe.buses.domain.trip.model.Trip;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.cache.annotation.Cacheable;

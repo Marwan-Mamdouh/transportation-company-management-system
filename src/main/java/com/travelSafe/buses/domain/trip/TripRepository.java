@@ -1,7 +1,7 @@
-package com.travelSafe.buses.domin.trip;
+package com.travelSafe.buses.domain.trip;
 
-import com.travelSafe.buses.domin.trip.model.Trip;
-import com.travelSafe.buses.domin.trip.model.projection.TripAvailabilityProjection;
+import com.travelSafe.buses.domain.trip.model.Trip;
+import com.travelSafe.buses.domain.trip.model.projection.TripAvailabilityProjection;
 import java.time.LocalDate;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;

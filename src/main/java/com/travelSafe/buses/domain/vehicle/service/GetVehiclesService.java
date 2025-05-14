@@ -1,8 +1,8 @@
-package com.travelSafe.buses.domin.vehicle.service;
+package com.travelSafe.buses.domain.vehicle.service;
 
 import com.travelSafe.buses.Query;
-import com.travelSafe.buses.domin.vehicle.VehicleRepository;
-import com.travelSafe.buses.domin.vehicle.model.Vehicle;
+import com.travelSafe.buses.domain.vehicle.VehicleRepository;
+import com.travelSafe.buses.domain.vehicle.model.Vehicle;
 import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

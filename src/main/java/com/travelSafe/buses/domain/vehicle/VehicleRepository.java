@@ -1,6 +1,6 @@
-package com.travelSafe.buses.domin.vehicle;
+package com.travelSafe.buses.domain.vehicle;
 
-import com.travelSafe.buses.domin.vehicle.model.Vehicle;
+import com.travelSafe.buses.domain.vehicle.model.Vehicle;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

@@ -1,7 +1,7 @@
-package com.travelSafe.buses.domin.vehicle.service;
+package com.travelSafe.buses.domain.vehicle.service;
 
 import com.travelSafe.buses.Command;
-import com.travelSafe.buses.domin.vehicle.VehicleRepository;
+import com.travelSafe.buses.domain.vehicle.VehicleRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;

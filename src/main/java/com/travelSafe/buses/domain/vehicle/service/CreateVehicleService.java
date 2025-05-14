@@ -1,11 +1,11 @@
-package com.travelSafe.buses.domin.vehicle.service;
+package com.travelSafe.buses.domain.vehicle.service;
 
 import com.travelSafe.buses.Command;
 import com.travelSafe.buses.exceptions.vehicle.DuplicateVehiclePlateNumberException;
-import com.travelSafe.buses.domin.vehicle.VehicleRepository;
-import com.travelSafe.buses.domin.vehicle.model.Vehicle;
-import com.travelSafe.buses.domin.vehicle.model.VehicleMapper;
-import com.travelSafe.buses.domin.vehicle.model.dto.CreateVehicleDTO;
+import com.travelSafe.buses.domain.vehicle.VehicleRepository;
+import com.travelSafe.buses.domain.vehicle.model.Vehicle;
+import com.travelSafe.buses.domain.vehicle.model.VehicleMapper;
+import com.travelSafe.buses.domain.vehicle.model.dto.CreateVehicleDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;

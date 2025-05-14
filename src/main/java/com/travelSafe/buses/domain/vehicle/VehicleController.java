@@ -1,14 +1,14 @@
-package com.travelSafe.buses.domin.vehicle;
+package com.travelSafe.buses.domain.vehicle;
 
-import com.travelSafe.buses.domin.vehicle.model.Vehicle;
-import com.travelSafe.buses.domin.vehicle.model.dto.CreateVehicleDTO;
-import com.travelSafe.buses.domin.vehicle.model.dto.UpdateVehicleDTO;
-import com.travelSafe.buses.domin.vehicle.model.dto.VehicleResponseDTO;
-import com.travelSafe.buses.domin.vehicle.service.CreateVehicleService;
-import com.travelSafe.buses.domin.vehicle.service.DeleteVehicleService;
-import com.travelSafe.buses.domin.vehicle.service.GetVehicleService;
-import com.travelSafe.buses.domin.vehicle.service.GetVehiclesService;
-import com.travelSafe.buses.domin.vehicle.service.UpdateVehicleService;
+import com.travelSafe.buses.domain.vehicle.model.Vehicle;
+import com.travelSafe.buses.domain.vehicle.model.dto.CreateVehicleDTO;
+import com.travelSafe.buses.domain.vehicle.model.dto.UpdateVehicleDTO;
+import com.travelSafe.buses.domain.vehicle.model.dto.VehicleResponseDTO;
+import com.travelSafe.buses.domain.vehicle.service.CreateVehicleService;
+import com.travelSafe.buses.domain.vehicle.service.DeleteVehicleService;
+import com.travelSafe.buses.domain.vehicle.service.GetVehicleService;
+import com.travelSafe.buses.domain.vehicle.service.GetVehiclesService;
+import com.travelSafe.buses.domain.vehicle.service.UpdateVehicleService;
 import jakarta.validation.Valid;
 import java.util.List;
 import org.springframework.http.ResponseEntity;

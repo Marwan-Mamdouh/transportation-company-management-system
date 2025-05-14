@@ -1,4 +1,4 @@
-package com.travelSafe.buses.domin.vehicle.model;
+package com.travelSafe.buses.domain.vehicle.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

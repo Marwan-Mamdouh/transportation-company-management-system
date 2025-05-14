@@ -1,16 +1,16 @@
-package com.travelSafe.buses.domin.trip.service;
+package com.travelSafe.buses.domain.trip.service;
 
 import com.travelSafe.buses.Command;
-import com.travelSafe.buses.domin.employee.model.Employee;
-import com.travelSafe.buses.domin.employee.services.get.GetEmployeeService;
-import com.travelSafe.buses.domin.travelLine.model.TravelLine;
-import com.travelSafe.buses.domin.travelLine.service.GetTravelLineService;
-import com.travelSafe.buses.domin.trip.TripRepository;
-import com.travelSafe.buses.domin.trip.model.DTO.CreateTripDTO;
-import com.travelSafe.buses.domin.trip.model.Trip;
-import com.travelSafe.buses.domin.trip.model.TripMapper;
-import com.travelSafe.buses.domin.vehicle.model.Vehicle;
-import com.travelSafe.buses.domin.vehicle.service.GetVehicleService;
+import com.travelSafe.buses.domain.employee.model.Employee;
+import com.travelSafe.buses.domain.employee.services.get.GetEmployeeService;
+import com.travelSafe.buses.domain.travelLine.model.TravelLine;
+import com.travelSafe.buses.domain.travelLine.service.GetTravelLineService;
+import com.travelSafe.buses.domain.trip.TripRepository;
+import com.travelSafe.buses.domain.trip.model.DTO.CreateTripDTO;
+import com.travelSafe.buses.domain.trip.model.Trip;
+import com.travelSafe.buses.domain.trip.model.TripMapper;
+import com.travelSafe.buses.domain.vehicle.model.Vehicle;
+import com.travelSafe.buses.domain.vehicle.service.GetVehicleService;
 import jakarta.transaction.Transactional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

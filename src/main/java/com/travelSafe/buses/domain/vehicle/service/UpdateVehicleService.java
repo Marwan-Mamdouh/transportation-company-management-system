@@ -1,10 +1,10 @@
-package com.travelSafe.buses.domin.vehicle.service;
+package com.travelSafe.buses.domain.vehicle.service;
 
 import com.travelSafe.buses.Command;
-import com.travelSafe.buses.domin.vehicle.VehicleRepository;
-import com.travelSafe.buses.domin.vehicle.model.Vehicle;
-import com.travelSafe.buses.domin.vehicle.model.VehicleMapper;
-import com.travelSafe.buses.domin.vehicle.model.dto.UpdateVehicleDTO;
+import com.travelSafe.buses.domain.vehicle.VehicleRepository;
+import com.travelSafe.buses.domain.vehicle.model.Vehicle;
+import com.travelSafe.buses.domain.vehicle.model.VehicleMapper;
+import com.travelSafe.buses.domain.vehicle.model.dto.UpdateVehicleDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;

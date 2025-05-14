@@ -1,4 +1,4 @@
-package com.travelSafe.buses.domin.trip.model.DTO;
+package com.travelSafe.buses.domain.trip.model.DTO;
 
 import jakarta.validation.constraints.FutureOrPresent;
 import jakarta.validation.constraints.NotBlank;
