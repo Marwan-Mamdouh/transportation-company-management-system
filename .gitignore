@@ -35,3 +35,4 @@ build/
 ### user ###
 *.gz
 *.bkp
+keypair.pem
