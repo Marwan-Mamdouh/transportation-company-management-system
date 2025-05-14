@@ -1,12 +1,12 @@
-package com.travelSafe.buses.domin.employee.controller;
+package com.travelSafe.buses.domain.employee.controller;
 
-import com.travelSafe.buses.domin.employee.model.DTO.EmployeePaycheckDTO;
-import com.travelSafe.buses.domin.employee.model.DTO.EmployeeResponseDTO;
-import com.travelSafe.buses.domin.employee.model.Employee;
-import com.travelSafe.buses.domin.employee.services.get.CountEmployeesService;
-import com.travelSafe.buses.domin.employee.services.get.GetEmployeesByDepartmentIdService;
-import com.travelSafe.buses.domin.employee.services.get.GetEmployeesBySupervisorService;
-import com.travelSafe.buses.domin.employee.services.get.GetEmployeesService;
+import com.travelSafe.buses.domain.employee.model.DTO.EmployeePaycheckDTO;
+import com.travelSafe.buses.domain.employee.model.DTO.EmployeeResponseDTO;
+import com.travelSafe.buses.domain.employee.model.Employee;
+import com.travelSafe.buses.domain.employee.services.get.CountEmployeesService;
+import com.travelSafe.buses.domain.employee.services.get.GetEmployeesByDepartmentIdService;
+import com.travelSafe.buses.domain.employee.services.get.GetEmployeesBySupervisorService;
+import com.travelSafe.buses.domain.employee.services.get.GetEmployeesService;
 import java.util.List;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
