@@ -1,6 +1,6 @@
-package com.travelSafe.buses.domin.employee.model.DTO;
+package com.travelSafe.buses.domain.employee.model.DTO;
 
-import com.travelSafe.buses.domin.employee.model.Employee;
+import com.travelSafe.buses.domain.employee.model.Employee;
 import lombok.Data;
 
 @Data

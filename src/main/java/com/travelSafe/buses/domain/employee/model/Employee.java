@@ -1,6 +1,6 @@
-package com.travelSafe.buses.domin.employee.model;
+package com.travelSafe.buses.domain.employee.model;
 
-import com.travelSafe.buses.domin.department.model.Department;
+import com.travelSafe.buses.domain.department.model.Department;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

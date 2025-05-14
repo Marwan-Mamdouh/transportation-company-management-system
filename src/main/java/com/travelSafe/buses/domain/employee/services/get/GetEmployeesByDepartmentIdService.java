@@ -1,9 +1,9 @@
-package com.travelSafe.buses.domin.employee.services.get;
+package com.travelSafe.buses.domain.employee.services.get;
 
 import com.travelSafe.buses.Query;
-import com.travelSafe.buses.domin.department.service.GetDepartmentService;
-import com.travelSafe.buses.domin.employee.EmployeeRepository;
-import com.travelSafe.buses.domin.employee.model.Employee;
+import com.travelSafe.buses.domain.department.service.GetDepartmentService;
+import com.travelSafe.buses.domain.employee.EmployeeRepository;
+import com.travelSafe.buses.domain.employee.model.Employee;
 import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
