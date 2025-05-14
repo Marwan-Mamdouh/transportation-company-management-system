@@ -1,11 +1,11 @@
-package com.travelSafe.buses.domin.department.service;
+package com.travelSafe.buses.domain.department.service;
 
 import com.travelSafe.buses.Command;
-import com.travelSafe.buses.domin.department.DepartmentRepository;
-import com.travelSafe.buses.domin.department.model.DTO.PromoteManagerDTO;
-import com.travelSafe.buses.domin.department.model.Department;
-import com.travelSafe.buses.domin.employee.model.Employee;
-import com.travelSafe.buses.domin.employee.services.get.GetEmployeeService;
+import com.travelSafe.buses.domain.department.DepartmentRepository;
+import com.travelSafe.buses.domain.department.model.DTO.PromoteManagerDTO;
+import com.travelSafe.buses.domain.department.model.Department;
+import com.travelSafe.buses.domain.employee.model.Employee;
+import com.travelSafe.buses.domain.employee.services.get.GetEmployeeService;
 import jakarta.transaction.Transactional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

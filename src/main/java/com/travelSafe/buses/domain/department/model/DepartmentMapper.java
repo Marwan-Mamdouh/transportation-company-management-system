@@ -1,8 +1,8 @@
-package com.travelSafe.buses.domin.department.model;
+package com.travelSafe.buses.domain.department.model;
 
-import com.travelSafe.buses.domin.department.model.DTO.CreateDepartmentDto;
-import com.travelSafe.buses.domin.department.model.DTO.DepartmentResponseDTO;
-import com.travelSafe.buses.domin.department.model.DTO.UpdatedDepartmentDTO;
+import com.travelSafe.buses.domain.department.model.DTO.CreateDepartmentDto;
+import com.travelSafe.buses.domain.department.model.DTO.DepartmentResponseDTO;
+import com.travelSafe.buses.domain.department.model.DTO.UpdatedDepartmentDTO;
 import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")

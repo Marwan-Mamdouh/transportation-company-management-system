@@ -1,6 +1,6 @@
-package com.travelSafe.buses.domin.department;
+package com.travelSafe.buses.domain.department;
 
-import com.travelSafe.buses.domin.department.model.Department;
+import com.travelSafe.buses.domain.department.model.Department;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

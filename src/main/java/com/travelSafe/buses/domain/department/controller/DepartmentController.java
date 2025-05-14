@@ -1,15 +1,15 @@
-package com.travelSafe.buses.domin.department.controller;
+package com.travelSafe.buses.domain.department.controller;
 
-import com.travelSafe.buses.domin.department.model.DTO.CreateDepartmentDto;
-import com.travelSafe.buses.domin.department.model.DTO.DepartmentResponseDTO;
-import com.travelSafe.buses.domin.department.model.DTO.PromoteManagerDTO;
-import com.travelSafe.buses.domin.department.model.DTO.UpdatedDepartmentDTO;
-import com.travelSafe.buses.domin.department.model.Department;
-import com.travelSafe.buses.domin.department.service.CreateDepartmentService;
-import com.travelSafe.buses.domin.department.service.DeleteDepartmentService;
-import com.travelSafe.buses.domin.department.service.GetDepartmentService;
-import com.travelSafe.buses.domin.department.service.PromoteManagerService;
-import com.travelSafe.buses.domin.department.service.UpdateDepartmentService;
+import com.travelSafe.buses.domain.department.model.DTO.CreateDepartmentDto;
+import com.travelSafe.buses.domain.department.model.DTO.DepartmentResponseDTO;
+import com.travelSafe.buses.domain.department.model.DTO.PromoteManagerDTO;
+import com.travelSafe.buses.domain.department.model.DTO.UpdatedDepartmentDTO;
+import com.travelSafe.buses.domain.department.model.Department;
+import com.travelSafe.buses.domain.department.service.CreateDepartmentService;
+import com.travelSafe.buses.domain.department.service.DeleteDepartmentService;
+import com.travelSafe.buses.domain.department.service.GetDepartmentService;
+import com.travelSafe.buses.domain.department.service.PromoteManagerService;
+import com.travelSafe.buses.domain.department.service.UpdateDepartmentService;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Positive;
 import org.springframework.http.ResponseEntity;

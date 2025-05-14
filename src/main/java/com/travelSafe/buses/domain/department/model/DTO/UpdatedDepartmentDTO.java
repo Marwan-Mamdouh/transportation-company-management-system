@@ -1,4 +1,4 @@
-package com.travelSafe.buses.domin.department.model.DTO;
+package com.travelSafe.buses.domain.department.model.DTO;
 
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.NotBlank;

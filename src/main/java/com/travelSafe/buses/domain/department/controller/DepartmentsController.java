@@ -1,8 +1,8 @@
-package com.travelSafe.buses.domin.department.controller;
+package com.travelSafe.buses.domain.department.controller;
 
-import com.travelSafe.buses.domin.department.model.DTO.DepartmentResponseDTO;
-import com.travelSafe.buses.domin.department.model.Department;
-import com.travelSafe.buses.domin.department.service.GetDepartmentsService;
+import com.travelSafe.buses.domain.department.model.DTO.DepartmentResponseDTO;
+import com.travelSafe.buses.domain.department.model.Department;
+import com.travelSafe.buses.domain.department.service.GetDepartmentsService;
 import java.util.List;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

@@ -1,10 +1,10 @@
-package com.travelSafe.buses.domin.department.service;
+package com.travelSafe.buses.domain.department.service;
 
 import com.travelSafe.buses.Command;
-import com.travelSafe.buses.domin.department.DepartmentRepository;
-import com.travelSafe.buses.domin.department.model.DTO.UpdatedDepartmentDTO;
-import com.travelSafe.buses.domin.department.model.Department;
-import com.travelSafe.buses.domin.department.model.DepartmentMapper;
+import com.travelSafe.buses.domain.department.DepartmentRepository;
+import com.travelSafe.buses.domain.department.model.DTO.UpdatedDepartmentDTO;
+import com.travelSafe.buses.domain.department.model.Department;
+import com.travelSafe.buses.domain.department.model.DepartmentMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
