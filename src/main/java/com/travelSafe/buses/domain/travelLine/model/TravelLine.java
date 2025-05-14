@@ -1,4 +1,4 @@
-package com.travelSafe.buses.domin.travelLine.model;
+package com.travelSafe.buses.domain.travelLine.model;
 
 import jakarta.persistence.CollectionTable;
 import jakarta.persistence.ElementCollection;

@@ -1,6 +1,6 @@
-package com.travelSafe.buses.domin.travelLine.model.dto;
+package com.travelSafe.buses.domain.travelLine.model.dto;
 
-import com.travelSafe.buses.domin.travelLine.model.TravelLine;
+import com.travelSafe.buses.domain.travelLine.model.TravelLine;
 import java.util.List;
 import lombok.Data;
 

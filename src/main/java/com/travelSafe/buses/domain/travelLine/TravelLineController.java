@@ -1,13 +1,13 @@
-package com.travelSafe.buses.domin.travelLine;
+package com.travelSafe.buses.domain.travelLine;
 
-import com.travelSafe.buses.domin.travelLine.model.TravelLine;
-import com.travelSafe.buses.domin.travelLine.model.dto.InputTravelLineDTO;
-import com.travelSafe.buses.domin.travelLine.model.dto.TravelLineResponseDTO;
-import com.travelSafe.buses.domin.travelLine.service.CreateTravelLineService;
-import com.travelSafe.buses.domin.travelLine.service.DeleteTravelLineService;
-import com.travelSafe.buses.domin.travelLine.service.GetTravelLineService;
-import com.travelSafe.buses.domin.travelLine.service.GetTravelLinesService;
-import com.travelSafe.buses.domin.travelLine.service.UpdateTravelLineService;
+import com.travelSafe.buses.domain.travelLine.model.TravelLine;
+import com.travelSafe.buses.domain.travelLine.model.dto.InputTravelLineDTO;
+import com.travelSafe.buses.domain.travelLine.model.dto.TravelLineResponseDTO;
+import com.travelSafe.buses.domain.travelLine.service.CreateTravelLineService;
+import com.travelSafe.buses.domain.travelLine.service.DeleteTravelLineService;
+import com.travelSafe.buses.domain.travelLine.service.GetTravelLineService;
+import com.travelSafe.buses.domain.travelLine.service.GetTravelLinesService;
+import com.travelSafe.buses.domain.travelLine.service.UpdateTravelLineService;
 import jakarta.validation.Valid;
 import java.util.List;
 import org.springframework.http.ResponseEntity;
