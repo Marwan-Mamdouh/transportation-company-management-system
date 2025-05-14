@@ -14,7 +14,7 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface PatternLong {
 
-  String message() default "Invalid ssn format";
+  String message() default "Invalid ssn format, it should start with 2 or 3 then 13 digits";
 
   String regexp();
 
