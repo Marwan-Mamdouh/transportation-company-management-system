@@ -1,10 +1,10 @@
-package com.travelSafe.buses.domin.employee.services;
+package com.travelSafe.buses.domain.employee.services;
 
 import com.travelSafe.buses.Command;
-import com.travelSafe.buses.domin.employee.EmployeeRepository;
-import com.travelSafe.buses.domin.employee.model.DTO.InputEmployeeDTO;
-import com.travelSafe.buses.domin.employee.model.Employee;
-import com.travelSafe.buses.domin.employee.model.EmployeeMapper;
+import com.travelSafe.buses.domain.employee.EmployeeRepository;
+import com.travelSafe.buses.domain.employee.model.DTO.InputEmployeeDTO;
+import com.travelSafe.buses.domain.employee.model.Employee;
+import com.travelSafe.buses.domain.employee.model.EmployeeMapper;
 import com.travelSafe.buses.exceptions.employee.DuplicateEmployeeEmailException;
 import com.travelSafe.buses.exceptions.employee.DuplicateEmployeeIdException;
 import com.travelSafe.buses.exceptions.employee.DuplicateEmployeePhoneNumberException;
@@ -33,20 +33,33 @@ public class CreateEmployeeService implements Command<InputEmployeeDTO, Employee
   @Transactional
   public Employee execute(InputEmployeeDTO input) {
     logger.info("Executing: {} with input: {}", getClass(), input);
-    // check
-    // validate the input before send it to db
+    logger.info("Starting employee creation for email: {}", input.email());
+    // validate input
+    validateInput(input);
+
+    // encode the password before saving
+    final Employee employee = employeeMapper.employeeFromInputDTO(input);
+    employee.setPassword(encoder.encode(employee.getPassword()));
+    // save and return
+    final Employee savedEmployee = employeeRepository.save(employee);
+    logger.info("Employee created with SSN: {} and,email: {}", savedEmployee.getSsn(),
+        savedEmployee.getEmail());
+    return savedEmployee;
+  }
+
+  private void validateInput(InputEmployeeDTO input) {
+    // Implement validation logic here
     if (employeeRepository.existsBySsn(input.ssn())) {
+      logger.error("Duplicate SSN found: {}", input.ssn());
       throw new DuplicateEmployeeIdException();
-    } else if (employeeRepository.existsByEmail(input.email())) {
+    }
+    if (employeeRepository.existsByEmail(input.email())) {
+      logger.error("Duplicate email found: {}", input.email());
       throw new DuplicateEmployeeEmailException();
-    } else if (employeeRepository.existsByPhoneNumber(input.phoneNumber())) {
+    }
+    if (employeeRepository.existsByPhoneNumber(input.phoneNumber())) {
+      logger.error("Duplicate phone number found: {}", input.phoneNumber());
       throw new DuplicateEmployeePhoneNumberException();
-    } else {
-      // encode the password before saving
-      final Employee employee = employeeMapper.employeeFromInputDTO(input);
-      employee.setPassword(encoder.encode(employee.getPassword()));
-      // save and return
-      return employeeRepository.save(employee);
     }
   }
 }
