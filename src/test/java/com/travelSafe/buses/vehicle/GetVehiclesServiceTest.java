@@ -5,8 +5,9 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-import com.travelSafe.buses.vehicle.model.Vehicle;
-import com.travelSafe.buses.vehicle.service.GetVehiclesService;
+import com.travelSafe.buses.domain.vehicle.VehicleRepository;
+import com.travelSafe.buses.domain.vehicle.model.Vehicle;
+import com.travelSafe.buses.domain.vehicle.service.GetVehiclesService;
 import java.time.LocalDate;
 import java.util.List;
 import org.junit.jupiter.api.Test;

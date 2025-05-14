@@ -5,9 +5,10 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-import com.travelSafe.buses.department.model.Department;
-import com.travelSafe.buses.department.service.GetDepartmentsService;
-import com.travelSafe.buses.employee.model.Employee;
+import com.travelSafe.buses.domain.department.DepartmentRepository;
+import com.travelSafe.buses.domain.department.model.Department;
+import com.travelSafe.buses.domain.department.service.GetDepartmentsService;
+import com.travelSafe.buses.domain.employee.model.Employee;
 import java.util.List;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -30,8 +31,8 @@ public class GetDepartmentsServiceTest {
     final int wantedId = 1;
     final Employee employee1 = new Employee();
     final Employee employee2 = new Employee();
-    employee1.setFirstName("Ahmed");
-    employee2.setFirstName("Hasan");
+    employee1.setFirstname("Ahmed");
+    employee2.setFirstname("Hasan");
 
     final Department department1 = new Department(wantedId, "tick booker", 9000, 14.0, employee1);
     final Department department2 = new Department(wantedId, "bags", 7000, 10.0, employee2);

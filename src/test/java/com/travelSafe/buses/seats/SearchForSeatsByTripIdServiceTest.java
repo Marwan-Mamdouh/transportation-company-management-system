@@ -5,11 +5,12 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-import com.travelSafe.buses.employee.model.Employee;
-import com.travelSafe.buses.seats.model.Seat;
-import com.travelSafe.buses.seats.model.SeatId;
-import com.travelSafe.buses.seats.service.SearchForSeatsByTripIdService;
-import com.travelSafe.buses.trip.model.Trip;
+import com.travelSafe.buses.domain.employee.model.Employee;
+import com.travelSafe.buses.domain.seats.SeatsRepository;
+import com.travelSafe.buses.domain.seats.model.Seat;
+import com.travelSafe.buses.domain.seats.model.SeatId;
+import com.travelSafe.buses.domain.seats.service.SearchForSeatsByTripIdService;
+import com.travelSafe.buses.domain.trip.model.Trip;
 import java.time.LocalDateTime;
 import java.util.List;
 import org.junit.jupiter.api.Test;

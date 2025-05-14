@@ -5,8 +5,9 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-import com.travelSafe.buses.travelLine.model.TravelLine;
-import com.travelSafe.buses.travelLine.service.GetTravelLinesService;
+import com.travelSafe.buses.domain.travelLine.TravelLineRepository;
+import com.travelSafe.buses.domain.travelLine.model.TravelLine;
+import com.travelSafe.buses.domain.travelLine.service.GetTravelLinesService;
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.jupiter.api.Test;

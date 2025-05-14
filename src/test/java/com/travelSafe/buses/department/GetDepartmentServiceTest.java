@@ -6,9 +6,10 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-import com.travelSafe.buses.department.model.Department;
-import com.travelSafe.buses.department.service.GetDepartmentService;
-import com.travelSafe.buses.employee.model.Employee;
+import com.travelSafe.buses.domain.department.DepartmentRepository;
+import com.travelSafe.buses.domain.department.model.Department;
+import com.travelSafe.buses.domain.department.service.GetDepartmentService;
+import com.travelSafe.buses.domain.employee.model.Employee;
 import com.travelSafe.buses.exceptions.department.DepartmentNotFoundException;
 import java.util.Optional;
 import org.junit.jupiter.api.Test;
@@ -31,7 +32,7 @@ public class GetDepartmentServiceTest {
     // gavin
     final int wantedId = 1;
     final Employee employee = new Employee();
-    employee.setFirstName("Mohamed");
+    employee.setFirstname("Mohamed");
 
     final Department department = new Department(wantedId, "tick booker", 9000, 14.0, employee);
 
