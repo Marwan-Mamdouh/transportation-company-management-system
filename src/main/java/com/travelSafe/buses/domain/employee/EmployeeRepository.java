@@ -28,6 +28,6 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long> {
   @Query("select e from Employee e where e.department.id = :id")
   List<Employee> findByDepartmentId(@Param("id") @NonNull Integer id);
 
-  @Query("SELECT e.email AS email, e.password AS password FROM Employee e WHERE e.email = :email")
+  @Query("SELECT e.email AS email, e.password AS password, e.role AS role FROM Employee e WHERE e.email = :email")
   Optional<EmployeeAuth> findByEmail(@Param("email") @NonNull String email);
 }
