@@ -5,7 +5,8 @@ import lombok.Getter;
 @Getter
 public enum ErrorMessage {
   EMPLOYEE_NOT_FOUND("Employee not found."), DUPLICATE_EMPLOYEE_ID(
-      "Duplicate employee Id."), DUPLICATE_EMAIL("Duplicate email."), DUPLICATE_PHONE_NUMBER(
+      "Duplicate employee Id."), EMAIL_NOT_FOUND("Email not valid"), PASSWORD_NOT_VALID(
+      "Password Not valid."), DUPLICATE_EMAIL("Duplicate email."), DUPLICATE_PHONE_NUMBER(
       "Duplicate phone number."), SUPERVISOR_NOT_FOUND(
       "Supervisor not found."), DEPARTMENT_NOT_FOUND(
       "Department not found."), DUPLICATE_DEPARTMENT_NAME(
