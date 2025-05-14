@@ -1,4 +1,4 @@
-package com.travelSafe.buses;
+package com.travelSafe.buses.configuration.cache;
 
 import java.util.List;
 import org.springframework.cache.CacheManager;
@@ -24,7 +24,7 @@ public class CacheConfiguration {
   }
 
   @CacheEvict(value = "tripCache", allEntries = true)
-  @Scheduled(fixedDelay = 10000, initialDelay = 0)
+  @Scheduled(fixedDelay = 15000, initialDelay = 0)
   public void evictingCache() {
     System.out.println("Evicting tripCache cache.");
   }
