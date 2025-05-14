@@ -1,9 +1,12 @@
 package com.travelSafe.buses.domain.employee.model;
 
 import com.travelSafe.buses.domain.department.model.Department;
+import com.travelSafe.buses.domain.employee.model.enums.Role;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
@@ -46,6 +49,10 @@ public final class Employee {
 
   @Column(nullable = false)
   private String password;
+
+  @Column(nullable = false)
+  @Enumerated(EnumType.STRING)
+  private Role role;
 
   // Self-referencing relationship: one supervisor can supervise many employees
   @JoinColumn(name = "supervisor")
