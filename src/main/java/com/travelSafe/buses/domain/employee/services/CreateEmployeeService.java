@@ -2,9 +2,10 @@ package com.travelSafe.buses.domain.employee.services;
 
 import com.travelSafe.buses.Command;
 import com.travelSafe.buses.domain.employee.EmployeeRepository;
-import com.travelSafe.buses.domain.employee.model.DTO.InputEmployeeDTO;
 import com.travelSafe.buses.domain.employee.model.Employee;
 import com.travelSafe.buses.domain.employee.model.EmployeeMapper;
+import com.travelSafe.buses.domain.employee.model.dto.InputEmployeeDTO;
+import com.travelSafe.buses.domain.employee.model.enums.Role;
 import com.travelSafe.buses.exceptions.employee.DuplicateEmployeeEmailException;
 import com.travelSafe.buses.exceptions.employee.DuplicateEmployeeIdException;
 import com.travelSafe.buses.exceptions.employee.DuplicateEmployeePhoneNumberException;
@@ -40,6 +41,7 @@ public class CreateEmployeeService implements Command<InputEmployeeDTO, Employee
     // encode the password before saving
     final Employee employee = employeeMapper.employeeFromInputDTO(input);
     employee.setPassword(encoder.encode(employee.getPassword()));
+    employee.setRole(Role.CLIENT);
     // save and return
     final Employee savedEmployee = employeeRepository.save(employee);
     logger.info("Employee created with SSN: {} and,email: {}", savedEmployee.getSsn(),
