@@ -1,8 +1,8 @@
 package com.travelSafe.buses.domain.employee.controller;
 
-import com.travelSafe.buses.domain.employee.model.DTO.EmployeeLoginDTO;
-import com.travelSafe.buses.domain.employee.model.DTO.EmployeeResponseDTO;
-import com.travelSafe.buses.domain.employee.model.DTO.InputEmployeeDTO;
+import com.travelSafe.buses.domain.employee.model.dto.EmployeeLoginDTO;
+import com.travelSafe.buses.domain.employee.model.dto.EmployeeResponseDTO;
+import com.travelSafe.buses.domain.employee.model.dto.InputEmployeeDTO;
 import com.travelSafe.buses.domain.employee.services.CreateEmployeeService;
 import com.travelSafe.buses.domain.employee.services.EmployeeLoginService;
 import jakarta.validation.Valid;

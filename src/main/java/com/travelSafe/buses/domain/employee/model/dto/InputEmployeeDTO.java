@@ -1,4 +1,4 @@
-package com.travelSafe.buses.domain.employee.model.DTO;
+package com.travelSafe.buses.domain.employee.model.dto;
 
 import com.travelSafe.buses.validator.PatternLong;
 import jakarta.validation.constraints.Email;

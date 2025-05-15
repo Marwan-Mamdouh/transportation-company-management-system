@@ -1,9 +1,9 @@
 package com.travelSafe.buses.domain.vehicle.service;
 
 import com.travelSafe.buses.Query;
-import com.travelSafe.buses.exceptions.vehicle.VehicleNotFoundException;
 import com.travelSafe.buses.domain.vehicle.VehicleRepository;
 import com.travelSafe.buses.domain.vehicle.model.Vehicle;
+import com.travelSafe.buses.exceptions.vehicle.VehicleNotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;

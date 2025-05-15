@@ -1,6 +1,6 @@
 package com.travelSafe.buses.domain.employee.model;
 
-import com.travelSafe.buses.domain.employee.model.DTO.InputEmployeeDTO;
+import com.travelSafe.buses.domain.employee.model.dto.InputEmployeeDTO;
 import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")

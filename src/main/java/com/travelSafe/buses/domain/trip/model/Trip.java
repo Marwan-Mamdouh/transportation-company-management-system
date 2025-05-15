@@ -42,7 +42,7 @@ public class Trip {
   @JoinColumn(name = "driver_ssn", nullable = false)
   @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
   private Employee driver;
-  
+
   @Column(name = "trip_price", nullable = false)
   private Integer price;
 
