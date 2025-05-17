@@ -12,18 +12,22 @@ public class JwtActions {
 
   private final JwtConfig jwtConfig;
 
-  @Value("${jwt.expiration:600}") // 5 minutes
+  @Value("${jwt.expiration:600}") // 10 minutes
   private Integer jwtExpirationTime;
 
   public JwtActions(JwtConfig jwtConfig) {
     this.jwtConfig = jwtConfig;
   }
 
-  public String jwtCreate(String email, String role) {
+  public String jwtCreate(String email, String... roles) {
     final var now = Instant.now();
 
     final var claims = JwtClaimsSet.builder().issuer("login_app").subject(email).issuedAt(now)
-        .expiresAt(now.plusSeconds(jwtExpirationTime)).claim("scope", role).build();
+        .expiresAt(now.plusSeconds(jwtExpirationTime)).claim("scope", roles).build();
     return jwtConfig.jwtEncoder().encode(JwtEncoderParameters.from(claims)).getTokenValue();
   }
+
+//  public List<String> extractRoles(String token) {
+//    return jwtConfig.jwtDecoder().decode(token).getClaimAsStringList("scope");
+//  }
 }
