@@ -17,9 +17,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequestMapping("/travel-line")
 public class TravelLineController {
 
   private final CreateTravelLineService createTravelLineService;
@@ -42,33 +44,33 @@ public class TravelLineController {
     this.updateTravelLineService = updateTravelLineService;
   }
 
-  @GetMapping("/travel-line/{id}")
+  @GetMapping("/{id}")
   public ResponseEntity<TravelLineResponseDTO> getTravelLine(@PathVariable Integer id) {
     final TravelLine travelLine = getTravelLineService.execute(id);
     return ResponseEntity.ok(new TravelLineResponseDTO(travelLine));
   }
 
-  @GetMapping("/travel-lines")
+  @GetMapping("/all")
   public ResponseEntity<List<TravelLineResponseDTO>> getTravelLines() {
     final List<TravelLine> travelLines = getTravelLinesService.execute(null);
     return ResponseEntity.ok(travelLines.stream().map(TravelLineResponseDTO::new).toList());
   }
 
-  @PutMapping("/travel-line/{id}")
+  @PutMapping
   public ResponseEntity<TravelLineResponseDTO> updateTravelLine(
       @Valid @RequestBody InputTravelLineDTO dto) {
     final TravelLine savedTravelLine = updateTravelLineService.execute(dto);
     return ResponseEntity.ok(new TravelLineResponseDTO(savedTravelLine));
   }
 
-  @PostMapping("/travel-line")
+  @PostMapping
   public ResponseEntity<TravelLineResponseDTO> createTravelLine(
       @Valid @RequestBody InputTravelLineDTO dto) {
     final TravelLine savedTravelLine = createTravelLineService.execute(dto);
     return ResponseEntity.ok(new TravelLineResponseDTO(savedTravelLine));
   }
 
-  @DeleteMapping("/travel-line/{id}")
+  @DeleteMapping("/{id}")
   public ResponseEntity<Void> deleteTravelLine(@PathVariable Integer id) {
     return ResponseEntity.ok(deleteTravelLineService.execute(id));
   }

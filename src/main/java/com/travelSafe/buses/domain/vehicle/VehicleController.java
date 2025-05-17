@@ -18,9 +18,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequestMapping("/vehicle")
 public class VehicleController {
 
   private final CreateVehicleService createVehicleService;
@@ -42,33 +44,33 @@ public class VehicleController {
     this.deleteVehicleService = deleteVehicleService;
   }
 
-  @PostMapping("/vehicle")
+  @PostMapping
   public ResponseEntity<VehicleResponseDTO> createVehicle(
       @Valid @RequestBody CreateVehicleDTO vehicle) {
     final Vehicle savedVehicle = createVehicleService.execute(vehicle);
     return ResponseEntity.ok(new VehicleResponseDTO(savedVehicle));
   }
 
-  @GetMapping("/vehicles")
+  @GetMapping("/all")
   public ResponseEntity<List<VehicleResponseDTO>> getVehicles() {
     final List<Vehicle> vehicles = getVehiclesService.execute(null);
     return ResponseEntity.ok(vehicles.stream().map(VehicleResponseDTO::new).toList());
   }
 
-  @GetMapping("/vehicle/{vehicleId}")
+  @GetMapping("/{vehicleId}")
   public ResponseEntity<VehicleResponseDTO> getVehicle(@PathVariable Integer vehicleId) {
     final Vehicle vehicle = getVehicleService.execute(vehicleId);
     return ResponseEntity.ok(new VehicleResponseDTO(vehicle));
   }
 
-  @PutMapping("/vehicle")
+  @PutMapping
   public ResponseEntity<VehicleResponseDTO> updateVehicle(
       @Valid @RequestBody UpdateVehicleDTO vehicleDto) {
     final Vehicle updatedVehicle = updateVehicleService.execute(vehicleDto);
     return ResponseEntity.ok(new VehicleResponseDTO(updatedVehicle));
   }
 
-  @DeleteMapping("/vehicle/{vehicleId}")
+  @DeleteMapping("/{vehicleId}")
   public ResponseEntity<Void> deleteVehicle(@PathVariable Integer vehicleId) {
     return ResponseEntity.ok(deleteVehicleService.execute(vehicleId));
   }

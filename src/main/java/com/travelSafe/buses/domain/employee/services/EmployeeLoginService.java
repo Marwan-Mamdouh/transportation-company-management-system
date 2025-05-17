@@ -14,33 +14,36 @@ import org.springframework.stereotype.Service;
 @Service
 public class EmployeeLoginService implements Query<EmployeeLoginDTO, String> {
 
-  private final JwtActions jwtActions;
-  private final EmployeeRepository employeeRepository;
+  private static final Logger LOGGER = LoggerFactory.getLogger(EmployeeLoginService.class);
   private final BCryptPasswordEncoder passwordEncoder;
-  private static final Logger logger = LoggerFactory.getLogger(EmployeeLoginService.class);
+  private final EmployeeRepository employeeRepository;
+  private final JwtActions jwtActions;
 
-  public EmployeeLoginService(BCryptPasswordEncoder passwordEncoder,
-      EmployeeRepository employeeRepository, JwtActions jwtActions) {
-    this.passwordEncoder = passwordEncoder;
+  public EmployeeLoginService(BCryptPasswordEncoder passwordEncoder, JwtActions jwtActions,
+      EmployeeRepository employeeRepository) {
     this.employeeRepository = employeeRepository;
+    this.passwordEncoder = passwordEncoder;
     this.jwtActions = jwtActions;
   }
 
   @Override
   public String execute(EmployeeLoginDTO input) {
-    logger.info("Executing: {} with input: {}", getClass(), input);
+    LOGGER.info("Executing: {} with input: {}", getClass(), input);
     final var employee = employeeRepository.findByEmail(input.email())
         .orElseThrow(EmailNotFoundException::new);
 
+    LOGGER.info("Verifying password for email: {}", input.email());
     if (!verifyPassword(input.password(), employee.getPassword())) {
-      logger.error("Invalid password for email: {}", input.email());
+
+      LOGGER.error("Invalid password for email: {}", input.email());
       throw new NotValidPasswordException();
     }
-    return jwtActions.jwtCreate(employee.getEmail(), employee.getRole());
+
+    LOGGER.info("Password verified for email: {}", input.email());
+    return jwtActions.jwtCreate(employee.getEmail(), employee.getRole().toString());
   }
 
   private boolean verifyPassword(String password, String passwordHash) {
-    logger.info("Verifying password:");
     return passwordEncoder.matches(password, passwordHash);
   }
 }

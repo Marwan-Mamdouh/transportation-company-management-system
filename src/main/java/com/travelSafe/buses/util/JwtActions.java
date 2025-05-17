@@ -26,8 +26,4 @@ public class JwtActions {
         .expiresAt(now.plusSeconds(jwtExpirationTime)).claim("scope", roles).build();
     return jwtConfig.jwtEncoder().encode(JwtEncoderParameters.from(claims)).getTokenValue();
   }
-
-//  public List<String> extractRoles(String token) {
-//    return jwtConfig.jwtDecoder().decode(token).getClaimAsStringList("scope");
-//  }
 }
