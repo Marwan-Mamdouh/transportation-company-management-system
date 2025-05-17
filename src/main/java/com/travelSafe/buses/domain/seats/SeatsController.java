@@ -35,7 +35,7 @@ public class SeatsController {
     return ResponseEntity.ok(seats.stream().map(SeatResponseDTO::new).toList());
   }
 
-  @PostMapping("/book/seat")
+  @PostMapping("/book")
   public ResponseEntity<SeatResponseDTO> bookSeat(@Valid @RequestBody BookSeatDTO bookSeatDto) {
     final Seat seat = bookSeatService.execute(bookSeatDto);
     return ResponseEntity.ok(new SeatResponseDTO(seat));
