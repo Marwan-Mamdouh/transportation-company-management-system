@@ -19,7 +19,7 @@ public class CacheConfiguration {
   public CacheManager cacheManager() {
     ConcurrentMapCacheManager manager = new ConcurrentMapCacheManager();
     manager.setAllowNullValues(false);
-    manager.setCacheNames(List.of("tripCache"));
+    manager.setCacheNames(List.of("tripCache", "seatCache"));
     return manager;
   }
 
