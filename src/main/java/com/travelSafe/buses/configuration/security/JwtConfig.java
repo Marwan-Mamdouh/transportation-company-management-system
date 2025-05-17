@@ -16,17 +16,17 @@ import org.springframework.security.oauth2.jwt.NimbusJwtEncoder;
 @Configuration
 public class JwtConfig {
 
-  @Value("${jwt.public-key-location}")
+  @Value("${jwt.public-key}")
   private RSAPublicKey publicKey;
 
-  @Value("${jwt.private-key-location}")
+  @Value("${jwt.private-key}")
   private RSAPrivateKey privateKey;
 
   @Bean
   public JwtEncoder jwtEncoder() {
-    final var jwt = new RSAKey.Builder(this.publicKey).privateKey(this.privateKey).build();
-    final var jwts = new ImmutableJWKSet<>(new JWKSet(jwt));
-    return new NimbusJwtEncoder(jwts);
+    final var jwk = new RSAKey.Builder(this.publicKey).privateKey(this.privateKey).build();
+    final var jwks = new ImmutableJWKSet<>(new JWKSet(jwk));
+    return new NimbusJwtEncoder(jwks);
   }
 
   @Bean
