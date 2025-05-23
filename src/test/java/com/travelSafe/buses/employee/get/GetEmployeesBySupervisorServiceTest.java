@@ -8,6 +8,7 @@ import static org.mockito.Mockito.when;
 import com.travelSafe.buses.domain.department.model.Department;
 import com.travelSafe.buses.domain.employee.EmployeeRepository;
 import com.travelSafe.buses.domain.employee.model.Employee;
+import com.travelSafe.buses.domain.employee.model.enums.Role;
 import com.travelSafe.buses.domain.employee.services.get.GetEmployeesBySupervisorService;
 import java.time.LocalDate;
 import java.util.List;
@@ -28,14 +29,14 @@ public class GetEmployeesBySupervisorServiceTest {
 
   private static List<Employee> getEmployees(Employee supervisor, Department department) {
     final Employee employee1 = new Employee(30876543218906L, "testFirst", "testLast",
-        "test@gamil.com", "01142703335", LocalDate.parse("2012-09-15"), null, "123", supervisor,
-        department);
+        "test@gamil.com", "01142703335", LocalDate.parse("2012-09-15"), null, "123", Role.CLIENT,
+        supervisor, department);
     final Employee employee2 = new Employee(23876543218906L, "testFirst", "testLast",
-        "test@gamil.com", "01142703335", LocalDate.parse("2012-09-15"), null, "123", supervisor,
-        department);
+        "test@gamil.com", "01142703335", LocalDate.parse("2012-09-15"), null, "123", Role.CLIENT,
+        supervisor, department);
     final Employee employee3 = new Employee(28876543218906L, "testFirst", "testLast",
-        "test@gamil.com", "01142703335", LocalDate.parse("2012-09-15"), null, "123", supervisor,
-        department);
+        "test@gamil.com", "01142703335", LocalDate.parse("2012-09-15"), null, "123", Role.CLIENT,
+        supervisor, department);
     return List.of(employee1, employee2, employee3);
   }
 
@@ -45,8 +46,8 @@ public class GetEmployeesBySupervisorServiceTest {
     final Long supervisorId = 26876543218906L;
     final Department department = new Department();
     final Employee supervisor = new Employee(supervisorId, "testFirst", "testLast",
-        "test@gamil.com", "01142703335", LocalDate.parse("2012-09-15"), null, "123", null,
-        department);
+        "test@gamil.com", "01142703335", LocalDate.parse("2012-09-15"), null, "123", Role.CLIENT,
+        null, department);
     final List<Employee> employees = getEmployees(supervisor, department);
 
     // when
@@ -64,8 +65,8 @@ public class GetEmployeesBySupervisorServiceTest {
     final Long supervisorId = 26876543218906L;
     final Department department = new Department();
     final Employee supervisor = new Employee(supervisorId, "testFirst", "testLast",
-        "test@gamil.com", "01142703335", LocalDate.parse("2012-09-15"), null, "123", null,
-        department);
+        "test@gamil.com", "01142703335", LocalDate.parse("2012-09-15"), null, "123", Role.CLIENT,
+        null, department);
     final List<Employee> employees = getEmployees(supervisor, department);
 
     // when

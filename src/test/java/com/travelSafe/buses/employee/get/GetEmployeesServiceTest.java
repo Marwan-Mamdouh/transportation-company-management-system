@@ -8,6 +8,7 @@ import static org.mockito.Mockito.when;
 import com.travelSafe.buses.domain.department.model.Department;
 import com.travelSafe.buses.domain.employee.EmployeeRepository;
 import com.travelSafe.buses.domain.employee.model.Employee;
+import com.travelSafe.buses.domain.employee.model.enums.Role;
 import com.travelSafe.buses.domain.employee.services.get.GetEmployeesService;
 import java.time.LocalDate;
 import java.util.List;
@@ -31,9 +32,11 @@ public class GetEmployeesServiceTest {
 
     // gavin
     final Employee employee1 = new Employee(90876543218906L, "test1", "test1", "test1@gamil.com",
-        "01142703335", LocalDate.parse("2012-09-15"), null, "123", null, new Department());
+        "01142703335", LocalDate.parse("2012-09-15"), null, "123", Role.CLIENT, null,
+        new Department());
     final Employee employee2 = new Employee(67890543210987L, "test2", "test2", "test2@gmail.com",
-        "01137829282", LocalDate.parse("2005-09-02"), null, "123", null, new Department());
+        "01137829282", LocalDate.parse("2005-09-02"), null, "123", Role.CLIENT, null,
+        new Department());
     final List<Employee> employees = List.of(employee1, employee2);
 
     // when

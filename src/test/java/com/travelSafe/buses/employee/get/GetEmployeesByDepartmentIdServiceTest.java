@@ -9,6 +9,7 @@ import com.travelSafe.buses.domain.department.model.Department;
 import com.travelSafe.buses.domain.department.service.GetDepartmentService;
 import com.travelSafe.buses.domain.employee.EmployeeRepository;
 import com.travelSafe.buses.domain.employee.model.Employee;
+import com.travelSafe.buses.domain.employee.model.enums.Role;
 import com.travelSafe.buses.domain.employee.services.get.GetEmployeesByDepartmentIdService;
 import java.time.LocalDate;
 import java.util.List;
@@ -44,14 +45,14 @@ public class GetEmployeesByDepartmentIdServiceTest {
     department2.setId(90);
     // gavin
     final Employee employee1 = new Employee(36876543218906L, "test4First", "testLast2",
-        "test1@gamil.com", "01142723335", LocalDate.parse("2018-09-15"), null, "123", null,
-        department1);
+        "test1@gamil.com", "01142723335", LocalDate.parse("2018-09-15"), null, "123", Role.CLIENT,
+        null, department1);
     final Employee employee2 = new Employee(31876543218906L, "test1First", "testLast1",
-        "test2@gamil.com", "01142705335", LocalDate.parse("2011-09-15"), null, "123", null,
-        department1);
+        "test2@gamil.com", "01142705335", LocalDate.parse("2011-09-15"), null, "123", Role.CLIENT,
+        null, department1);
     final Employee employee3 = new Employee(32876543218906L, "test0First", "testLast3",
-        "test3@gamil.com", "01142709335", LocalDate.parse("2010-09-15"), null, "123", null,
-        department2);
+        "test3@gamil.com", "01142709335", LocalDate.parse("2010-09-15"), null, "123", Role.CLIENT,
+        null, department2);
     final List<Employee> employeesInDepartment19 = List.of(employee1, employee2);
 
     // when

@@ -9,6 +9,7 @@ import static org.mockito.Mockito.when;
 import com.travelSafe.buses.domain.department.model.Department;
 import com.travelSafe.buses.domain.employee.EmployeeRepository;
 import com.travelSafe.buses.domain.employee.model.Employee;
+import com.travelSafe.buses.domain.employee.model.enums.Role;
 import com.travelSafe.buses.domain.employee.services.get.GetEmployeeService;
 import com.travelSafe.buses.exceptions.employee.EmployeeNotFoundException;
 import java.time.LocalDate;
@@ -34,7 +35,7 @@ public class GetEmployeeServiceTest {
     // gavin
     final Long empId = 90876543218906L;
     final Employee employee = new Employee(90876543218906L, "testFirst", "testLast",
-        "test@gamil.com", "01142703335", LocalDate.parse("2012-09-15"), null, "123", null,
+        "test@gamil.com", "01142703335", LocalDate.parse("2012-09-15"), null, "123", Role.CLIENT ,null,
         new Department());
 
     // when
