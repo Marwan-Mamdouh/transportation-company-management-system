@@ -1,7 +1,8 @@
-package com.travelSafe.buses.domain.vehicle.model;
+package com.travelSafe.buses.domain.vehicle;
 
 import com.travelSafe.buses.domain.vehicle.dto.CreateVehicleDTO;
 import com.travelSafe.buses.domain.vehicle.dto.UpdateVehicleDTO;
+import com.travelSafe.buses.domain.vehicle.model.Vehicle;
 import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")
