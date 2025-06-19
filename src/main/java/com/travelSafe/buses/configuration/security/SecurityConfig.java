@@ -23,7 +23,8 @@ public class SecurityConfig {
   @Bean
   public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
     return http.csrf(AbstractHttpConfigurer::disable).authorizeHttpRequests(auth -> {
-          auth.requestMatchers("/actuator/**", "/api/auth/**").permitAll();
+          auth.requestMatchers("/actuator/**", "/api/auth/**", "/v3/api-docs/**", "/swagger-ui/**",
+              "/swagger-ui.html", "/webjars/**").permitAll();
           auth.requestMatchers("/department/**", "/departments/**", "/employee/**", "/employees/**",
                   "/seats/book", "/travel-line/**", "/trip", "/trip/{tripId}", "/vehicle/**")
               .access(hasScope("ADMIN"));
