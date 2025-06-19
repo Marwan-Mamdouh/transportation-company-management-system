@@ -1,8 +1,8 @@
 package com.travelSafe.buses.domain.travelLine;
 
-import com.travelSafe.buses.domain.travelLine.model.TravelLine;
 import com.travelSafe.buses.domain.travelLine.dto.InputTravelLineDTO;
 import com.travelSafe.buses.domain.travelLine.dto.TravelLineResponseDTO;
+import com.travelSafe.buses.domain.travelLine.model.TravelLine;
 import com.travelSafe.buses.domain.travelLine.service.CreateTravelLineService;
 import com.travelSafe.buses.domain.travelLine.service.DeleteTravelLineService;
 import com.travelSafe.buses.domain.travelLine.service.GetTravelLineService;

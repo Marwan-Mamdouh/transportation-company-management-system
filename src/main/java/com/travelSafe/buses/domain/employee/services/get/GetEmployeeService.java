@@ -2,8 +2,8 @@ package com.travelSafe.buses.domain.employee.services.get;
 
 import com.travelSafe.buses.comman.shared.Query;
 import com.travelSafe.buses.domain.employee.EmployeeRepository;
-import com.travelSafe.buses.domain.employee.model.Employee;
 import com.travelSafe.buses.domain.employee.exceptions.EmployeeNotFoundException;
+import com.travelSafe.buses.domain.employee.model.Employee;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;

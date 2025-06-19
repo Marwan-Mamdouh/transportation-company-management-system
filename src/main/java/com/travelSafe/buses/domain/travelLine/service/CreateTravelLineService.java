@@ -2,8 +2,8 @@ package com.travelSafe.buses.domain.travelLine.service;
 
 import com.travelSafe.buses.comman.shared.Command;
 import com.travelSafe.buses.domain.travelLine.TravelLineRepository;
-import com.travelSafe.buses.domain.travelLine.model.TravelLine;
 import com.travelSafe.buses.domain.travelLine.dto.InputTravelLineDTO;
+import com.travelSafe.buses.domain.travelLine.model.TravelLine;
 import jakarta.transaction.Transactional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

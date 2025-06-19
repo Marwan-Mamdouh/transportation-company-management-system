@@ -1,7 +1,7 @@
 package com.travelSafe.buses.domain.seats.dto;
 
-import com.travelSafe.buses.domain.seats.model.SeatId;
 import com.travelSafe.buses.comman.validator.PatternLong;
+import com.travelSafe.buses.domain.seats.model.SeatId;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;

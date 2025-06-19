@@ -2,8 +2,8 @@ package com.travelSafe.buses.domain.department.service;
 
 import com.travelSafe.buses.comman.shared.Query;
 import com.travelSafe.buses.domain.department.DepartmentRepository;
-import com.travelSafe.buses.domain.department.model.Department;
 import com.travelSafe.buses.domain.department.exception.DepartmentNotFoundException;
+import com.travelSafe.buses.domain.department.model.Department;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;

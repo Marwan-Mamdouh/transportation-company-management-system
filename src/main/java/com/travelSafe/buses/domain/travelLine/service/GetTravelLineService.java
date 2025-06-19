@@ -2,8 +2,8 @@ package com.travelSafe.buses.domain.travelLine.service;
 
 import com.travelSafe.buses.comman.shared.Query;
 import com.travelSafe.buses.domain.travelLine.TravelLineRepository;
-import com.travelSafe.buses.domain.travelLine.model.TravelLine;
 import com.travelSafe.buses.domain.travelLine.exceptions.TravelLineNotFoundException;
+import com.travelSafe.buses.domain.travelLine.model.TravelLine;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;

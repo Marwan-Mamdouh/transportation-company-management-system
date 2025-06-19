@@ -1,8 +1,8 @@
 package com.travelSafe.buses.domain.trip.service;
 
 import com.travelSafe.buses.comman.shared.Query;
-import com.travelSafe.buses.domain.trip.TripRepository;
 import com.travelSafe.buses.domain.trip.DTO.TripSearchDTO;
+import com.travelSafe.buses.domain.trip.TripRepository;
 import com.travelSafe.buses.domain.trip.model.TripAvailabilityProjection;
 import java.util.List;
 import org.slf4j.Logger;
