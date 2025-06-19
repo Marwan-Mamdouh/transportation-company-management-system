@@ -1,6 +1,6 @@
 package com.travelSafe.buses.domain.seats.service;
 
-import com.travelSafe.buses.Query;
+import com.travelSafe.buses.comman.shared.Query;
 import com.travelSafe.buses.domain.seats.SeatsRepository;
 import com.travelSafe.buses.domain.seats.model.Seat;
 import java.util.List;

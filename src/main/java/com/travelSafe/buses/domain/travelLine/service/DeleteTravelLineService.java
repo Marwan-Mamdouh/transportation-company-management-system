@@ -1,6 +1,6 @@
 package com.travelSafe.buses.domain.travelLine.service;
 
-import com.travelSafe.buses.Command;
+import com.travelSafe.buses.comman.shared.Command;
 import com.travelSafe.buses.domain.travelLine.TravelLineRepository;
 import com.travelSafe.buses.domain.travelLine.model.TravelLine;
 import jakarta.transaction.Transactional;

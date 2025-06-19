@@ -7,13 +7,13 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import com.travelSafe.buses.domain.employee.EmployeeRepository;
-import com.travelSafe.buses.domain.employee.model.dto.InputEmployeeDTO;
+import com.travelSafe.buses.domain.employee.dto.InputEmployeeDTO;
 import com.travelSafe.buses.domain.employee.model.Employee;
-import com.travelSafe.buses.domain.employee.model.EmployeeMapper;
+import com.travelSafe.buses.domain.employee.EmployeeMapper;
 import com.travelSafe.buses.domain.employee.services.CreateEmployeeService;
-import com.travelSafe.buses.exceptions.employee.DuplicateEmployeeEmailException;
-import com.travelSafe.buses.exceptions.employee.DuplicateEmployeeIdException;
-import com.travelSafe.buses.exceptions.employee.DuplicateEmployeePhoneNumberException;
+import com.travelSafe.buses.domain.employee.exceptions.DuplicateEmployeeEmailException;
+import com.travelSafe.buses.domain.employee.exceptions.DuplicateEmployeeIdException;
+import com.travelSafe.buses.domain.employee.exceptions.DuplicateEmployeePhoneNumberException;
 import java.time.LocalDate;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

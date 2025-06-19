@@ -1,6 +1,6 @@
 package com.travelSafe.buses.domain.vehicle.service;
 
-import com.travelSafe.buses.Command;
+import com.travelSafe.buses.comman.shared.Command;
 import com.travelSafe.buses.domain.vehicle.VehicleRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

@@ -9,7 +9,7 @@ import com.travelSafe.buses.domain.department.model.Department;
 import com.travelSafe.buses.domain.department.service.GetDepartmentService;
 import com.travelSafe.buses.domain.employee.EmployeeRepository;
 import com.travelSafe.buses.domain.employee.model.Employee;
-import com.travelSafe.buses.domain.employee.model.enums.Role;
+import com.travelSafe.buses.domain.employee.enums.Role;
 import com.travelSafe.buses.domain.employee.services.get.GetEmployeesByDepartmentIdService;
 import java.time.LocalDate;
 import java.util.List;

@@ -1,8 +1,8 @@
 package com.travelSafe.buses.domain.department.service;
 
-import com.travelSafe.buses.Command;
+import com.travelSafe.buses.comman.shared.Command;
 import com.travelSafe.buses.domain.department.DepartmentRepository;
-import com.travelSafe.buses.domain.department.model.DTO.PromoteManagerDTO;
+import com.travelSafe.buses.domain.department.DTO.PromoteManagerDTO;
 import com.travelSafe.buses.domain.department.model.Department;
 import com.travelSafe.buses.domain.employee.model.Employee;
 import com.travelSafe.buses.domain.employee.services.get.GetEmployeeService;

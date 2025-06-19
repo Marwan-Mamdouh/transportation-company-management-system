@@ -1,6 +1,6 @@
 package com.travelSafe.buses.domain.employee.services.get;
 
-import com.travelSafe.buses.Query;
+import com.travelSafe.buses.comman.shared.Query;
 import com.travelSafe.buses.domain.employee.EmployeeRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

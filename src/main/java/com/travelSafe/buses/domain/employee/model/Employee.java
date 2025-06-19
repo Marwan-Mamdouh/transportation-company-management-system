@@ -1,7 +1,7 @@
 package com.travelSafe.buses.domain.employee.model;
 
 import com.travelSafe.buses.domain.department.model.Department;
-import com.travelSafe.buses.domain.employee.model.enums.Role;
+import com.travelSafe.buses.domain.employee.enums.Role;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

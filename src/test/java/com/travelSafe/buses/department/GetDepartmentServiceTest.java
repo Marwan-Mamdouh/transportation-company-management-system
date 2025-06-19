@@ -10,7 +10,7 @@ import com.travelSafe.buses.domain.department.DepartmentRepository;
 import com.travelSafe.buses.domain.department.model.Department;
 import com.travelSafe.buses.domain.department.service.GetDepartmentService;
 import com.travelSafe.buses.domain.employee.model.Employee;
-import com.travelSafe.buses.exceptions.department.DepartmentNotFoundException;
+import com.travelSafe.buses.domain.department.exception.DepartmentNotFoundException;
 import java.util.Optional;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

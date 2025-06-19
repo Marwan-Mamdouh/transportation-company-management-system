@@ -7,7 +7,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import com.travelSafe.buses.domain.vehicle.VehicleRepository;
-import com.travelSafe.buses.exceptions.vehicle.VehicleNotFoundException;
+import com.travelSafe.buses.domain.vehicle.exceptions.VehicleNotFoundException;
 import com.travelSafe.buses.domain.vehicle.model.Vehicle;
 import com.travelSafe.buses.domain.vehicle.service.GetVehicleService;
 import java.time.LocalDate;

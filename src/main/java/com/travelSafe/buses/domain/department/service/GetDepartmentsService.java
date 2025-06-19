@@ -1,6 +1,6 @@
 package com.travelSafe.buses.domain.department.service;
 
-import com.travelSafe.buses.Query;
+import com.travelSafe.buses.comman.shared.Query;
 import com.travelSafe.buses.domain.department.DepartmentRepository;
 import com.travelSafe.buses.domain.department.model.Department;
 import java.util.List;

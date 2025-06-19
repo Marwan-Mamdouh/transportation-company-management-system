@@ -1,12 +1,12 @@
 package com.travelSafe.buses.domain.trip;
 
-import com.travelSafe.buses.domain.trip.model.DTO.CreateTripDTO;
-import com.travelSafe.buses.domain.trip.model.DTO.TripAvailabilityDTO;
-import com.travelSafe.buses.domain.trip.model.DTO.TripResponseDTO;
-import com.travelSafe.buses.domain.trip.model.DTO.TripSearchDTO;
-import com.travelSafe.buses.domain.trip.model.DTO.UpdateTripDTO;
+import com.travelSafe.buses.domain.trip.DTO.CreateTripDTO;
+import com.travelSafe.buses.domain.trip.DTO.TripAvailabilityDTO;
+import com.travelSafe.buses.domain.trip.DTO.TripResponseDTO;
+import com.travelSafe.buses.domain.trip.DTO.TripSearchDTO;
+import com.travelSafe.buses.domain.trip.DTO.UpdateTripDTO;
 import com.travelSafe.buses.domain.trip.model.Trip;
-import com.travelSafe.buses.domain.trip.model.projection.TripAvailabilityProjection;
+import com.travelSafe.buses.domain.trip.model.TripAvailabilityProjection;
 import com.travelSafe.buses.domain.trip.service.CreateTripService;
 import com.travelSafe.buses.domain.trip.service.DeleteTripService;
 import com.travelSafe.buses.domain.trip.service.SearchForTripsService;

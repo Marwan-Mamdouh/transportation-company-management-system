@@ -1,9 +1,9 @@
 package com.travelSafe.buses.domain.employee.controller;
 
 import com.travelSafe.buses.domain.employee.model.Employee;
-import com.travelSafe.buses.domain.employee.model.dto.EmployeePaycheckDTO;
-import com.travelSafe.buses.domain.employee.model.dto.EmployeeResponseDTO;
-import com.travelSafe.buses.domain.employee.model.dto.InputEmployeeDTO;
+import com.travelSafe.buses.domain.employee.dto.EmployeePaycheckDTO;
+import com.travelSafe.buses.domain.employee.dto.EmployeeResponseDTO;
+import com.travelSafe.buses.domain.employee.dto.InputEmployeeDTO;
 import com.travelSafe.buses.domain.employee.services.DeleteEmployeeService;
 import com.travelSafe.buses.domain.employee.services.UpdateEmployeeService;
 import com.travelSafe.buses.domain.employee.services.get.GetEmployeeService;

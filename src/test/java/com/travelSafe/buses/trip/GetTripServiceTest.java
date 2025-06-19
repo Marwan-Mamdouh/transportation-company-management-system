@@ -8,7 +8,7 @@ import static org.mockito.Mockito.when;
 
 import com.travelSafe.buses.domain.employee.model.Employee;
 import com.travelSafe.buses.domain.trip.TripRepository;
-import com.travelSafe.buses.exceptions.trip.TripNotFoundException;
+import com.travelSafe.buses.domain.trip.exceptions.TripNotFoundException;
 import com.travelSafe.buses.domain.seats.model.Seat;
 import com.travelSafe.buses.domain.travelLine.model.TravelLine;
 import com.travelSafe.buses.domain.trip.model.Trip;

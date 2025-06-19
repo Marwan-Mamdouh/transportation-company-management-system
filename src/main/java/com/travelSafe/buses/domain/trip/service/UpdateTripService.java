@@ -1,10 +1,10 @@
 package com.travelSafe.buses.domain.trip.service;
 
-import com.travelSafe.buses.Command;
+import com.travelSafe.buses.comman.shared.Command;
 import com.travelSafe.buses.domain.trip.TripRepository;
-import com.travelSafe.buses.domain.trip.model.DTO.UpdateTripDTO;
+import com.travelSafe.buses.domain.trip.DTO.UpdateTripDTO;
 import com.travelSafe.buses.domain.trip.model.Trip;
-import com.travelSafe.buses.domain.trip.model.TripMapper;
+import com.travelSafe.buses.domain.trip.TripMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.cache.annotation.CachePut;

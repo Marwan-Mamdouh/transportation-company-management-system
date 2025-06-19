@@ -1,6 +1,6 @@
 package com.travelSafe.buses.domain.employee.services;
 
-import com.travelSafe.buses.Command;
+import com.travelSafe.buses.comman.shared.Command;
 import com.travelSafe.buses.domain.employee.EmployeeRepository;
 import com.travelSafe.buses.domain.employee.model.Employee;
 import com.travelSafe.buses.domain.employee.services.get.GetEmployeeService;

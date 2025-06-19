@@ -1,14 +1,14 @@
 package com.travelSafe.buses.domain.employee.services;
 
-import com.travelSafe.buses.Command;
+import com.travelSafe.buses.comman.shared.Command;
 import com.travelSafe.buses.domain.employee.EmployeeRepository;
 import com.travelSafe.buses.domain.employee.model.Employee;
-import com.travelSafe.buses.domain.employee.model.EmployeeMapper;
-import com.travelSafe.buses.domain.employee.model.dto.InputEmployeeDTO;
-import com.travelSafe.buses.domain.employee.model.enums.Role;
-import com.travelSafe.buses.exceptions.employee.DuplicateEmployeeEmailException;
-import com.travelSafe.buses.exceptions.employee.DuplicateEmployeeIdException;
-import com.travelSafe.buses.exceptions.employee.DuplicateEmployeePhoneNumberException;
+import com.travelSafe.buses.domain.employee.EmployeeMapper;
+import com.travelSafe.buses.domain.employee.dto.InputEmployeeDTO;
+import com.travelSafe.buses.domain.employee.enums.Role;
+import com.travelSafe.buses.domain.employee.exceptions.DuplicateEmployeeEmailException;
+import com.travelSafe.buses.domain.employee.exceptions.DuplicateEmployeeIdException;
+import com.travelSafe.buses.domain.employee.exceptions.DuplicateEmployeePhoneNumberException;
 import jakarta.transaction.Transactional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
