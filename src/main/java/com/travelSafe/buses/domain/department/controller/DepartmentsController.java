@@ -1,6 +1,6 @@
 package com.travelSafe.buses.domain.department.controller;
 
-import com.travelSafe.buses.domain.department.model.DTO.DepartmentResponseDTO;
+import com.travelSafe.buses.domain.department.DTO.DepartmentResponseDTO;
 import com.travelSafe.buses.domain.department.model.Department;
 import com.travelSafe.buses.domain.department.service.GetDepartmentsService;
 import java.util.List;

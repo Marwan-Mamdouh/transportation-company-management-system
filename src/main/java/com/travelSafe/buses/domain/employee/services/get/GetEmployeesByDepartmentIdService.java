@@ -1,6 +1,6 @@
 package com.travelSafe.buses.domain.employee.services.get;
 
-import com.travelSafe.buses.Query;
+import com.travelSafe.buses.comman.shared.Query;
 import com.travelSafe.buses.domain.department.service.GetDepartmentService;
 import com.travelSafe.buses.domain.employee.EmployeeRepository;
 import com.travelSafe.buses.domain.employee.model.Employee;

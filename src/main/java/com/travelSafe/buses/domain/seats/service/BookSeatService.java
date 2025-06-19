@@ -1,14 +1,14 @@
 package com.travelSafe.buses.domain.seats.service;
 
-import com.travelSafe.buses.Command;
+import com.travelSafe.buses.comman.shared.Command;
 import com.travelSafe.buses.domain.employee.model.Employee;
 import com.travelSafe.buses.domain.employee.services.get.GetEmployeeService;
 import com.travelSafe.buses.domain.seats.SeatsRepository;
+import com.travelSafe.buses.domain.seats.dto.BookSeatDTO;
+import com.travelSafe.buses.domain.seats.exceptions.SeatAlreadyBookedException;
 import com.travelSafe.buses.domain.seats.model.Seat;
-import com.travelSafe.buses.domain.seats.model.dto.BookSeatDTO;
 import com.travelSafe.buses.domain.trip.model.Trip;
 import com.travelSafe.buses.domain.trip.service.GetTripService;
-import com.travelSafe.buses.exceptions.seat.SeatAlreadyBookedException;
 import jakarta.transaction.Transactional;
 import java.time.LocalDateTime;
 import org.slf4j.Logger;

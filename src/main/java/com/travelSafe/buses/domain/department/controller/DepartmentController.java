@@ -1,9 +1,9 @@
 package com.travelSafe.buses.domain.department.controller;
 
-import com.travelSafe.buses.domain.department.model.DTO.CreateDepartmentDto;
-import com.travelSafe.buses.domain.department.model.DTO.DepartmentResponseDTO;
-import com.travelSafe.buses.domain.department.model.DTO.PromoteManagerDTO;
-import com.travelSafe.buses.domain.department.model.DTO.UpdatedDepartmentDTO;
+import com.travelSafe.buses.domain.department.DTO.CreateDepartmentDto;
+import com.travelSafe.buses.domain.department.DTO.DepartmentResponseDTO;
+import com.travelSafe.buses.domain.department.DTO.PromoteManagerDTO;
+import com.travelSafe.buses.domain.department.DTO.UpdatedDepartmentDTO;
 import com.travelSafe.buses.domain.department.model.Department;
 import com.travelSafe.buses.domain.department.service.CreateDepartmentService;
 import com.travelSafe.buses.domain.department.service.DeleteDepartmentService;
