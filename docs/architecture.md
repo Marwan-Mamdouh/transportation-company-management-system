@@ -5,53 +5,73 @@ I know that this structure need some work this is it for now.
 ```
 src/
 ├── main/java/com/marwan/travelSafe/buses
-│   ├── configuration/                                               # Programming Application configuration
-│   │    ├── cache/
-│   │    │     └── CacheConfiguration.java                           # cache config
-│   │    └── security/
-│   │          ├── BCryptPasswordConfig                              # password encoder config
-│   │          ├── JwtConfig                                         # Jwt encoder and decoder
-│   │          └── SecurityConfig                                    # spring security config
-│   ├── domain/                                                      # Domain package holds main project code
-│   │    ├── department/
-│   │    │     ├── /controller                                       # department controller package
-│   │    │     │     ├── DepartmentController.java
-│   │    │     │     └── DepartmentsController.java
-│   │    │     ├── /model                                            # department model package
-│   │    │     │     ├── /DTO                                        # department dto package
-│   │    │     │     │     ├── CreateDepartmentDto.java
-│   │    │     │     │     ├── DepartmentResponseDTO.java
-│   │    │     │     │     ├── PromteManagerDto.java
-│   │    │     │     │     └── UpdateDepartmentDTO.java
-│   │    │     │     ├── Department.java                             # department entity class
-│   │    │     │     └── DepartmentMapper.java
-│   │    │     ├── /service                                          # department service package
-│   │    │     │     ├── CreateDepartmentService.java
-│   │    │     │     ├── DeleteDepartmentService.java
-│   │    │     │     ├── GetDepartmentService.java
-│   │    │     │     ├── GetDepartmentsService.java
-│   │    │     │     ├── PromoteManagerService.java
-│   │    │     │     └── UpdateDepartmentService.java
-│   │    │     └── DepartmentRepository.java                         # department repository interface
-│   │    ├── employee/
-│   │    │     ├── /controller                                       # employee controller package
-│   │    │     │     ├── EmployeeAuthenticationController.java
-│   │    │     │     ├── EmployeeController.java
-│   │    │     │     └── EmployeesController.java
-│   │    │     ├── /model                                            # employee model package
-│   │    │     │     ├── /dto                                        # employee dto package
-│   │    │     │     │     ├── EmployeeLoginDTO.java
-│   │    │     │     │     ├── EmployeePayCheckDTO.java
-│   │    │     │     │     ├── EmployeeResponseDTO.java
-│   │    │     │     │     └── InputEmployeeDTO.java
-│   │    │     │     ├── /enums                                      # employee roles enum package
-│   │    │     │     │     └── Role.java
-│   │    │     │     ├── /projection                                 # employee projection package
-│   │    │     │     │     └── EmployeeAuth.java
-│   │    │     │     ├── Emoloyee.java                               # employee entity class
-│   │    │     │     └── EmployeeMapper.java
-│   │    │     ├── /service                                          # employee service package
-│   │    │     │     ├── /get                                        # employee get service package
+│   ├── /comman
+│   │    ├── /configuration                                          # Programming Application configuration
+│   │    │      ├── /cache                                           # Cache configuration package 
+│   │    │      │   └── CacheConfiguration.java                     
+│   │    │      └── /security                                        # Security configuration package
+│   │    │          ├── BCryptPasswordConfig.java                    
+│   │    │          ├── JwtConfig.java                               
+│   │    │          └── SecurityConfig.java                          
+│   │    ├── /exceptions                                             # Global exceptions configuration package
+│   │    │      ├── ErrorMessage.java
+│   │    │      └── GlobalExceptionHandler.java
+│   │    ├── /shared                                                 # Shared interfaces package
+│   │    │      ├── Query.java 
+│   │    │      └── Command.java
+│   │    ├── /util                                                   # Util package
+│   │    │      └── JwtActions
+│   │    └── /validator                                              # Custom validator package
+│   │           ├── PatterLong.java
+│   │           └── PatternLongValidator.java
+│   ├── /domain                                                      # Domain package holds main project code
+│   │    ├── /department
+│   │    │     ├── /controller                                       # Department controller package
+│   │    │     │    ├── DepartmentController.java
+│   │    │     │    └── DepartmentsController.java
+│   │    │     ├── /DTO                                              # Department dto package
+│   │    │     │    ├── CreateDepartmentDto.java
+│   │    │     │    ├── DepartmentResponseDTO.java
+│   │    │     │    ├── PromteManagerDto.java
+│   │    │     │    └── UpdateDepartmentDTO.java
+│   │    │     ├── /exceptions                                       # Department exception package             
+│   │    │     │    └── DepartmentNotFoundException.java
+│   │    │     ├── /model                                            # Department model package
+│   │    │     │    └── Department.java                              # Department entity class
+│   │    │     ├── /service                                          # Department service package
+│   │    │     │    ├── CreateDepartmentService.java
+│   │    │     │    ├── DeleteDepartmentService.java
+│   │    │     │    ├── GetDepartmentService.java
+│   │    │     │    ├── GetDepartmentsService.java
+│   │    │     │    ├── PromoteManagerService.java
+│   │    │     │    └── UpdateDepartmentService.java
+│   │    │     ├── DepartmentMapper.java                       
+│   │    │     └── DepartmentRepository.java                         # Department repository interface
+│   │    ├── /employee
+│   │    │     ├── /controller                                       # Employee controller package
+│   │    │     │    ├── EmployeeAuthenticationController.java
+│   │    │     │    ├── EmployeeController.java
+│   │    │     │    └── EmployeesController.java
+│   │    │     ├── /dto                                              # Employee dto package
+│   │    │     │    ├── EmployeeLoginDTO.java
+│   │    │     │    ├── EmployeePayCheckDTO.java
+│   │    │     │    ├── EmployeeResponseDTO.java
+│   │    │     │    └── InputEmployeeDTO.java
+│   │    │     ├── /enums                                            # Employee roles enum package
+│   │    │     │    └── Role.java
+│   │    │     ├── /exceptions                                       # Employee exception package             
+│   │    │     │    ├── DuplicateEmployeeEmailException.java
+│   │    │     │    ├── DuplicateEmployeeIdException.java
+│   │    │     │    ├── DuplicateEmployeePhoneNumberException.java
+│   │    │     │    ├── EmailNotFoundException.java
+│   │    │     │    ├── EmployeeNotFoundException.java
+│   │    │     │    ├── NotValidPasswordException.java
+│   │    │     │    └── SupervisorNotFoundException.java
+│   │    │     ├── /model                                            # Employee model package
+│   │    │     │     ├── Emoloyee.java                               # Employee entity class
+│   │    │     │     └── EmployeeAuth.java
+│   │    │     ├── /service                                          # Employee service package
+│   │    │     │     ├── /get                                        # Employee get service package
 │   │    │     │     │     ├── CountEmployeesService.java
 │   │    │     │     │     ├── GetEmployeesByDepartmentIdService.java
 │   │    │     │     │     ├── GetEmployeesBySupervisorService.java
@@ -61,103 +81,83 @@ src/
 │   │    │     │     ├── DeleteEmployeeService.java
 │   │    │     │     ├── EmployeeLoginService.java
 │   │    │     │     └── UpdateEmployeeServicee.java
-│   │    │     └── EmployeeRepository.java                          # employee repository interface
+│   │    │     ├── EmployeeMapper.java 
+│   │    │     └── EmployeeRepository.java                           # Employee repository interface
 │   │    ├── /seats
-│   │    │     ├── /model                                           # seats model package
-│   │    │     │     ├── /dto                                       # seats dto package
-│   │    │     │     │     ├── BookSeatDTO.java
-│   │    │     │     │     ├── SeatResponseDTO.java
-│   │    │     │     │     └── UpdateTripSeatDTO.java
-│   │    │     │     ├── Seat.java                                  # seats entity class
-│   │    │     │     └── SeatId.java                                # seats ID class
-│   │    │     ├── /service                                         # department controller package
-│   │    │     │     ├── BookSeatService.java
-│   │    │     │     └── SearchForSeatsByTripIdService.java
-│   │    │     ├── SeatController.java                              # seat Controller class
-│   │    │     └── SeatRepository.java                              # seat repository interface
+│   │    │     ├── /dto                                              # Seats dto package
+│   │    │     │    ├── BookSeatDTO.java
+│   │    │     │    ├── SeatResponseDTO.java
+│   │    │     │    └── UpdateTripSeatDTO.java
+│   │    │     ├── /exceptions                                       # Seat exception package
+│   │    │     │    ├── SeatAlreadyBookedException.java
+│   │    │     │    └── SeatNotFoundException.java
+│   │    │     ├── /model                                            # Seat model package
+│   │    │     │    ├── Seat.java                                    # Seat entity class
+│   │    │     │    └── SeatId.java                                  # Seat ID class
+│   │    │     ├── /service                                          # Seat controller package
+│   │    │     │    ├── BookSeatService.java
+│   │    │     │    └── SearchForSeatsByTripIdService.java
+│   │    │     ├── SeatController.java                               # Seat Controller class
+│   │    │     └── SeatRepository.java                               # Seat repository interface
 │   │    ├── /travelLine
-│   │    │     ├── /model                                           # department model package
-│   │    │     │     ├── /dto                                       # travel line dto package
-│   │    │     │     │    ├── InputTravelLineDTO.java
-│   │    │     │     │    └── TravelLineResponseDTO.java
-│   │    │     │     └── TravelLine.java                            # travel line entity class
-│   │    │     ├── /service                                         # travel line service package
-│   │    │     │     ├── CreateTravelLineService.java
-│   │    │     │     ├── DeleteTravelLineService.java
-│   │    │     │     ├── GetTravelLineService.java
-│   │    │     │     ├── GetTravelLinesService.java
-│   │    │     │     └── UpdateTravelLineService.java
-│   │    │     ├── TravelLineController.java                        # travel line entity class
-│   │    │     └── TravelLineRepository.java                        # travel line repository interface
+│   │    │     ├── /dto                                              # travel line dto package
+│   │    │     │    ├── InputTravelLineDTO.java
+│   │    │     │    └── TravelLineResponseDTO.java
+│   │    │     ├── /exceptions                                       # Travel Line exception package
+│   │    │     │    ├── TravelLineNotFoundException.java
+│   │    │     │    └── TravelLineNotValidException.java
+│   │    │     ├── /model                                            # Travel Line model package
+│   │    │     │    └── TravelLine.java                              # Travel Line entity class
+│   │    │     ├── /service                                          # Travel Line service package
+│   │    │     │    ├── CreateTravelLineService.java
+│   │    │     │    ├── DeleteTravelLineService.java
+│   │    │     │    ├── GetTravelLineService.java
+│   │    │     │    ├── GetTravelLinesService.java
+│   │    │     │    └── UpdateTravelLineService.java
+│   │    │     ├── TravelLineController.java                         # Travel Line entity class
+│   │    │     └── TravelLineRepository.java                         # Travel Line repository interface
 │   │    ├── /trip
-│   │    │     ├── /model                                           # trip model package
-│   │    │     │     ├── /dto                                       # trip dto package
-│   │    │     │     │     ├── CreateTripDTO.java
-│   │    │     │     │     ├── TripAvailabilityDTO.java
-│   │    │     │     │     ├── TripResponseDTO.java
-│   │    │     │     │     ├── TripSearchDTO.java
-│   │    │     │     │     └── UpdateTripDTO.java
-│   │    │     │     ├── /projection                                # trip projection package
-│   │    │     │     │     └── TripAvailabilityProjection.java
-│   │    │     │     ├── Trip.java                                  # trip entity class
-│   │    │     │     └── TripMapper.java
-│   │    │     ├── /service                                         # trip service package
+│   │    │     ├── /DTO                                              # Trip dto package
+│   │    │     │     ├── CreateTripDTO.java
+│   │    │     │     ├── TripAvailabilityDTO.java
+│   │    │     │     ├── TripResponseDTO.java
+│   │    │     │     ├── TripSearchDTO.java
+│   │    │     │     └── UpdateTripDTO.java
+│   │    │     ├── /model                                            # Trip model package 
+│   │    │     │     ├── Trip.java                                   # Trip entity class
+│   │    │     │     └── TripAvailabilityProjection.java
+│   │    │     ├── /exceptions                                       # Trip exception package
+│   │    │     │     ├── TripNotFoundException.java
+│   │    │     │     └── TripNotValidException.java
+│   │    │     ├── /service                                          # Trip service package
 │   │    │     │     ├── CreateTripService.java
 │   │    │     │     ├── DeleteTripService.java
 │   │    │     │     ├── GetTripService.java
 │   │    │     │     ├── SearchForTripsService.java
 │   │    │     │     └── UpdateTripService.java
-│   │    │     ├── TripController.java                              # trip controller class 
-│   │    │     └── TripRepository.java                              # trip repository interface
+│   │    │     ├── TripController.java                               # Trip controller class 
+│   │    │     ├── TripMapper.java 
+│   │    │     └── TripRepository.java                               # Trip repository interface
 │   │    └── /vehicle
-│   │          ├── /model                                           # veichle model package
-│   │          │     ├── /dto                                       # veichle dto package
-│   │          │     │     ├── CreateVehicleDTO.java
-│   │          │     │     ├── UpdateVehicleDTO.java
-│   │          │     │     └── VehicleResponseDTO.java
-│   │          │     ├── Vehicle.java                               # vehicle entity class
-│   │          │     └── VehicleMapper.java
-│   │          ├── /service                                         # vehicle service package
+│   │          ├── /dto                                              # Vehicle dto package
+│   │          │    ├── CreateVehicleDTO.java
+│   │          │    ├── UpdateVehicleDTO.java
+│   │          │    └── VehicleResponseDTO.java
+│   │          ├── /exceptions                                       # Vehicle exception package
+│   │          │     ├── DuplicateVehiclePlateNumberException.java
+│   │          │     └── VehicleNotFoundException.java
+│   │          ├── /model                                            # Vehicle model package
+│   │          │     └── Vehicle.java                                # Vehicle entity class
+│   │          ├── /service                                          # Vehicle service package
 │   │          │     ├── CreateVehicleService.java
 │   │          │     ├── DeleteVehicleService.java
 │   │          │     ├── GetVehicleService.java
 │   │          │     ├── GetVehiclesleService.java
 │   │          │     └── UpdateVehicleService.java
-│   │          ├── VehicleController.java                           # vehicle contoller class
-│   │          └── VehicleRepository.java                           # vehicle repository interface
-│   ├── /exceptions
-│   │    ├── /department
-│   │    │     └── DepartmentNotFoundException.java
-│   │    ├── /employee
-│   │    │     ├── DuplicateEmployeeEmailException.java
-│   │    │     ├── DuplicateEmployeeIdException.java
-│   │    │     ├── DuplicateEmployeePhoneNumberException.java
-│   │    │     ├── EmailNotFoundException.java
-│   │    │     ├── EmployeeNotFoundException.java
-│   │    │     ├── NotValidPasswordException.java
-│   │    │     └── SupervisorNotFoundException.java
-│   │    ├── /seat
-│   │    │     ├── SeatAlreadyBookedException.java
-│   │    │     └── SeatNotFoundException.java
-│   │    ├── /travelLine
-│   │    │     ├── TravelLineNotFoundException.java
-│   │    │     └── TravelLineNotValidException.java
-│   │    ├── /trip
-│   │    │     ├── TripNotFoundException.java
-│   │    │     └── TripNotValidException.java
-│   │    ├── /vehicle
-│   │    │     ├── DuplicateVehiclePlateNumberException.java
-│   │    │     └── VehicleNotFoundException.java
-│   │    ├── ErrorMessage.java
-│   │    └── GlobalExceptionHandler.java
-│   ├── /util
-│   │    └── JwtActions
-│   ├── /validator
-│   │    ├── PatterLong.java
-│   │    └── PatternLongValidator.java
-│   ├── BusesApplication.java                                       # Application entry point
-│   ├── Command.java
-│   └── Query.java 
+│   │          ├── VehicleController.java                            # vehicle contoller class
+│   │          ├── VehicleMapper.java
+│   │          └── VehicleRepository.java                            # vehicle repository interface
+│   ├── BusesApplication.java                                        # Application entry point
 └── main/resources/
     ├── /keys
     │    ├── private.pem

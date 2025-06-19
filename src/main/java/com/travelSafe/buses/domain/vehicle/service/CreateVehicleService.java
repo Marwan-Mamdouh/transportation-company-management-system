@@ -5,7 +5,7 @@ import com.travelSafe.buses.domain.vehicle.VehicleRepository;
 import com.travelSafe.buses.domain.vehicle.dto.CreateVehicleDTO;
 import com.travelSafe.buses.domain.vehicle.exceptions.DuplicateVehiclePlateNumberException;
 import com.travelSafe.buses.domain.vehicle.model.Vehicle;
-import com.travelSafe.buses.domain.vehicle.model.VehicleMapper;
+import com.travelSafe.buses.domain.vehicle.VehicleMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
