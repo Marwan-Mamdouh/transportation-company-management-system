@@ -1,4 +1,4 @@
-package com.travelSafe.buses.domain.department.controller;
+package com.travelSafe.buses.domain.department;
 
 import com.travelSafe.buses.domain.department.DTO.CreateDepartmentDto;
 import com.travelSafe.buses.domain.department.DTO.DepartmentResponseDTO;
@@ -8,10 +8,12 @@ import com.travelSafe.buses.domain.department.model.Department;
 import com.travelSafe.buses.domain.department.service.CreateDepartmentService;
 import com.travelSafe.buses.domain.department.service.DeleteDepartmentService;
 import com.travelSafe.buses.domain.department.service.GetDepartmentService;
+import com.travelSafe.buses.domain.department.service.GetDepartmentsService;
 import com.travelSafe.buses.domain.department.service.PromoteManagerService;
 import com.travelSafe.buses.domain.department.service.UpdateDepartmentService;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Positive;
+import java.util.List;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,26 +25,28 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/v1/department")
+@RequestMapping("/api/departments")
 public class DepartmentController {
 
   private final CreateDepartmentService createDepartmentService;
 
   private final DeleteDepartmentService deleteDepartmentService;
 
-  private final GetDepartmentService searchDepartmentByIdService;
+  private final GetDepartmentService getDepartmentService;
+  private final GetDepartmentsService getDepartmentsService;
 
   private final UpdateDepartmentService updateDepartmentService;
   private final PromoteManagerService promoteManagerService;
 
   public DepartmentController(CreateDepartmentService createDepartmentService,
       DeleteDepartmentService deleteDepartmentService,
-      GetDepartmentService searchDepartmentByIdService,
+      GetDepartmentService getDepartmentService, GetDepartmentsService getDepartmentsService,
       UpdateDepartmentService updateDepartmentService,
       PromoteManagerService promoteManagerService) {
     this.createDepartmentService = createDepartmentService;
     this.deleteDepartmentService = deleteDepartmentService;
-    this.searchDepartmentByIdService = searchDepartmentByIdService;
+    this.getDepartmentService = getDepartmentService;
+    this.getDepartmentsService = getDepartmentsService;
     this.updateDepartmentService = updateDepartmentService;
     this.promoteManagerService = promoteManagerService;
   }
@@ -56,8 +60,14 @@ public class DepartmentController {
 
   @GetMapping("/{id}")
   public ResponseEntity<DepartmentResponseDTO> getDepartment(@PathVariable @Positive Integer id) {
-    final Department department = searchDepartmentByIdService.execute(id);
+    final Department department = getDepartmentService.execute(id);
     return ResponseEntity.ok(new DepartmentResponseDTO(department));
+  }
+
+  @GetMapping
+  public ResponseEntity<List<DepartmentResponseDTO>> getDepartments() {
+    final List<Department> department = getDepartmentsService.execute(null);
+    return ResponseEntity.ok(department.stream().map(DepartmentResponseDTO::new).toList());
   }
 
   @PutMapping("/update")
