@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/v1/trip")
+@RequestMapping("/api/trip")
 public class TripController {
 
   private final CreateTripService createTripService;
