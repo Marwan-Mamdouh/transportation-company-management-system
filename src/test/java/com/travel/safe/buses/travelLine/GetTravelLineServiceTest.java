@@ -19,7 +19,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 @ExtendWith(MockitoExtension.class)
-public class GetTravelLineServiceTest {
+class GetTravelLineServiceTest {
 
   @Mock
   private TravelLineRepository travelLineRepository;
@@ -28,8 +28,8 @@ public class GetTravelLineServiceTest {
   private GetTravelLineService getTravelLineService;
 
   @Test
-  public void gavin_travel_line_exists_when_get_travel_line_called_return_dto() {
-    // gavin
+  void givenTravelLineExists_whenGetTravelLine_returnTravelLineDto() {
+    // given
     final int travelId = 5;
     final TravelLine travelLine = new TravelLine(travelId, "Cairo", "Asyut",
         List.of("Cairo", "Adly-mansor", "Asyut"));
@@ -44,11 +44,11 @@ public class GetTravelLineServiceTest {
   }
 
   @Test
-  public void gavin_travel_line_does_not_exists_when_get_travel_line_called_throw_not_found() {
-    // when
+  void givenTravelLineDoesNotExists_whenGetTravelLine_throwsTravelNotFoundException() {
+    // given
     final int travelId = 10;
 
-    // gavin
+    // when
     when(travelLineRepository.findById(travelId)).thenReturn(Optional.empty());
 
     // then

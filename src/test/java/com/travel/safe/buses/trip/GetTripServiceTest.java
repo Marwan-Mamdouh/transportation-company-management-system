@@ -7,10 +7,10 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import com.travel.safe.buses.domain.employee.model.Employee;
-import com.travel.safe.buses.domain.trip.TripRepository;
-import com.travel.safe.buses.domain.trip.exceptions.TripNotFoundException;
 import com.travel.safe.buses.domain.seats.model.Seat;
 import com.travel.safe.buses.domain.travelLine.model.TravelLine;
+import com.travel.safe.buses.domain.trip.TripRepository;
+import com.travel.safe.buses.domain.trip.exceptions.TripNotFoundException;
 import com.travel.safe.buses.domain.trip.model.Trip;
 import com.travel.safe.buses.domain.trip.service.GetTripService;
 import com.travel.safe.buses.domain.vehicle.model.Vehicle;
@@ -24,7 +24,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 @ExtendWith(MockitoExtension.class)
-public class GetTripServiceTest {
+class GetTripServiceTest {
 
   @Mock
   private TripRepository tripRepository;
@@ -33,7 +33,7 @@ public class GetTripServiceTest {
   private GetTripService getTripService;
 
   @Test
-  public void gavin_trip_exist_when_get_trip_called_return_dto() {
+  void givenTripExist_whenGetTripService_returnTrip() {
     // gavin
     final Integer tripId = 1;
     final Trip trip = new Trip(tripId, new Vehicle(), new TravelLine(), new Employee(), 250,
@@ -49,7 +49,7 @@ public class GetTripServiceTest {
   }
 
   @Test
-  public void gavin_trip_does_not_exist_when_get_trip_called_throw_not_found() {
+  void givenTripDoesNotExist_whenGetTripService_throwTripNotFoundException() {
     // gavin
     final int wantedId = 2;
     // when

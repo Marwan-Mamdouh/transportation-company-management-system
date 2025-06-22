@@ -7,8 +7,8 @@ import static org.mockito.Mockito.when;
 
 import com.travel.safe.buses.domain.department.model.Department;
 import com.travel.safe.buses.domain.employee.EmployeeRepository;
-import com.travel.safe.buses.domain.employee.model.Employee;
 import com.travel.safe.buses.domain.employee.enums.Role;
+import com.travel.safe.buses.domain.employee.model.Employee;
 import com.travel.safe.buses.domain.employee.services.get.GetEmployeesBySupervisorService;
 import java.time.LocalDate;
 import java.util.List;
@@ -19,7 +19,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 @ExtendWith(MockitoExtension.class)
-public class GetEmployeesBySupervisorServiceTest {
+class GetEmployeesBySupervisorServiceTest {
 
   @Mock
   private EmployeeRepository employeeRepository;
@@ -41,8 +41,8 @@ public class GetEmployeesBySupervisorServiceTest {
   }
 
   @Test
-  public void gavin_employees_exists_when_get_employees_by_supervisor_called_return_employees_list() {
-    // gavin
+  void givenEmployeesExists_whenGetEmployeesBySupervisor_returnEmployeesList() {
+    // given
     final Long supervisorId = 26876543218906L;
     final Department department = new Department();
     final Employee supervisor = new Employee(supervisorId, "testFirst", "testLast",
@@ -60,16 +60,8 @@ public class GetEmployeesBySupervisorServiceTest {
   }
 
   @Test
-  public void gavin_employees_does_not_exists_when_get_employees_by_supervisor_called_return_empty_list() {
-    // gavin
-    final Long supervisorId = 26876543218906L;
-    final Department department = new Department();
-    final Employee supervisor = new Employee(supervisorId, "testFirst", "testLast",
-        "test@gamil.com", "01142703335", LocalDate.parse("2012-09-15"), null, "123", Role.CLIENT,
-        null, department);
-    final List<Employee> employees = getEmployees(supervisor, department);
-
-    // when
+  void givenEmployeesDoesNotExists_whenGetEmployeesBySupervisor_returnEmptyList() {
+    // given & when
     when(employeeRepository.findBySupervisor_EmployeeId(30876543218906L)).thenReturn(List.of());
     final List<Employee> response = getEmployeesBySupervisorService.execute(30876543218906L);
     // then
