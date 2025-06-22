@@ -9,10 +9,10 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 @ResponseStatus(HttpStatus.NOT_FOUND)
 public class EmployeeNotFoundException extends RuntimeException {
 
-  private static final Logger logger = LoggerFactory.getLogger(EmployeeNotFoundException.class);
+  private static final Logger LOGGER = LoggerFactory.getLogger(EmployeeNotFoundException.class);
 
   public EmployeeNotFoundException() {
     super(ErrorMessage.EMPLOYEE_NOT_FOUND.getMessage());
-    logger.error("Exception: {}thrown.", getClass());
+    LOGGER.error("Exception: {}thrown.", getClass());
   }
 }
