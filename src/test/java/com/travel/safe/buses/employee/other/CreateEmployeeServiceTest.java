@@ -9,10 +9,8 @@ import static org.mockito.Mockito.when;
 
 import com.travel.safe.buses.domain.employee.EmployeeMapper;
 import com.travel.safe.buses.domain.employee.EmployeeRepository;
-import com.travel.safe.buses.domain.employee.dto.InputEmployeeDTO;
-import com.travel.safe.buses.domain.employee.exceptions.DuplicateEmployeeEmailException;
-import com.travel.safe.buses.domain.employee.exceptions.DuplicateEmployeeIdException;
-import com.travel.safe.buses.domain.employee.exceptions.DuplicateEmployeePhoneNumberException;
+import com.travel.safe.buses.domain.employee.dto.CreateEmployeeDTO;
+import com.travel.safe.buses.domain.employee.exceptions.DuplicateEmployeeDataException;
 import com.travel.safe.buses.domain.employee.model.Employee;
 import com.travel.safe.buses.domain.employee.services.CreateEmployeeService;
 import java.time.LocalDate;
@@ -41,13 +39,12 @@ class CreateEmployeeServiceTest {
   @Test
   void givenValidDataForEmployee_whenCreateEmployeeService_return() {
     // given
-    InputEmployeeDTO input = new InputEmployeeDTO(21341234569803L, "John", "Doe",
+    final CreateEmployeeDTO input = new CreateEmployeeDTO(21341234569803L, "John", "Doe",
         "john.doe@example.com", "123456789", "01234567890", LocalDate.parse("2002-01-10"));
-    Employee employee = new Employee();
-    when(employeeRepository.existsBySsn(input.ssn())).thenReturn(false);
-    when(employeeRepository.existsByEmail(input.email())).thenReturn(false);
-    when(employeeRepository.existsByPhoneNumber(input.phoneNumber())).thenReturn(false);
-    when(employeeMapper.employeeFromInputDTO(input)).thenReturn(employee);
+    final Employee employee = new Employee();
+    when(employeeRepository.existsBySsnOrPhoneNumberOrEmailIgnoreCase(input.ssn(),
+        input.phoneNumber(), input.email())).thenReturn(false);
+    when(employeeMapper.employeeCreateEmployeeDTO(input)).thenReturn(employee);
     when(employeeRepository.save(employee)).thenReturn(employee);
 
     // when
@@ -62,34 +59,36 @@ class CreateEmployeeServiceTest {
   @Test
   void givenNotValidEmailForEmployee_whenCreateEmployeeService_return() {
     // given
-    InputEmployeeDTO input = new InputEmployeeDTO(21341234569803L, "John", "Doe",
+    CreateEmployeeDTO input = new CreateEmployeeDTO(21341234569803L, "John", "Doe",
         "john.doe@example.com", "123456789", "1234567890", LocalDate.parse("2002-01-10"));
-    when(employeeRepository.existsByEmail(input.email())).thenReturn(true);
+    when(employeeRepository.existsBySsnOrPhoneNumberOrEmailIgnoreCase(input.ssn(),
+        input.phoneNumber(), input.email())).thenReturn(true);
 
     // when & then
-    assertThrows(DuplicateEmployeeEmailException.class, () -> createEmployeeService.execute(input));
+    assertThrows(DuplicateEmployeeDataException.class, () -> createEmployeeService.execute(input));
   }
 
   @Test
   void givenNotValidSSNForEmployee_whenCreateEmployeeService_return() {
     // given
-    InputEmployeeDTO input = new InputEmployeeDTO(21341234569803L, "John", "Doe",
+    CreateEmployeeDTO input = new CreateEmployeeDTO(21341234569803L, "John", "Doe",
         "john.doe@example.com", "123456789", "1234567890", LocalDate.parse("2002-01-10"));
-    when(employeeRepository.existsBySsn(input.ssn())).thenReturn(true);
+    when(employeeRepository.existsBySsnOrPhoneNumberOrEmailIgnoreCase(input.ssn(),
+        input.phoneNumber(), input.email())).thenReturn(true);
 
     // when & then
-    assertThrows(DuplicateEmployeeIdException.class, () -> createEmployeeService.execute(input));
+    assertThrows(DuplicateEmployeeDataException.class, () -> createEmployeeService.execute(input));
   }
 
   @Test
   void givenNotValidPhoneNumberForEmployee_whenCreateEmployeeService_return() {
     // given
-    InputEmployeeDTO input = new InputEmployeeDTO(21341234569803L, "John", "Doe",
+    CreateEmployeeDTO input = new CreateEmployeeDTO(21341234569803L, "John", "Doe",
         "john.doe@example.com", "123456789", "1234567890", LocalDate.parse("2002-01-10"));
-    when(employeeRepository.existsByPhoneNumber(input.phoneNumber())).thenReturn(true);
+    when(employeeRepository.existsBySsnOrPhoneNumberOrEmailIgnoreCase(input.ssn(),
+        input.phoneNumber(), input.email())).thenReturn(true);
 
     // when & then
-    assertThrows(DuplicateEmployeePhoneNumberException.class,
-        () -> createEmployeeService.execute(input));
+    assertThrows(DuplicateEmployeeDataException.class, () -> createEmployeeService.execute(input));
   }
 }
