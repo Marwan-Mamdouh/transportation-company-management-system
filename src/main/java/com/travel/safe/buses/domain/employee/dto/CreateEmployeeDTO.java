@@ -17,4 +17,5 @@ public record CreateEmployeeDTO(
     @NotBlank(message = "Password can't be null or empty.") @Size(min = 8, max = 20, message = "Password length should be between 8 and 20 character.") String password,
     @NotBlank(message = "Phone number can't be null or empty.") @Size(min = 11, max = 11, message = "Phone number length should be 11 character.") @Pattern(regexp = "^01[0-2,5][0-9]{8}$", message = "Not Valid Egyptian phone number.") String phoneNumber,
     @NotNull(message = "Birthday can't be null.") @Past(message = "Birthday can't be in the future.") LocalDate birthday) {
+
 }
