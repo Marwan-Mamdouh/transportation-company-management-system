@@ -7,8 +7,8 @@ import static org.mockito.Mockito.when;
 
 import com.travel.safe.buses.domain.department.model.Department;
 import com.travel.safe.buses.domain.employee.EmployeeRepository;
-import com.travel.safe.buses.domain.employee.model.Employee;
 import com.travel.safe.buses.domain.employee.enums.Role;
+import com.travel.safe.buses.domain.employee.model.Employee;
 import com.travel.safe.buses.domain.employee.services.get.GetEmployeesService;
 import java.time.LocalDate;
 import java.util.List;
@@ -19,7 +19,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 @ExtendWith(MockitoExtension.class)
-public class GetEmployeesServiceTest {
+class GetEmployeesServiceTest {
 
   @Mock
   private EmployeeRepository employeeRepository;
@@ -28,9 +28,9 @@ public class GetEmployeesServiceTest {
   private GetEmployeesService getEmployeesService;
 
   @Test
-  public void gavin_employees_exists_when_get_employee_called_return_dto_list() {
+  void givenEmployeesExists_whenGetEmployeeCalled_returnEmployeeList() {
 
-    // gavin
+    // given
     final Employee employee1 = new Employee(90876543218906L, "test1", "test1", "test1@gamil.com",
         "01142703335", LocalDate.parse("2012-09-15"), null, "123", Role.CLIENT, null,
         new Department());
@@ -49,9 +49,9 @@ public class GetEmployeesServiceTest {
   }
 
   @Test
-  public void gavin_employee_does_not_exists_when_get_employee_called_return_empty_list() {
+  void givenEmployeeDoesNotExists_whenGetEmployee_returnEmptyList() {
 
-    // gavin & when
+    // given & when
     when(employeeRepository.findAll()).thenReturn(List.of());
     final List<Employee> response = getEmployeesService.execute(null);
 

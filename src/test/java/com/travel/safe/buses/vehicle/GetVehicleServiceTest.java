@@ -19,7 +19,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 @ExtendWith(MockitoExtension.class)
-public class GetVehicleServiceTest {
+class GetVehicleServiceTest {
 
   @Mock
   private VehicleRepository vehicleRepository;
@@ -28,21 +28,22 @@ public class GetVehicleServiceTest {
   private GetVehicleService getVehicleService;
 
   @Test
-  public void gavin_vehicle_exist_when_get_vehicle_service_called_return_dto() {
+  void givenVehicleExist_whenGetVehicleService_returnVehicle() {
+    // given
     final Integer vehicleId = 15;
     final Vehicle vehicle = new Vehicle(vehicleId, "hola", 60, "VIP", LocalDate.now(),
         LocalDate.parse("2027-05-09"));
-
+    // when
     when(vehicleRepository.findById(vehicleId)).thenReturn(Optional.of(vehicle));
     final Vehicle response = getVehicleService.execute(vehicleId);
-
+    // then
     assertEquals(vehicle, response);
     verify(vehicleRepository, times(1)).findById(vehicleId);
   }
 
   @Test
-  public void gavin_vehicle_does_not_exist_when_get_vehicle_service_called_throw_not_found() {
-    // gavin
+  void givenVehicleDoesNotExist_whenGetVehicleService_throwVehicleNotFoundException() {
+    // given
     final Integer vehicleId = 90;
 
     // when

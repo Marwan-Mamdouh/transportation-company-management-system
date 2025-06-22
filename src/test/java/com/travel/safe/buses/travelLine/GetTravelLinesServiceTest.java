@@ -17,7 +17,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 @ExtendWith(MockitoExtension.class)
-public class GetTravelLinesServiceTest {
+class GetTravelLinesServiceTest {
 
   @Mock
   private TravelLineRepository travelLineRepository;
@@ -26,8 +26,8 @@ public class GetTravelLinesServiceTest {
   private GetTravelLinesService getTravelLinesService;
 
   @Test
-  public void gavin_travel_line_exist_when_get_travel_lines_called_return_dto_list() {
-    // gavin
+  void givenTravelLineExist_whenGetTravelLinesCalled_returnTravelLineList() {
+    // given
     final TravelLine travelLine1 = new TravelLine(19, "asyut", "cairo", new ArrayList<>());
     final TravelLine travelLine2 = new TravelLine(91, "cairo", "asyut", new ArrayList<>());
     final List<TravelLine> travelLines = List.of(travelLine1, travelLine2);
@@ -42,8 +42,8 @@ public class GetTravelLinesServiceTest {
   }
 
   @Test
-  public void gavin_travel_line_does_not_exist_when_get_travel_lines_called_return_empty_list() {
-    // gavin & when
+  void givenTravelLineDoseNotExist_whenGetTravelLinesCalled_returnEmptyList() {
+    // given & when
     when(travelLineRepository.findAll()).thenReturn(List.of());
     final List<TravelLine> response = getTravelLinesService.execute(null);
 

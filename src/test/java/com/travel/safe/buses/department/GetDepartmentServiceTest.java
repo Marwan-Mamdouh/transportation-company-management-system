@@ -7,10 +7,10 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import com.travel.safe.buses.domain.department.DepartmentRepository;
+import com.travel.safe.buses.domain.department.exception.DepartmentNotFoundException;
 import com.travel.safe.buses.domain.department.model.Department;
 import com.travel.safe.buses.domain.department.service.GetDepartmentService;
 import com.travel.safe.buses.domain.employee.model.Employee;
-import com.travel.safe.buses.domain.department.exception.DepartmentNotFoundException;
 import java.util.Optional;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -19,7 +19,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 @ExtendWith(MockitoExtension.class)
-public class GetDepartmentServiceTest {
+class GetDepartmentServiceTest {
 
   @Mock
   private DepartmentRepository departmentRepository;
@@ -28,8 +28,8 @@ public class GetDepartmentServiceTest {
   private GetDepartmentService getDepartmentService;
 
   @Test
-  public void gavin_department_exists_when_get_search_department_service_return_dto() {
-    // gavin
+  void givenDepartmentExists_whenGetSearchDepartmentService_returnDto() {
+    // given
     final int wantedId = 1;
     final Employee employee = new Employee();
     employee.setFirstname("Mohamed");
@@ -46,8 +46,8 @@ public class GetDepartmentServiceTest {
   }
 
   @Test
-  public void gavin_department_does_not_exists_when_get_search_department_by_id_service_throw_department_not_found_exception() {
-    // gavin
+  void givenDepartmentDoesNotExists_whenGetSearchDepartmentByIdService_throwDepartmentNotFoundException() {
+    // given
     final int wantedId = 10;
 
     // when

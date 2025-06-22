@@ -17,7 +17,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 @ExtendWith(MockitoExtension.class)
-public class GetVehiclesServiceTest {
+class GetVehiclesServiceTest {
 
   @Mock
   private VehicleRepository vehicleRepository;
@@ -26,8 +26,8 @@ public class GetVehiclesServiceTest {
   private GetVehiclesService getVehiclesService;
 
   @Test
-  public void gavin_vehicles_exist_when_get_vehicles_service_called_return_dto_list() {
-    // gavin
+  void givenVehiclesExist_whenGetVehiclesService_returnVehiclesList() {
+    // given
     final Integer vehicle1Id = 15;
     final Vehicle vehicle1 = new Vehicle(vehicle1Id, "hola", 60, "VIP", LocalDate.now(),
         LocalDate.parse("2027-05-09"));
@@ -45,8 +45,8 @@ public class GetVehiclesServiceTest {
   }
 
   @Test
-  public void gavin_vehicles_does_not_exist_when_get_vehicles_service_called_return_empty_list() {
-    // gavin
+  void givenVehiclesDoesNotExist_whenGetVehiclesService_returnEmptyList() {
+    // given
 
     // when
     when(vehicleRepository.findAll()).thenReturn(List.of());

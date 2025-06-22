@@ -11,7 +11,6 @@ import com.travel.safe.buses.domain.seats.model.Seat;
 import com.travel.safe.buses.domain.seats.model.SeatId;
 import com.travel.safe.buses.domain.seats.service.SearchForSeatsByTripIdService;
 import com.travel.safe.buses.domain.trip.model.Trip;
-import java.time.LocalDateTime;
 import java.util.List;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -20,7 +19,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 @ExtendWith(MockitoExtension.class)
-public class SearchForSeatsByTripIdServiceTest {
+class SearchForSeatsByTripIdServiceTest {
 
   @Mock
   private SeatsRepository seatsRepository;
@@ -29,18 +28,14 @@ public class SearchForSeatsByTripIdServiceTest {
   private SearchForSeatsByTripIdService search;
 
   @Test
-  public void gavin_seats_list_exists_and_booked_when_search_service_called_return_list_of_seats_that_match() {
-    // gavin
+  void givenSeatsListExistsAndBooked_whenSearchSeatsService_returnEmptyList() {
+    // given
     final Integer tripId = 3;
     final Trip trip = new Trip();
     trip.setTripId(tripId);
     final Employee employee = new Employee();
     employee.setSsn(30123243235723L);
-    final Seat seat1 = new Seat(new SeatId(42, 3), trip, employee, LocalDateTime.now());
-    final Seat seat2 = new Seat(new SeatId(43, 3), trip, employee, LocalDateTime.now());
-    final Seat seat3 = new Seat(new SeatId(44, 3), trip, employee, LocalDateTime.now());
-    final Seat seat4 = new Seat(new SeatId(45, 3), trip, employee, LocalDateTime.now());
-    final List<Seat> seats = List.of(seat1, seat2, seat3, seat4);
+
     // when
     when(seatsRepository.findByTripSeatId_TripIdAndBookedBy(tripId)).thenReturn(List.of());
     final List<Seat> response = search.execute(tripId);
@@ -50,8 +45,8 @@ public class SearchForSeatsByTripIdServiceTest {
   }
 
   @Test
-  public void gavin_seats_list_exists_and_free_to_book_when_search_service_called_return_list_of_seats_that_match() {
-    // gavin
+  void givenSeatsListExistsAndAvailable_whenSearchSeatsService_returnSeatList() {
+    // given
     final Integer tripId = 3;
     final Trip trip = new Trip();
     trip.setTripId(tripId);
@@ -69,19 +64,17 @@ public class SearchForSeatsByTripIdServiceTest {
   }
 
   @Test
-  public void gavin_seats_list_exists_and_some_free_to_book_when_search_service_called_return_list_of_seats_that_match() {
-    // gavin
+  void givenSeatsListExistsAndSomeFreeToBook_whenSearchSeatsService_returnSeatsList() {
+    // given
     final Integer tripId = 3;
     final Trip trip = new Trip();
     trip.setTripId(tripId);
     final Employee employee = new Employee();
     employee.setSsn(30123243235723L);
-    final Seat seat1 = new Seat(new SeatId(42, 3), trip, employee, LocalDateTime.now());
-    final Seat seat2 = new Seat(new SeatId(43, 3), trip, employee, LocalDateTime.now());
     final Seat seat3 = new Seat(new SeatId(44, 3), trip, null, null);
     final Seat seat4 = new Seat(new SeatId(45, 3), trip, null, null);
     final List<Seat> freeSeats = List.of(seat3, seat4);
-    final List<Seat> bookedSeats = List.of(seat1, seat2);
+
     // when
     when(seatsRepository.findByTripSeatId_TripIdAndBookedBy(tripId)).thenReturn(freeSeats);
     final List<Seat> response = search.execute(tripId);
@@ -91,8 +84,8 @@ public class SearchForSeatsByTripIdServiceTest {
   }
 
   @Test
-  public void gavin_seats_list_does_not_exists_when_search_service_called_return_list_of_seats_that_match() {
-    // gavin
+  void givenSeatsListDoesNotExists_whenSearchSeatsService_returnEmptyList() {
+    // given
     final Integer tripId = 3;
     final Trip trip = new Trip();
     trip.setTripId(tripId);

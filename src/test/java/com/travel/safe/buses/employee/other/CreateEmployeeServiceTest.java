@@ -1,19 +1,20 @@
 package com.travel.safe.buses.employee.other;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import com.travel.safe.buses.domain.employee.EmployeeMapper;
 import com.travel.safe.buses.domain.employee.EmployeeRepository;
 import com.travel.safe.buses.domain.employee.dto.InputEmployeeDTO;
-import com.travel.safe.buses.domain.employee.model.Employee;
-import com.travel.safe.buses.domain.employee.EmployeeMapper;
-import com.travel.safe.buses.domain.employee.services.CreateEmployeeService;
 import com.travel.safe.buses.domain.employee.exceptions.DuplicateEmployeeEmailException;
 import com.travel.safe.buses.domain.employee.exceptions.DuplicateEmployeeIdException;
 import com.travel.safe.buses.domain.employee.exceptions.DuplicateEmployeePhoneNumberException;
+import com.travel.safe.buses.domain.employee.model.Employee;
+import com.travel.safe.buses.domain.employee.services.CreateEmployeeService;
 import java.time.LocalDate;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -38,8 +39,8 @@ class CreateEmployeeServiceTest {
   private CreateEmployeeService createEmployeeService;
 
   @Test
-  void shouldSaveEmployeeWhenInputIsValid() {
-    // Arrange
+  void givenValidDataForEmployee_whenCreateEmployeeService_return() {
+    // given
     InputEmployeeDTO input = new InputEmployeeDTO(21341234569803L, "John", "Doe",
         "john.doe@example.com", "123456789", "01234567890", LocalDate.parse("2002-01-10"));
     Employee employee = new Employee();
@@ -49,44 +50,45 @@ class CreateEmployeeServiceTest {
     when(employeeMapper.employeeFromInputDTO(input)).thenReturn(employee);
     when(employeeRepository.save(employee)).thenReturn(employee);
 
-    // Act
+    // when
     final Employee result = createEmployeeService.execute(input);
 
-    // Assert
+    // then
     assertNotNull(result);
+    assertEquals(result, employee);
     verify(employeeRepository, times(1)).save(employee);
   }
 
   @Test
-  void shouldThrowExceptionWhenEmailIsDuplicate() {
-    // Arrange
+  void givenNotValidEmailForEmployee_whenCreateEmployeeService_return() {
+    // given
     InputEmployeeDTO input = new InputEmployeeDTO(21341234569803L, "John", "Doe",
         "john.doe@example.com", "123456789", "1234567890", LocalDate.parse("2002-01-10"));
     when(employeeRepository.existsByEmail(input.email())).thenReturn(true);
 
-    // Act & Assert
+    // when & then
     assertThrows(DuplicateEmployeeEmailException.class, () -> createEmployeeService.execute(input));
   }
 
   @Test
-  void shouldThrowExceptionWhenSsnIsDuplicate() {
-    // Arrange
+  void givenNotValidSSNForEmployee_whenCreateEmployeeService_return() {
+    // given
     InputEmployeeDTO input = new InputEmployeeDTO(21341234569803L, "John", "Doe",
         "john.doe@example.com", "123456789", "1234567890", LocalDate.parse("2002-01-10"));
     when(employeeRepository.existsBySsn(input.ssn())).thenReturn(true);
 
-    // Act & Assert
+    // when & then
     assertThrows(DuplicateEmployeeIdException.class, () -> createEmployeeService.execute(input));
   }
 
   @Test
-  void shouldThrowExceptionWhenPhoneNumberIsDuplicate() {
-    // Arrange
+  void givenNotValidPhoneNumberForEmployee_whenCreateEmployeeService_return() {
+    // given
     InputEmployeeDTO input = new InputEmployeeDTO(21341234569803L, "John", "Doe",
         "john.doe@example.com", "123456789", "1234567890", LocalDate.parse("2002-01-10"));
     when(employeeRepository.existsByPhoneNumber(input.phoneNumber())).thenReturn(true);
 
-    // Act & Assert
+    // when & then
     assertThrows(DuplicateEmployeePhoneNumberException.class,
         () -> createEmployeeService.execute(input));
   }

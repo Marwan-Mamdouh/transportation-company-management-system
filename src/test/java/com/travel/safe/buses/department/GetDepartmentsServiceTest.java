@@ -17,7 +17,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 @ExtendWith(MockitoExtension.class)
-public class GetDepartmentsServiceTest {
+class GetDepartmentsServiceTest {
 
   @Mock
   private DepartmentRepository departmentRepository;
@@ -26,8 +26,8 @@ public class GetDepartmentsServiceTest {
   private GetDepartmentsService getDepartmentsService;
 
   @Test
-  public void gavin_departments_exists_when_get_departments_service_called_return_dto() {
-    // gavin
+  void givenDepartmentsExists_whenGetDepartmentsServiceCalled_returnDto() {
+    // given
     final int wantedId = 1;
     final Employee employee1 = new Employee();
     final Employee employee2 = new Employee();
@@ -48,8 +48,8 @@ public class GetDepartmentsServiceTest {
   }
 
   @Test
-  public void gavin_departments_does_not_exists_when_get_customers_service_return_empty_list() {
-    // gavin &when
+  void givenDepartmentsDoesNotExists_whenGetCustomersService_returnEmptyList() {
+    // given & when
     when(departmentRepository.findAll()).thenReturn(List.of());
     List<Department> response = getDepartmentsService.execute(null);
 

@@ -8,10 +8,10 @@ import static org.mockito.Mockito.when;
 
 import com.travel.safe.buses.domain.department.model.Department;
 import com.travel.safe.buses.domain.employee.EmployeeRepository;
-import com.travel.safe.buses.domain.employee.model.Employee;
 import com.travel.safe.buses.domain.employee.enums.Role;
-import com.travel.safe.buses.domain.employee.services.get.GetEmployeeService;
 import com.travel.safe.buses.domain.employee.exceptions.EmployeeNotFoundException;
+import com.travel.safe.buses.domain.employee.model.Employee;
+import com.travel.safe.buses.domain.employee.services.get.GetEmployeeService;
 import java.time.LocalDate;
 import java.util.Optional;
 import org.junit.jupiter.api.Test;
@@ -21,7 +21,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 @ExtendWith(MockitoExtension.class)
-public class GetEmployeeServiceTest {
+class GetEmployeeServiceTest {
 
   @Mock
   private EmployeeRepository employeeRepository;
@@ -30,13 +30,13 @@ public class GetEmployeeServiceTest {
   private GetEmployeeService getEmployeeService;
 
   @Test
-  public void gavin_Employee_exists_when_get_employee_called_return_dto() {
+  void givenEmployeeExists_whenGetEmployee_returnDto() {
 
-    // gavin
+    // given
     final Long empId = 90876543218906L;
     final Employee employee = new Employee(90876543218906L, "testFirst", "testLast",
-        "test@gamil.com", "01142703335", LocalDate.parse("2012-09-15"), null, "123", Role.CLIENT ,null,
-        new Department());
+        "test@gamil.com", "01142703335", LocalDate.parse("2012-09-15"), null, "123", Role.CLIENT,
+        null, new Department());
 
     // when
     when(employeeRepository.findById(empId)).thenReturn(Optional.of(employee));
@@ -48,9 +48,9 @@ public class GetEmployeeServiceTest {
   }
 
   @Test
-  public void gavin_employee_does_not_exists_when_get_employee_called_throw_employee_not_found_exception() {
+  void givenEmployeeDoesNotExists_whenGetEmployeeCalled_throwEmployeeNotFoundException() {
 
-    // gavin
+    // given
     final Long empId = 90876543218206L;
 
     // when
