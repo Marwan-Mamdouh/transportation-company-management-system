@@ -25,7 +25,7 @@ public class GetEmployeesByDepartmentIdService implements Query<Integer, List<Em
 
   @Override
   public List<Employee> execute(Integer input) {
-    logger.info("Executing: {} with input: {}", getClass(), input);
+    logger.debug("Executing: {} with input: {}", getClass(), input);
     getDepartmentService.execute(input);
     return employeeRepository.findByDepartmentId(input);
   }

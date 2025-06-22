@@ -20,7 +20,7 @@ public class GetDepartmentService implements Query<Integer, Department> {
 
   @Override
   public Department execute(Integer input) {
-    logger.info("Executing: {} with input: {}", getClass(), input);
+    logger.debug("Executing: {} with input: {}", getClass(), input);
     return departmentRepository.findById(input).orElseThrow(DepartmentNotFoundException::new);
   }
 }

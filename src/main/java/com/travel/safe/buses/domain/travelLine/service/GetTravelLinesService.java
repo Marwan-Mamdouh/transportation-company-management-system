@@ -20,7 +20,7 @@ public class GetTravelLinesService implements Query<Void, List<TravelLine>> {
 
   @Override
   public List<TravelLine> execute(Void input) {
-    logger.info("Executing: {} with input:{}", getClass(), input);
+    logger.debug("Executing: {} with input:{}", getClass(), input);
     return travelLineRepository.findAll();
   }
 }

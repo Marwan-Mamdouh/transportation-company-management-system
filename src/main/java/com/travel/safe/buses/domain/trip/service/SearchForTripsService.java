@@ -24,7 +24,7 @@ public class SearchForTripsService implements
   @Override
   @Cacheable(value = "tripCache")
   public List<TripAvailabilityProjection> execute(TripSearchDTO input) {
-    logger.info("Executing: {} with input: {}", getClass(), input);
+    logger.debug("Executing: {} with input: {}", getClass(), input);
     return tripRepository.findAvailableTripsForGavinSearch(input.startFrom(), input.destination(),
         input.travelDate());
   }

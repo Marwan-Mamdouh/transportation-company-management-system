@@ -28,7 +28,7 @@ public class UpdateTripService implements Command<UpdateTripDTO, Trip> {
   @Override
   @CachePut(value = "tripCache", key = "#input.tripId()")
   public Trip execute(UpdateTripDTO input) {
-    logger.info("Executing: {} with input:{}", getClass(), input);
+    logger.debug("Executing: {} with input:{}", getClass(), input);
     getTripService.execute(input.tripId());
     return tripRepository.save(tripMapper.toEntity(input));
   }

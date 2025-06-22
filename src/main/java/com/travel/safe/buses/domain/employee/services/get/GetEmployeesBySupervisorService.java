@@ -21,7 +21,7 @@ public class GetEmployeesBySupervisorService implements Query<Long, List<Employe
 
   @Override
   public List<Employee> execute(Long input) {
-    logger.info("Executing: {} with input: {}", getClass(), input);
+    logger.debug("Executing: {} with input: {}", getClass(), input);
     return employeeRepository.findBySupervisor_EmployeeId(input);
   }
 }

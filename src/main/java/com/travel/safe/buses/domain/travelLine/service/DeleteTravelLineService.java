@@ -24,7 +24,7 @@ public class DeleteTravelLineService implements Command<Integer, Void> {
   @Override
   @Transactional
   public Void execute(Integer input) {
-    logger.info("Executing: {} with input: {}", getClass(), input);
+    logger.debug("Executing: {} with input: {}", getClass(), input);
     final TravelLine travelLine = getTravelLineService.execute(input);
     travelLineRepository.deleteById(input);
     return null;

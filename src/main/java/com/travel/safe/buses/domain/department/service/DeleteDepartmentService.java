@@ -22,7 +22,7 @@ public class DeleteDepartmentService implements Command<Integer, Void> {
 
   @Override
   public Void execute(Integer input) {
-    logger.info("Executing: {} with input: {}", getClass(), input);
+    logger.debug("Executing: {} with input: {}", getClass(), input);
     final Department department = getDepartmentService.execute(input);
     departmentRepository.delete(department);
     return null;

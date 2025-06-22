@@ -26,10 +26,8 @@ public class UpdateDepartmentService implements Command<UpdatedDepartmentDTO, De
 
   @Override
   public Department execute(UpdatedDepartmentDTO input) {
-    logger.info("Executing: {} with input: {}", getClass(), input);
-    // check
+    logger.debug("Executing: {} with input: {}", getClass(), input);
     getDepartmentService.execute(input.id());
-    // save & return
     return departmentRepository.save(departmentMapper.toEntity(input));
   }
 }

@@ -20,7 +20,7 @@ public class GetEmployeeService implements Query<Long, Employee> {
 
   @Override
   public Employee execute(Long input) {
-    logger.info("Executing: {} with input:{}", getClass(), input);
+    logger.debug("Executing: {} with input:{}", getClass(), input);
     return employeeRepository.findById(input).orElseThrow(EmployeeNotFoundException::new);
   }
 }

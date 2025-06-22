@@ -22,7 +22,7 @@ public class SearchForSeatsByTripIdService implements Query<Integer, List<Seat>>
   @Override
   @Cacheable("seatCache")
   public List<Seat> execute(Integer input) {
-    logger.info("Executing: {} with input: {}", getClass(), input);
+    logger.debug("Executing: {} with input: {}", getClass(), input);
     return tripSeatRepository.findByTripSeatId_TripIdAndBookedBy(input);
   }
 }

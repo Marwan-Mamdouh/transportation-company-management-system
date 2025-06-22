@@ -1,10 +1,10 @@
 package com.travel.safe.buses.domain.vehicle.service;
 
 import com.travel.safe.buses.comman.shared.Command;
+import com.travel.safe.buses.domain.vehicle.VehicleMapper;
 import com.travel.safe.buses.domain.vehicle.VehicleRepository;
 import com.travel.safe.buses.domain.vehicle.dto.UpdateVehicleDTO;
 import com.travel.safe.buses.domain.vehicle.model.Vehicle;
-import com.travel.safe.buses.domain.vehicle.VehicleMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -26,7 +26,7 @@ public class UpdateVehicleService implements Command<UpdateVehicleDTO, Vehicle> 
 
   @Override
   public Vehicle execute(UpdateVehicleDTO input) {
-    logger.info("Executing: {} with input: {}", getClass(), input);
+    logger.debug("Executing: {} with input: {}", getClass(), input);
     getVehicleService.execute(input.vehicleId());
     return vehicleRepository.save(vehicleMapper.fromUpdateDtoToEntity(input));
   }

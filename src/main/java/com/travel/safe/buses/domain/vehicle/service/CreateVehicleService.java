@@ -24,7 +24,7 @@ public class CreateVehicleService implements Command<CreateVehicleDTO, Vehicle> 
 
   @Override
   public Vehicle execute(CreateVehicleDTO input) {
-    logger.info("Executing: {} with input: {}", getClass(), input);
+    logger.debug("Executing: {} with input: {}", getClass(), input);
     if (vehicleRepository.existsByPlateNumberIgnoreCase(input.plateNumber())) {
       throw new DuplicateVehiclePlateNumberException();
     }

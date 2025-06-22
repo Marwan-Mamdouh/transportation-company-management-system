@@ -35,11 +35,11 @@ public class BookSeatService implements Command<BookSeatDTO, Seat> {
   @Transactional
   @CachePut(value = "seatCache", key = "#input")
   public Seat execute(BookSeatDTO input) {
-    logger.info("Executing: {} with input: {}", getClass(), input);
-    // check
+    logger.debug("Executing: {} with input: {}", getClass(), input);
+
     final Trip trip = getTripService.execute(input.tripId());
     final Employee employee = getEmployeeService.execute(input.ssn());
-    // save
+
     if (seatRepository.bookSeatByEmployee(employee, LocalDateTime.now(), trip, input.seatNo())
         > 0) {
       return seatRepository.findById(input.toSeatId()).orElseThrow();

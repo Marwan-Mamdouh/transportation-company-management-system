@@ -21,7 +21,7 @@ public class UpdateTravelLineService implements Command<InputTravelLineDTO, Trav
 
   @Override
   public TravelLine execute(InputTravelLineDTO input) {
-    logger.info("Executing: {} with input:{}", getClass(), input);
+    logger.debug("Executing: {} with input:{}", getClass(), input);
     travelLineRepository.findById(input.lineId()).orElseThrow(TravelLineNotFoundException::new);
     return travelLineRepository.save(input.toTravelLine());
   }

@@ -25,7 +25,7 @@ public class DeleteEmployeeService implements Command<Long, Void> {
   @Override
   @Transactional
   public Void execute(Long input) {
-    logger.info("Executing: {} with input: {}", getClass(), input);
+    logger.debug("Executing: {} with input: {}", getClass(), input);
     final Employee employee = getEmployeeService.execute(input);
     employeeRepository.delete(employee);
     return null;

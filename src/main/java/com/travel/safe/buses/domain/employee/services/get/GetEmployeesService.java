@@ -20,7 +20,7 @@ public class GetEmployeesService implements Query<Void, List<Employee>> {
 
   @Override
   public List<Employee> execute(Void input) {
-    logger.info("Executing: {} with input: {}", getClass(), input);
+    logger.debug("Executing: {} with input: {}", getClass(), input);
     return employeeRepository.findAll();
   }
 }

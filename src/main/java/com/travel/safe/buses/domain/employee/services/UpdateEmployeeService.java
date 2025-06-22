@@ -29,7 +29,7 @@ public class UpdateEmployeeService implements Command<InputEmployeeDTO, Employee
   @Override
   @Transactional
   public Employee execute(InputEmployeeDTO input) {
-    logger.info("Executing: {} with input: {}", getClass(), input);
+    logger.debug("Executing: {} with input: {}", getClass(), input);
     // check & validate Employee before save it to db
     final Long id = input.ssn();
     getEmployeeService.execute(id);

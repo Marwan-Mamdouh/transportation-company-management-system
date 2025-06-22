@@ -20,7 +20,7 @@ public class GetVehiclesService implements Query<Void, List<Vehicle>> {
 
   @Override
   public List<Vehicle> execute(Void input) {
-    logger.info("Executing: {} with input: {}", getClass(), input);
+    logger.debug("Executing: {} with input: {}", getClass(), input);
     return vehicleRepository.findAll();
   }
 }
