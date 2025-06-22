@@ -9,10 +9,10 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 @ResponseStatus(HttpStatus.CONFLICT)
 public class SeatAlreadyBookedException extends RuntimeException {
 
-  private static final Logger logger = LoggerFactory.getLogger(SeatAlreadyBookedException.class);
+  private static final Logger LOGGER = LoggerFactory.getLogger(SeatAlreadyBookedException.class);
 
   public SeatAlreadyBookedException() {
     super(ErrorMessage.SEAT_ALREADY_BOOKED.getMessage());
-    logger.error("Exception: {}thrown.", getClass());
+    LOGGER.error("Exception: {}thrown.", getClass());
   }
 }
