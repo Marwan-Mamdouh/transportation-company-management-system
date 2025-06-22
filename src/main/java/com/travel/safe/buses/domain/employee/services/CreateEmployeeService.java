@@ -3,11 +3,9 @@ package com.travel.safe.buses.domain.employee.services;
 import com.travel.safe.buses.comman.shared.Command;
 import com.travel.safe.buses.domain.employee.EmployeeMapper;
 import com.travel.safe.buses.domain.employee.EmployeeRepository;
-import com.travel.safe.buses.domain.employee.dto.InputEmployeeDTO;
+import com.travel.safe.buses.domain.employee.dto.CreateEmployeeDTO;
 import com.travel.safe.buses.domain.employee.enums.Role;
-import com.travel.safe.buses.domain.employee.exceptions.DuplicateEmployeeEmailException;
-import com.travel.safe.buses.domain.employee.exceptions.DuplicateEmployeeIdException;
-import com.travel.safe.buses.domain.employee.exceptions.DuplicateEmployeePhoneNumberException;
+import com.travel.safe.buses.domain.employee.exceptions.DuplicateEmployeeDataException;
 import com.travel.safe.buses.domain.employee.model.Employee;
 import jakarta.transaction.Transactional;
 import org.slf4j.Logger;
@@ -16,52 +14,41 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
-public class CreateEmployeeService implements Command<InputEmployeeDTO, Employee> {
+public class CreateEmployeeService implements Command<CreateEmployeeDTO, Employee> {
 
   private static final Logger logger = LoggerFactory.getLogger(CreateEmployeeService.class);
   private final EmployeeRepository employeeRepository;
-  private final EmployeeMapper employeeMapper;
+  private final EmployeeMapper mapper;
   private final PasswordEncoder encoder;
 
   public CreateEmployeeService(EmployeeRepository employeeRepository, EmployeeMapper employeeMapper,
       PasswordEncoder encoder) {
     this.employeeRepository = employeeRepository;
-    this.employeeMapper = employeeMapper;
+    this.mapper = employeeMapper;
     this.encoder = encoder;
   }
 
   @Override
   @Transactional
-  public Employee execute(InputEmployeeDTO input) {
+  public Employee execute(CreateEmployeeDTO input) {
     logger.debug("Executing: {} with input: {}", getClass(), input);
-    logger.debug("Starting employee creation for email: {}", input.email());
-    // validate input
-    validateInput(input);
+    if (employeeRepository.existsBySsnOrPhoneNumberOrEmailIgnoreCase(input.ssn(),
+        input.phoneNumber(), input.email())) {
+      throw new DuplicateEmployeeDataException();
+    }
 
-    // encode the password before saving
-    final Employee employee = employeeMapper.employeeFromInputDTO(input);
-    employee.setPassword(encoder.encode(employee.getPassword()));
-    employee.setRole(Role.CLIENT);
-    // save and return
+    final Employee employee = hashPasswordAndSetRole(input);
+
     final Employee savedEmployee = employeeRepository.save(employee);
     logger.debug("Employee created with SSN: {} and,email: {}", savedEmployee.getSsn(),
         savedEmployee.getEmail());
     return savedEmployee;
   }
 
-  private void validateInput(InputEmployeeDTO input) {
-    // Implement validation logic here
-    if (employeeRepository.existsBySsn(input.ssn())) {
-      logger.error("Duplicate SSN found: {}", input.ssn());
-      throw new DuplicateEmployeeIdException();
-    }
-    if (employeeRepository.existsByEmail(input.email())) {
-      logger.error("Duplicate email found: {}", input.email());
-      throw new DuplicateEmployeeEmailException();
-    }
-    if (employeeRepository.existsByPhoneNumber(input.phoneNumber())) {
-      logger.error("Duplicate phone number found: {}", input.phoneNumber());
-      throw new DuplicateEmployeePhoneNumberException();
-    }
+  private Employee hashPasswordAndSetRole(CreateEmployeeDTO input) {
+    final Employee employee = mapper.employeeCreateEmployeeDTO(input);
+    employee.setPassword(encoder.encode(employee.getPassword()));
+    employee.setRole(Role.CLIENT);
+    return employee;
   }
 }
