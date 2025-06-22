@@ -21,7 +21,7 @@ public class DeleteVehicleService implements Command<Integer, Void> {
 
   @Override
   public Void execute(Integer input) {
-    logger.info("Executing: {} with input:{}", getClass(), input);
+    logger.debug("Executing: {} with input:{}", getClass(), input);
     getVehicleService.execute(input);
     vehicleRepository.deleteById(input);
     return null;

@@ -20,7 +20,7 @@ public class GetDepartmentsService implements Query<Void, List<Department>> {
 
   @Override
   public List<Department> execute(Void input) {
-    logger.info("Executing: {} with input: {}", getClass(), input);
+    logger.debug("Executing: {} with input: {}", getClass(), input);
     return departmentRepository.findAll();
   }
 }

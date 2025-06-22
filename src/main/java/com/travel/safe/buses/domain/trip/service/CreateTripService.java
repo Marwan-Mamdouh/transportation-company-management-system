@@ -39,7 +39,7 @@ public class CreateTripService implements Command<CreateTripDTO, Trip> {
   @Override
   @Transactional
   public Trip execute(CreateTripDTO input) {
-    logger.info("Executing: {} with input: {}", getClass(), input);
+    logger.debug("Executing: {} with input: {}", getClass(), input);
     // check and validate
     final Vehicle vehicle = getVehicleService.execute(input.car());
     final Employee employee = getEmployeeService.execute(input.driver());

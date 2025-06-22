@@ -24,7 +24,7 @@ public class CreateDepartmentService implements Command<CreateDepartmentDto, Dep
 
   @Override
   public Department execute(CreateDepartmentDto input) {
-    logger.info("Executing: {} with input: {}", getClass(), input);
+    logger.debug("Executing: {} with input: {}", getClass(), input);
     return departmentRepository.save(departmentMapper.toEntity(input));
   }
 }

@@ -22,7 +22,7 @@ public class GetTripService implements Query<Integer, Trip> {
   @Override
   @Cacheable("tripCache")
   public Trip execute(Integer input) {
-    logger.info("Executing: {} with input: {}", getClass(), input);
+    logger.debug("Executing: {} with input: {}", getClass(), input);
     return tripRepository.findById(input).orElseThrow(TripNotFoundException::new);
   }
 }

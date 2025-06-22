@@ -28,18 +28,18 @@ public class EmployeeLoginService implements Query<EmployeeLoginDTO, String> {
 
   @Override
   public String execute(EmployeeLoginDTO input) {
-    LOGGER.info("Executing: {} with input: {}", getClass(), input);
+    LOGGER.debug("Executing: {} with input: {}", getClass(), input);
     final var employee = employeeRepository.findByEmail(input.email())
         .orElseThrow(EmailNotFoundException::new);
 
-    LOGGER.info("Verifying password for email: {}", input.email());
+    LOGGER.debug("Verifying password for email: {}", input.email());
     if (!verifyPassword(input.password(), employee.getPassword())) {
 
       LOGGER.error("Invalid password for email: {}", input.email());
       throw new NotValidPasswordException();
     }
 
-    LOGGER.info("Password verified for email: {}", input.email());
+    LOGGER.debug("Password verified for email: {}", input.email());
     return jwtActions.jwtCreate(employee.getEmail(), employee.getRole().toString());
   }
 

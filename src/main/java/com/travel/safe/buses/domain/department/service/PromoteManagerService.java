@@ -29,7 +29,7 @@ public class PromoteManagerService implements Command<PromoteManagerDTO, Departm
   @Override
   @Transactional
   public Department execute(PromoteManagerDTO input) {
-    logger.info("Executing: {} with input: {}", getClass(), input);
+    logger.debug("Executing: {} with input: {}", getClass(), input);
     // check
     final Employee foundEmployee = getEmployeeService.execute(input.managerId());
     final Department foundDepartment = getDepartmentService.execute(input.departmentId());

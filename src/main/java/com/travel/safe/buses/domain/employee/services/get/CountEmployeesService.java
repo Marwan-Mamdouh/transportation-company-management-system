@@ -18,7 +18,7 @@ public class CountEmployeesService implements Query<Void, Long> {
 
   @Override
   public Long execute(Void input) {
-    logger.info("Executing: {} with input: {}", getClass(), input);
+    logger.debug("Executing: {} with input: {}", getClass(), input);
     return employeeRepository.count();
   }
 }

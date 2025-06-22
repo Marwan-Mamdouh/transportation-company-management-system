@@ -20,7 +20,7 @@ public class GetTravelLineService implements Query<Integer, TravelLine> {
 
   @Override
   public TravelLine execute(Integer input) {
-    logger.info("Executing: {} with input: {}", getClass(), input);
+    logger.debug("Executing: {} with input: {}", getClass(), input);
     return travelLineRepository.findById(input).orElseThrow(TravelLineNotFoundException::new);
   }
 }

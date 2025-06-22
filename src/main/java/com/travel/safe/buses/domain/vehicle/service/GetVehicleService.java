@@ -20,7 +20,7 @@ public class GetVehicleService implements Query<Integer, Vehicle> {
 
   @Override
   public Vehicle execute(Integer input) {
-    logger.info("Executing: {} with input: {}", getClass(), input);
+    logger.debug("Executing: {} with input: {}", getClass(), input);
     return vehicleRepository.findById(input).orElseThrow(VehicleNotFoundException::new);
   }
 }

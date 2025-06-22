@@ -33,8 +33,8 @@ public class CreateEmployeeService implements Command<InputEmployeeDTO, Employee
   @Override
   @Transactional
   public Employee execute(InputEmployeeDTO input) {
-    logger.info("Executing: {} with input: {}", getClass(), input);
-    logger.info("Starting employee creation for email: {}", input.email());
+    logger.debug("Executing: {} with input: {}", getClass(), input);
+    logger.debug("Starting employee creation for email: {}", input.email());
     // validate input
     validateInput(input);
 
@@ -44,7 +44,7 @@ public class CreateEmployeeService implements Command<InputEmployeeDTO, Employee
     employee.setRole(Role.CLIENT);
     // save and return
     final Employee savedEmployee = employeeRepository.save(employee);
-    logger.info("Employee created with SSN: {} and,email: {}", savedEmployee.getSsn(),
+    logger.debug("Employee created with SSN: {} and,email: {}", savedEmployee.getSsn(),
         savedEmployee.getEmail());
     return savedEmployee;
   }

@@ -22,7 +22,7 @@ public class CreateTravelLineService implements Command<InputTravelLineDTO, Trav
   @Override
   @Transactional
   public TravelLine execute(InputTravelLineDTO input) {
-    logger.info("Executing: {} with input: {}", getClass(), input);
+    logger.debug("Executing: {} with input: {}", getClass(), input);
     return travelLineRepository.save(input.toTravelLine());
   }
 }
