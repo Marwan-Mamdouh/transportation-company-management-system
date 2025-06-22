@@ -1,12 +1,14 @@
 package com.travel.safe.buses.seats;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import com.travel.safe.buses.domain.employee.model.Employee;
 import com.travel.safe.buses.domain.seats.SeatsRepository;
+import com.travel.safe.buses.domain.seats.exceptions.NoAvailableSeatsFoundException;
 import com.travel.safe.buses.domain.seats.model.Seat;
 import com.travel.safe.buses.domain.seats.model.SeatId;
 import com.travel.safe.buses.domain.seats.service.SearchForSeatsByTripIdService;
@@ -38,9 +40,8 @@ class SearchForSeatsByTripIdServiceTest {
 
     // when
     when(seatsRepository.findByTripSeatId_TripIdAndBookedBy(tripId)).thenReturn(List.of());
-    final List<Seat> response = search.execute(tripId);
     // then
-    assertEquals(List.of(), response);
+    assertThrows(NoAvailableSeatsFoundException.class, () -> search.execute(tripId));
     verify(seatsRepository, times(1)).findByTripSeatId_TripIdAndBookedBy(tripId);
   }
 
@@ -93,9 +94,8 @@ class SearchForSeatsByTripIdServiceTest {
 
     // when
     when(seatsRepository.findByTripSeatId_TripIdAndBookedBy(tripId)).thenReturn(emptyList);
-    final List<Seat> response = search.execute(tripId);
     // then
-    assertEquals(emptyList, response);
+    assertThrows(NoAvailableSeatsFoundException.class, () -> search.execute(tripId));
     verify(seatsRepository, times(1)).findByTripSeatId_TripIdAndBookedBy(tripId);
   }
 }

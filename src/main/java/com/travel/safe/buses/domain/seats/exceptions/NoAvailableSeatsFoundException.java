@@ -7,13 +7,13 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ResponseStatus(HttpStatus.NOT_FOUND)
-public class SeatNotFoundException extends RuntimeException {
+public class NoAvailableSeatsFoundException extends RuntimeException {
 
-  private static final Logger logger = LoggerFactory.getLogger(
-      SeatNotFoundException.class);
+  private static final Logger LOGGER = LoggerFactory.getLogger(
+      NoAvailableSeatsFoundException.class);
 
-  public SeatNotFoundException() {
+  public NoAvailableSeatsFoundException() {
     super(ErrorMessage.SEAT_NOT_FOUND.getMessage());
-    logger.error("Exception: {}thrown.", getClass());
+    LOGGER.error("Exception: {}thrown.", getClass());
   }
 }

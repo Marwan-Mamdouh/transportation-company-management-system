@@ -4,7 +4,7 @@ I know that this structure need some work this is it for now.
 
 ```
 src/
-├── main/java/com/marwan/travelSafe/buses
+├── main/java/com/travel/safe/buses
 │   ├── /comman
 │   │    ├── /configuration                                          # Programming Application configuration
 │   │    │      ├── /cache                                           # Cache configuration package 
@@ -26,13 +26,10 @@ src/
 │   │           └── PatternLongValidator.java
 │   ├── /domain                                                      # Domain package holds main project code
 │   │    ├── /department
-│   │    │     ├── /controller                                       # Department controller package
-│   │    │     │    ├── DepartmentController.java
-│   │    │     │    └── DepartmentsController.java
 │   │    │     ├── /DTO                                              # Department dto package
 │   │    │     │    ├── CreateDepartmentDto.java
 │   │    │     │    ├── DepartmentResponseDTO.java
-│   │    │     │    ├── PromteManagerDto.java
+│   │    │     │    ├── PromteManagerDTO.java
 │   │    │     │    └── UpdateDepartmentDTO.java
 │   │    │     ├── /exceptions                                       # Department exception package             
 │   │    │     │    └── DepartmentNotFoundException.java
@@ -45,18 +42,15 @@ src/
 │   │    │     │    ├── GetDepartmentsService.java
 │   │    │     │    ├── PromoteManagerService.java
 │   │    │     │    └── UpdateDepartmentService.java
+│   │    │     ├── DepartmentsController.java
 │   │    │     ├── DepartmentMapper.java                       
 │   │    │     └── DepartmentRepository.java                         # Department repository interface
 │   │    ├── /employee
-│   │    │     ├── /controller                                       # Employee controller package
-│   │    │     │    ├── EmployeeAuthenticationController.java
-│   │    │     │    ├── EmployeeController.java
-│   │    │     │    └── EmployeesController.java
 │   │    │     ├── /dto                                              # Employee dto package
+│   │    │     │    ├── CreateEmployeeDTO.java 
 │   │    │     │    ├── EmployeeLoginDTO.java
 │   │    │     │    ├── EmployeePayCheckDTO.java
-│   │    │     │    ├── EmployeeResponseDTO.java
-│   │    │     │    └── InputEmployeeDTO.java
+│   │    │     │    └── EmployeeResponseDTO.java
 │   │    │     ├── /enums                                            # Employee roles enum package
 │   │    │     │    └── Role.java
 │   │    │     ├── /exceptions                                       # Employee exception package             
@@ -68,19 +62,20 @@ src/
 │   │    │     │    ├── NotValidPasswordException.java
 │   │    │     │    └── SupervisorNotFoundException.java
 │   │    │     ├── /model                                            # Employee model package
-│   │    │     │     ├── Emoloyee.java                               # Employee entity class
-│   │    │     │     └── EmployeeAuth.java
+│   │    │     │    ├── Emoloyee.java                               # Employee entity class
+│   │    │     │    └── EmployeeAuth.java
 │   │    │     ├── /service                                          # Employee service package
-│   │    │     │     ├── /get                                        # Employee get service package
-│   │    │     │     │     ├── CountEmployeesService.java
-│   │    │     │     │     ├── GetEmployeesByDepartmentIdService.java
-│   │    │     │     │     ├── GetEmployeesBySupervisorService.java
-│   │    │     │     │     ├── GetEmployeeService.java
-│   │    │     │     │     └── GetEmployeesService.java
-│   │    │     │     ├── CreateEmployeeService.java
-│   │    │     │     ├── DeleteEmployeeService.java
-│   │    │     │     ├── EmployeeLoginService.java
-│   │    │     │     └── UpdateEmployeeServicee.java
+│   │    │     │    ├── /get                                        # Employee get service package
+│   │    │     │    │     ├── CountEmployeesService.java
+│   │    │     │    │     ├── GetEmployeesByDepartmentIdService.java
+│   │    │     │    │     ├── GetEmployeesBySupervisorService.java
+│   │    │     │    │     ├── GetEmployeeService.java
+│   │    │     │    │     └── GetEmployeesService.java
+│   │    │     │    ├── CreateEmployeeService.java
+│   │    │     │    ├── DeleteEmployeeService.java
+│   │    │     │    ├── EmployeeLoginService.java
+│   │    │     │    └── UpdateEmployeeServicee.java
+│   │    │     ├── EmployeesController.java
 │   │    │     ├── EmployeeMapper.java 
 │   │    │     └── EmployeeRepository.java                           # Employee repository interface
 │   │    ├── /seats
@@ -89,8 +84,8 @@ src/
 │   │    │     │    ├── SeatResponseDTO.java
 │   │    │     │    └── UpdateTripSeatDTO.java
 │   │    │     ├── /exceptions                                       # Seat exception package
-│   │    │     │    ├── SeatAlreadyBookedException.java
-│   │    │     │    └── SeatNotFoundException.java
+│   │    │     │    ├── NotAvaialbleSeatsFoundException.java
+│   │    │     │    └── SeatAlreadyBookedException.java
 │   │    │     ├── /model                                            # Seat model package
 │   │    │     │    ├── Seat.java                                    # Seat entity class
 │   │    │     │    └── SeatId.java                                  # Seat ID class

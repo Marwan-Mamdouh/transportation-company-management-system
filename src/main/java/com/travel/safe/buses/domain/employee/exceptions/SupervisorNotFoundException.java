@@ -9,10 +9,10 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 @ResponseStatus(HttpStatus.NOT_FOUND)
 public class SupervisorNotFoundException extends RuntimeException {
 
-  private static final Logger logger = LoggerFactory.getLogger(SupervisorNotFoundException.class);
+  private static final Logger LOGGER = LoggerFactory.getLogger(SupervisorNotFoundException.class);
 
   public SupervisorNotFoundException() {
     super(ErrorMessage.SUPERVISOR_NOT_FOUND.getMessage());
-    logger.error("Exception: {}thrown.", getClass());
+    LOGGER.error("Exception: {}thrown.", getClass());
   }
 }

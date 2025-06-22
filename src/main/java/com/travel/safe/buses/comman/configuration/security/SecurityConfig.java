@@ -23,12 +23,12 @@ public class SecurityConfig {
   @Bean
   public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
     return http.csrf(AbstractHttpConfigurer::disable).authorizeHttpRequests(auth -> {
-          auth.requestMatchers("/actuator/**", "/api/auth/**", "/v3/api-docs/**", "/swagger-ui/**",
-              "/swagger-ui.html", "/webjars/**").permitAll();
-          auth.requestMatchers("/department/**", "/departments/**", "/employee/**", "/employees/**",
-                  "/seats/book", "/travel-line/**", "/trip", "/trip/{tripId}", "/vehicle/**")
+          auth.requestMatchers("/actuator/**", "/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html",
+              "/webjars/**", "/api/employees/login", "/api/employees/register").permitAll();
+          auth.requestMatchers("/api/departments/**", "/api/employees/**", "/api/seats/book",
+                  "/api/travel-line/**", "/api/trip", "/api/trip/{tripId}", "/api/vehicles/**")
               .access(hasScope("ADMIN"));
-          auth.requestMatchers("/seats/free/{tripId}").access(hasAnyScope("CLIENT", "ADMIN"));
+          auth.requestMatchers("/api/seats/free/{tripId}").access(hasAnyScope("CLIENT", "ADMIN"));
           auth.anyRequest().authenticated();
         }).oauth2ResourceServer(config -> config.jwt(jwt -> jwt.decoder(jwtConfig.jwtDecoder())))
         .build();

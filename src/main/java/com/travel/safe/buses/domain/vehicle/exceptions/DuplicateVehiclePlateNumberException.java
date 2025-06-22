@@ -9,11 +9,11 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 @ResponseStatus(HttpStatus.CONFLICT)
 public class DuplicateVehiclePlateNumberException extends RuntimeException {
 
-  private static final Logger logger = LoggerFactory.getLogger(
+  private static final Logger LOGGER = LoggerFactory.getLogger(
       DuplicateVehiclePlateNumberException.class);
 
   public DuplicateVehiclePlateNumberException() {
     super(ErrorMessage.DUPLICATE_VEHICLE_PLATE_NUMBER.getMessage());
-    logger.error("Exception: {}thrown.", getClass());
+    LOGGER.error("Exception: {}thrown.", getClass());
   }
 }

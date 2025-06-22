@@ -9,10 +9,10 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 @ResponseStatus(HttpStatus.NOT_FOUND)
 public class DepartmentNotFoundException extends RuntimeException {
 
-  private static final Logger logger = LoggerFactory.getLogger(DepartmentNotFoundException.class);
+  private static final Logger LOGGER = LoggerFactory.getLogger(DepartmentNotFoundException.class);
 
   public DepartmentNotFoundException() {
     super(ErrorMessage.DEPARTMENT_NOT_FOUND.getMessage());
-    logger.error("Exception: {}thrown.", getClass());
+    LOGGER.error("Exception: {} thrown.", getClass());
   }
 }
