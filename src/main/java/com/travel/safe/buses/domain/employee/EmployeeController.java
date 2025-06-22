@@ -1,6 +1,5 @@
-package com.travel.safe.buses.domain.employee.controller;
+package com.travel.safe.buses.domain.employee;
 
-import com.travel.safe.buses.domain.employee.EmployeeMapper;
 import com.travel.safe.buses.domain.employee.dto.CreateEmployeeDTO;
 import com.travel.safe.buses.domain.employee.dto.EmployeeLoginDTO;
 import com.travel.safe.buses.domain.employee.dto.EmployeePaycheckDTO;
