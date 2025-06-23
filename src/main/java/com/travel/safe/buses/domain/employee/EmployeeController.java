@@ -4,6 +4,7 @@ import com.travel.safe.buses.domain.employee.dto.CreateEmployeeDTO;
 import com.travel.safe.buses.domain.employee.dto.EmployeeLoginDTO;
 import com.travel.safe.buses.domain.employee.dto.EmployeePaycheckDTO;
 import com.travel.safe.buses.domain.employee.dto.EmployeeResponseDTO;
+import com.travel.safe.buses.domain.employee.dto.EmployeeSpecificationDTO;
 import com.travel.safe.buses.domain.employee.model.Employee;
 import com.travel.safe.buses.domain.employee.services.CreateEmployeeService;
 import com.travel.safe.buses.domain.employee.services.DeleteEmployeeService;
@@ -11,8 +12,7 @@ import com.travel.safe.buses.domain.employee.services.EmployeeLoginService;
 import com.travel.safe.buses.domain.employee.services.UpdateEmployeeService;
 import com.travel.safe.buses.domain.employee.services.get.CountEmployeesService;
 import com.travel.safe.buses.domain.employee.services.get.GetEmployeeService;
-import com.travel.safe.buses.domain.employee.services.get.GetEmployeesByDepartmentIdService;
-import com.travel.safe.buses.domain.employee.services.get.GetEmployeesBySupervisorService;
+import com.travel.safe.buses.domain.employee.services.get.GetEmployeesBy;
 import com.travel.safe.buses.domain.employee.services.get.GetEmployeesService;
 import jakarta.validation.Valid;
 import java.util.List;
@@ -34,8 +34,7 @@ public class EmployeeController {
   private final EmployeeMapper mapper;
 
   private final CountEmployeesService countEmployeesService;
-  private final GetEmployeesByDepartmentIdService getEmployeesByDepartmentIdService;
-  private final GetEmployeesBySupervisorService getEmployeesBySupervisorService;
+  private final GetEmployeesBy getEmployeesBy;
   private final GetEmployeeService getEmployeeService;
   private final GetEmployeesService getEmployeesService;
 
@@ -50,17 +49,15 @@ public class EmployeeController {
   public EmployeeController(EmployeeMapper mapper, DeleteEmployeeService deleteEmployeeService,
       GetEmployeeService getEmployeeService, UpdateEmployeeService updateEmployeeService,
       CountEmployeesService countEmployeesService, GetEmployeesService getEmployeesService,
-      GetEmployeesByDepartmentIdService getEmployeesByDepartmentIdService,
-      GetEmployeesBySupervisorService getEmployeesBySupervisorService,
-      EmployeeLoginService employeeLoginService, CreateEmployeeService createEmployeeService) {
+      GetEmployeesBy getEmployeesBySupervisorService, EmployeeLoginService employeeLoginService,
+      CreateEmployeeService createEmployeeService) {
     this.mapper = mapper;
     this.deleteEmployeeService = deleteEmployeeService;
     this.getEmployeeService = getEmployeeService;
     this.updateEmployeeService = updateEmployeeService;
     this.countEmployeesService = countEmployeesService;
     this.getEmployeesService = getEmployeesService;
-    this.getEmployeesByDepartmentIdService = getEmployeesByDepartmentIdService;
-    this.getEmployeesBySupervisorService = getEmployeesBySupervisorService;
+    this.getEmployeesBy = getEmployeesBySupervisorService;
     this.employeeLoginService = employeeLoginService;
     this.createEmployeeService = createEmployeeService;
   }
@@ -94,9 +91,12 @@ public class EmployeeController {
     return ResponseEntity.ok(countEmployeesService.execute(null));
   }
 
-  @GetMapping()
-  public ResponseEntity<List<EmployeeResponseDTO>> getEmployees() {
-    final List<Employee> employees = getEmployeesService.execute(null);
+  @GetMapping
+  public ResponseEntity<List<EmployeeResponseDTO>> getEmployees(
+      @RequestParam(required = false) Long supervisorId,
+      @RequestParam(required = false) Integer departmentId) {
+    final List<Employee> employees = getEmployeesBy.execute(
+        new EmployeeSpecificationDTO(supervisorId, departmentId));
     return ResponseEntity.ok(employees.stream().map(mapper::responseDTOFromEmployee).toList());
   }
 
@@ -104,19 +104,6 @@ public class EmployeeController {
   public ResponseEntity<List<EmployeePaycheckDTO>> getSalaries() {
     final List<Employee> employees = getEmployeesService.execute(null);
     return ResponseEntity.ok(employees.stream().map(mapper::payCheckDTOFromEmployee).toList());
-  }
-
-  @GetMapping("/by/department")
-  public ResponseEntity<List<EmployeeResponseDTO>> getEmployeeByDepartment(
-      @RequestParam Integer id) {
-    final List<Employee> employees = getEmployeesByDepartmentIdService.execute(id);
-    return ResponseEntity.ok(employees.stream().map(mapper::responseDTOFromEmployee).toList());
-  }
-
-  @GetMapping("/by/supervisor")
-  public ResponseEntity<List<EmployeeResponseDTO>> getEmployeeBySupervisor(@RequestParam Long id) {
-    final List<Employee> employees = getEmployeesBySupervisorService.execute(id);
-    return ResponseEntity.ok(employees.stream().map(mapper::responseDTOFromEmployee).toList());
   }
 
   @PostMapping("/login")
