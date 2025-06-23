@@ -1,16 +1,17 @@
 package com.travel.safe.buses.employee.get;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import com.travel.safe.buses.domain.department.model.Department;
-import com.travel.safe.buses.domain.department.service.GetDepartmentService;
 import com.travel.safe.buses.domain.employee.EmployeeRepository;
+import com.travel.safe.buses.domain.employee.dto.EmployeeSpecificationDTO;
 import com.travel.safe.buses.domain.employee.enums.Role;
 import com.travel.safe.buses.domain.employee.model.Employee;
-import com.travel.safe.buses.domain.employee.services.get.GetEmployeesByDepartmentIdService;
+import com.travel.safe.buses.domain.employee.services.get.GetEmployeesBy;
 import java.time.LocalDate;
 import java.util.List;
 import org.junit.jupiter.api.Test;
@@ -18,26 +19,26 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.data.jpa.domain.Specification;
 
 @ExtendWith(MockitoExtension.class)
 class GetEmployeesByDepartmentIdServiceTest {
 
   @Mock
   private EmployeeRepository employeeRepository;
-  @Mock
-  private GetDepartmentService getDepartmentService;
 
   @InjectMocks
-  private GetEmployeesByDepartmentIdService getEmployeesByDepartmentIdService;
+  private GetEmployeesBy getEmployeesBy;
 
   @Test
   void givenEmployeesExistInDepartment_whenGetEmployeeByDepartmentCalled_returnEmployeeList() {
 
     // given
     final Integer departmentId = 19;
+    final Long supervisorId = 15L;
     final Department department1 = new Department();
-    department1.setId(departmentId);
     final Department department2 = new Department();
+    department1.setId(departmentId);
     department2.setId(90);
     final Employee employee1 = new Employee(36876543218906L, "test4First", "testLast2",
         "test1@gamil.com", "01142723335", LocalDate.parse("2018-09-15"), null, "123", Role.CLIENT,
@@ -48,25 +49,28 @@ class GetEmployeesByDepartmentIdServiceTest {
     final List<Employee> employeesInDepartment19 = List.of(employee1, employee2);
 
     // when
-    when(employeeRepository.findByDepartmentId(departmentId)).thenReturn(
+    when(employeeRepository.findAll(any(Specification.class))).thenReturn(
         List.of(employee1, employee2));
-    final List<Employee> response = getEmployeesByDepartmentIdService.execute(departmentId);
+    final List<Employee> response = getEmployeesBy.execute(
+        new EmployeeSpecificationDTO(supervisorId, departmentId));
 
     // then
     assertEquals(employeesInDepartment19, response);
-    verify(employeeRepository, times(1)).findByDepartmentId(departmentId);
+    verify(employeeRepository, times(1)).findAll(any(Specification.class));
   }
 
   @Test
   void givenEmployeesDoesNotExist_whenGetEmployeeByDepartment_returnEmptyList() {
     // given
     final Integer departmentId = 25;
+    final Long supervisorId = 30876543218906L;
     // when
-    when(employeeRepository.findByDepartmentId(departmentId)).thenReturn(List.of());
-    final List<Employee> response = getEmployeesByDepartmentIdService.execute(departmentId);
+    when(employeeRepository.findAll(any(Specification.class))).thenReturn(List.of());
+    final List<Employee> response = getEmployeesBy.execute(
+        new EmployeeSpecificationDTO(supervisorId, departmentId));
 
     // then
     assertEquals(List.of(), response);
-    verify(employeeRepository, times(1)).findByDepartmentId(departmentId);
+    verify(employeeRepository, times(1)).findAll(any(Specification.class));
   }
 }

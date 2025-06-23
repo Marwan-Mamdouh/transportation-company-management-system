@@ -2,7 +2,6 @@ package com.travel.safe.buses.domain.employee;
 
 import com.travel.safe.buses.domain.employee.model.Employee;
 import com.travel.safe.buses.domain.employee.model.EmployeeAuth;
-import java.util.List;
 import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
