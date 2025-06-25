@@ -1,15 +1,16 @@
 package com.travel.safe.buses.domain.department.service;
 
 import com.travel.safe.buses.comman.shared.Query;
+import com.travel.safe.buses.domain.department.dto.DepartmentSearchDTO;
 import com.travel.safe.buses.domain.department.DepartmentRepository;
 import com.travel.safe.buses.domain.department.model.Department;
-import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 @Service
-public class GetDepartmentsService implements Query<Void, List<Department>> {
+public class GetDepartmentsService implements Query<DepartmentSearchDTO, Page<Department>> {
 
   private static final Logger logger = LoggerFactory.getLogger(GetDepartmentsService.class);
   private final DepartmentRepository departmentRepository;
@@ -19,8 +20,8 @@ public class GetDepartmentsService implements Query<Void, List<Department>> {
   }
 
   @Override
-  public List<Department> execute(Void input) {
+  public Page<Department> execute(DepartmentSearchDTO input) {
     logger.debug("Executing: {} with input: {}", getClass(), input);
-    return departmentRepository.findAll();
+    return departmentRepository.findAll(input.pageable());
   }
 }

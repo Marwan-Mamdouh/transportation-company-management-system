@@ -1,7 +1,9 @@
 package com.travel.safe.buses.domain.department.service;
 
 import com.travel.safe.buses.comman.shared.Command;
-import com.travel.safe.buses.domain.department.DTO.PromoteManagerDTO;
+import com.travel.safe.buses.domain.department.dto.DepartmentResponseDTO;
+import com.travel.safe.buses.domain.department.dto.PromoteManagerDTO;
+import com.travel.safe.buses.domain.department.DepartmentMapper;
 import com.travel.safe.buses.domain.department.DepartmentRepository;
 import com.travel.safe.buses.domain.department.model.Department;
 import com.travel.safe.buses.domain.employee.model.Employee;
@@ -12,30 +14,33 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 @Service
-public class PromoteManagerService implements Command<PromoteManagerDTO, Department> {
+public class PromoteManagerService implements Command<PromoteManagerDTO, DepartmentResponseDTO> {
 
   private static final Logger logger = LoggerFactory.getLogger(PromoteManagerService.class);
-  private final DepartmentRepository departmentRepository;
+  private final DepartmentMapper mapper;
   private final GetEmployeeService getEmployeeService;
   private final GetDepartmentService getDepartmentService;
+  private final DepartmentRepository departmentRepository;
 
-  public PromoteManagerService(DepartmentRepository departmentRepository,
+  public PromoteManagerService(DepartmentRepository departmentRepository, DepartmentMapper mapper,
       GetEmployeeService getEmployeeService, GetDepartmentService getDepartmentService) {
-    this.departmentRepository = departmentRepository;
+    this.mapper = mapper;
     this.getEmployeeService = getEmployeeService;
+    this.departmentRepository = departmentRepository;
     this.getDepartmentService = getDepartmentService;
   }
 
   @Override
   @Transactional
-  public Department execute(PromoteManagerDTO input) {
+  public DepartmentResponseDTO execute(PromoteManagerDTO input) {
     logger.debug("Executing: {} with input: {}", getClass(), input);
     // check
     final Employee foundEmployee = getEmployeeService.execute(input.managerId());
-    final Department foundDepartment = getDepartmentService.execute(input.departmentId());
+    final Department foundDepartment = mapper.responseDtoToEntity(
+        getDepartmentService.execute(input.departmentId()));
     // save
     foundDepartment.setDepartmentManager(foundEmployee);
     // return
-    return departmentRepository.save(foundDepartment);
+    return mapper.entityToDto(departmentRepository.save(foundDepartment));
   }
 }
