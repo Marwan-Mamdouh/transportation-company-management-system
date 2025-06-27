@@ -1,4 +1,4 @@
-package com.travel.safe.buses.domain.department.DTO;
+package com.travel.safe.buses.domain.department.dto;
 
 import com.travel.safe.buses.comman.validator.PatternLong;
 import jakarta.validation.constraints.NotNull;
