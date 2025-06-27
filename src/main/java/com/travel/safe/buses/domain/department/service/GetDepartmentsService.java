@@ -1,8 +1,8 @@
 package com.travel.safe.buses.domain.department.service;
 
 import com.travel.safe.buses.comman.shared.Query;
-import com.travel.safe.buses.domain.department.dto.DepartmentSearchDTO;
 import com.travel.safe.buses.domain.department.DepartmentRepository;
+import com.travel.safe.buses.domain.department.dto.DepartmentSearchDTO;
 import com.travel.safe.buses.domain.department.model.Department;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,6 +22,6 @@ public class GetDepartmentsService implements Query<DepartmentSearchDTO, Page<De
   @Override
   public Page<Department> execute(DepartmentSearchDTO input) {
     logger.debug("Executing: {} with input: {}", getClass(), input);
-    return departmentRepository.findAll(input.pageable());
+    return departmentRepository.findByName(input.departmentName(), input.pageable());
   }
 }
