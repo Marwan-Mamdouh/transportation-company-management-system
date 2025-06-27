@@ -60,23 +60,17 @@ this part is under development right now and all we have is Swagger-ui
 ![all controllers in one place:](/docs/images/all-controllers.png "all controllers")
 
 - Department controller
-  ![all controllers in one place:](/docs/images/department-controller.png "department controller")
-- Departments controller
-  ![all controllers in one place:](/docs/images/departments-controller.png "departments controller")
-- Employee auth controller
-  ![all controllers in one place:](/docs/images/employee-auth-controller.png "departments controller")
+  ![all controllers in one place:](/docs/images/department-controller.png "departments controller")
 - Employee controller
-  ![all controllers in one place:](/docs/images/employee-controller.png "departments controller")
-- Employees controller
-  ![all controllers in one place:](/docs/images/employees-controller.png "departments controller")
+  ![all controllers in one place:](/docs/images/employee-controller.png "employees controller")
 - Seat Controller
-  ![all controllers in one place:](/docs/images/seat-controller.png "departments controller")
+  ![all controllers in one place:](/docs/images/seat-controller.png "seats controller")
 - Travel line Controller
-  ![all controllers in one place:](/docs/images/travel-line-controller.png "departments controller")
+  ![all controllers in one place:](/docs/images/travel-line-controller.png "travel lines controller")
 - Trip Controller
-  ![all controllers in one place:](/docs/images/trip-controller.png "departments controller")
+  ![all controllers in one place:](/docs/images/trip-controller.png "trips controller")
 - Vehicle Controller
-  ![all controllers in one place:](/docs/images/vehicle-controller.png "departments controller")
+  ![all controllers in one place:](/docs/images/vehicle-controller.png "vehicles controller")
 
 [//]: # (Use the following end-points &#40;APIs&#41; with their arguments:)
 
