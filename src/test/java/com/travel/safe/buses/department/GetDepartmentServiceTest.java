@@ -6,6 +6,7 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import com.travel.safe.buses.domain.department.DepartmentMapper;
 import com.travel.safe.buses.domain.department.DepartmentRepository;
 import com.travel.safe.buses.domain.department.exception.DepartmentNotFoundException;
 import com.travel.safe.buses.domain.department.model.Department;
@@ -24,6 +25,9 @@ class GetDepartmentServiceTest {
   @Mock
   private DepartmentRepository departmentRepository;
 
+  @Mock
+  private DepartmentMapper mapper;
+
   @InjectMocks
   private GetDepartmentService getDepartmentService;
 
@@ -38,10 +42,10 @@ class GetDepartmentServiceTest {
 
     // when
     when(departmentRepository.findById(wantedId)).thenReturn(Optional.of(department));
-    final Department response = getDepartmentService.execute(wantedId);
+    final var response = getDepartmentService.execute(wantedId);
 
     // then
-    assertEquals(department, response);
+    assertEquals(mapper.entityToDto(department), response);
     verify(departmentRepository, times(1)).findById(wantedId);
   }
 
