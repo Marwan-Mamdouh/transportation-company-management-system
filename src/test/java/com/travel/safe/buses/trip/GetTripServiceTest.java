@@ -9,6 +9,7 @@ import static org.mockito.Mockito.when;
 import com.travel.safe.buses.domain.employee.model.Employee;
 import com.travel.safe.buses.domain.seats.model.Seat;
 import com.travel.safe.buses.domain.travelLine.model.TravelLine;
+import com.travel.safe.buses.domain.trip.TripMapper;
 import com.travel.safe.buses.domain.trip.TripRepository;
 import com.travel.safe.buses.domain.trip.exceptions.TripNotFoundException;
 import com.travel.safe.buses.domain.trip.model.Trip;
@@ -21,6 +22,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 @ExtendWith(MockitoExtension.class)
@@ -28,6 +30,9 @@ class GetTripServiceTest {
 
   @Mock
   private TripRepository tripRepository;
+
+  @Spy
+  private TripMapper mapper;
 
   @InjectMocks
   private GetTripService getTripService;
@@ -41,10 +46,10 @@ class GetTripServiceTest {
 
     // when
     when(tripRepository.findById(tripId)).thenReturn(Optional.of(trip));
-    final Trip response = getTripService.execute(tripId);
+    final var response = getTripService.execute(tripId);
 
     // then
-    assertEquals(trip, response);
+    assertEquals(mapper.toResponseDto(trip), response);
     verify(tripRepository, times(1)).findById(tripId);
   }
 
