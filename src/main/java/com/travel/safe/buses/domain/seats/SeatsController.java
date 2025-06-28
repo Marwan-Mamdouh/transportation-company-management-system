@@ -2,7 +2,6 @@ package com.travel.safe.buses.domain.seats;
 
 import com.travel.safe.buses.domain.seats.dto.BookSeatDTO;
 import com.travel.safe.buses.domain.seats.dto.SeatResponseDTO;
-import com.travel.safe.buses.domain.seats.model.Seat;
 import com.travel.safe.buses.domain.seats.service.BookSeatService;
 import com.travel.safe.buses.domain.seats.service.SearchForSeatsByTripIdService;
 import jakarta.validation.Valid;
@@ -31,13 +30,11 @@ public class SeatsController {
   @GetMapping("/free/{tripId}")
   public ResponseEntity<List<SeatResponseDTO>> findAvailableSeatsByTrip(
       @PathVariable Integer tripId) {
-    final List<Seat> seats = searchForSeatsInByTripStartAndTo.execute(tripId);
-    return ResponseEntity.ok(seats.stream().map(SeatResponseDTO::new).toList());
+    return ResponseEntity.ok(searchForSeatsInByTripStartAndTo.execute(tripId));
   }
 
   @PostMapping("/book")
   public ResponseEntity<SeatResponseDTO> bookSeat(@Valid @RequestBody BookSeatDTO bookSeatDto) {
-    final Seat seat = bookSeatService.execute(bookSeatDto);
-    return ResponseEntity.ok(new SeatResponseDTO(seat));
+    return ResponseEntity.ok(bookSeatService.execute(bookSeatDto));
   }
 }

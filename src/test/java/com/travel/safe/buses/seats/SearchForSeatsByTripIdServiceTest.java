@@ -7,6 +7,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import com.travel.safe.buses.domain.employee.model.Employee;
+import com.travel.safe.buses.domain.seats.SeatMapper;
 import com.travel.safe.buses.domain.seats.SeatsRepository;
 import com.travel.safe.buses.domain.seats.exceptions.NoAvailableSeatsFoundException;
 import com.travel.safe.buses.domain.seats.model.Seat;
@@ -18,6 +19,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 @ExtendWith(MockitoExtension.class)
@@ -25,6 +27,9 @@ class SearchForSeatsByTripIdServiceTest {
 
   @Mock
   private SeatsRepository seatsRepository;
+
+  @Spy
+  private SeatMapper mapper;
 
   @InjectMocks
   private SearchForSeatsByTripIdService search;
@@ -56,11 +61,12 @@ class SearchForSeatsByTripIdServiceTest {
     final Seat seat3 = new Seat(new SeatId(44, 3), trip, null, null);
     final Seat seat4 = new Seat(new SeatId(45, 3), trip, null, null);
     final List<Seat> seats = List.of(seat1, seat2, seat3, seat4);
+    final var seatsDto = seats.stream().map(mapper::toSeatResponse).toList();
     // when
     when(seatsRepository.findByTripSeatId_TripIdAndBookedBy(tripId)).thenReturn(seats);
-    final List<Seat> response = search.execute(tripId);
+    final var response = search.execute(tripId);
     // then
-    assertEquals(seats, response);
+    assertEquals(seatsDto, response);
     verify(seatsRepository, times(1)).findByTripSeatId_TripIdAndBookedBy(tripId);
   }
 
@@ -75,12 +81,13 @@ class SearchForSeatsByTripIdServiceTest {
     final Seat seat3 = new Seat(new SeatId(44, 3), trip, null, null);
     final Seat seat4 = new Seat(new SeatId(45, 3), trip, null, null);
     final List<Seat> freeSeats = List.of(seat3, seat4);
+    final var seatsDto = freeSeats.stream().map(mapper::toSeatResponse).toList();
 
     // when
     when(seatsRepository.findByTripSeatId_TripIdAndBookedBy(tripId)).thenReturn(freeSeats);
-    final List<Seat> response = search.execute(tripId);
+    final var response = search.execute(tripId);
     // then
-    assertEquals(freeSeats, response);
+    assertEquals(seatsDto, response);
     verify(seatsRepository, times(1)).findByTripSeatId_TripIdAndBookedBy(tripId);
   }
 
