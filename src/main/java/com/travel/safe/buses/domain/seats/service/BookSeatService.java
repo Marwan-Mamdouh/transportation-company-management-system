@@ -8,8 +8,9 @@ import com.travel.safe.buses.domain.seats.SeatsRepository;
 import com.travel.safe.buses.domain.seats.dto.BookSeatDTO;
 import com.travel.safe.buses.domain.seats.dto.SeatResponseDTO;
 import com.travel.safe.buses.domain.seats.exceptions.SeatAlreadyBookedException;
+import com.travel.safe.buses.domain.trip.TripRepository;
+import com.travel.safe.buses.domain.trip.exceptions.TripNotFoundException;
 import com.travel.safe.buses.domain.trip.model.Trip;
-import com.travel.safe.buses.domain.trip.service.GetTripService;
 import jakarta.transaction.Transactional;
 import java.time.LocalDateTime;
 import org.slf4j.Logger;
@@ -23,14 +24,14 @@ public class BookSeatService implements Command<BookSeatDTO, SeatResponseDTO> {
   private static final Logger logger = LoggerFactory.getLogger(BookSeatService.class);
   private final EmployeeRepository employeeRepository;
   private final SeatsRepository seatRepository;
-  private final GetTripService getTripService;
+  private final TripRepository tripRepository;
   private final SeatMapper mapper;
 
   public BookSeatService(SeatsRepository tripSeatRepository, EmployeeRepository employeeRepository,
-      GetTripService getTripService, SeatMapper mapper) {
+      TripRepository tripRepository, SeatMapper mapper) {
     this.employeeRepository = employeeRepository;
     this.seatRepository = tripSeatRepository;
-    this.getTripService = getTripService;
+    this.tripRepository = tripRepository;
     this.mapper = mapper;
   }
 
@@ -40,7 +41,8 @@ public class BookSeatService implements Command<BookSeatDTO, SeatResponseDTO> {
   public SeatResponseDTO execute(BookSeatDTO input) {
     logger.debug("Executing: {} with input: {}", getClass(), input);
 
-    final Trip trip = getTripService.execute(input.tripId());
+    final Trip trip = tripRepository.findById(input.tripId())
+        .orElseThrow(TripNotFoundException::new);
     final var employee = employeeRepository.findById(input.ssn())
         .orElseThrow(EmployeeNotFoundException::new);
 
