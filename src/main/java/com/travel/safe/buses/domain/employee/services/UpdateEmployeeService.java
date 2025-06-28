@@ -5,7 +5,7 @@ import com.travel.safe.buses.domain.employee.EmployeeMapper;
 import com.travel.safe.buses.domain.employee.EmployeeRepository;
 import com.travel.safe.buses.domain.employee.dto.CreateEmployeeDTO;
 import com.travel.safe.buses.domain.employee.dto.EmployeeResponseDTO;
-import com.travel.safe.buses.domain.employee.dto.GetEmployeeRequestDto;
+import com.travel.safe.buses.domain.employee.dto.EmployeeRequestDTO;
 import com.travel.safe.buses.domain.employee.services.get.GetEmployeeService;
 import jakarta.transaction.Transactional;
 import org.slf4j.Logger;
@@ -33,7 +33,7 @@ public class UpdateEmployeeService implements Command<CreateEmployeeDTO, Employe
     LOGGER.debug("Executing: {} with input: {}", getClass(), input);
     // check & validate Employee before save it to db
     final Long id = input.ssn();
-    getEmployeeService.execute(new GetEmployeeRequestDto(id, false));
+    getEmployeeService.execute(new EmployeeRequestDTO(id, false));
     // save & return
     final var savedEmployee = employeeRepository.save(mapper.employeeFromDto(input));
     return mapper.responseDTOFromEmployee(savedEmployee);
