@@ -1,8 +1,8 @@
 package com.travel.safe.buses.domain.seats.service;
 
 import com.travel.safe.buses.comman.shared.Command;
-import com.travel.safe.buses.domain.employee.model.Employee;
-import com.travel.safe.buses.domain.employee.services.get.GetEmployeeService;
+import com.travel.safe.buses.domain.employee.EmployeeRepository;
+import com.travel.safe.buses.domain.employee.exceptions.EmployeeNotFoundException;
 import com.travel.safe.buses.domain.seats.SeatsRepository;
 import com.travel.safe.buses.domain.seats.dto.BookSeatDTO;
 import com.travel.safe.buses.domain.seats.exceptions.SeatAlreadyBookedException;
@@ -20,13 +20,13 @@ import org.springframework.stereotype.Service;
 public class BookSeatService implements Command<BookSeatDTO, Seat> {
 
   private static final Logger logger = LoggerFactory.getLogger(BookSeatService.class);
-  private final GetEmployeeService getEmployeeService;
+  private final EmployeeRepository employeeRepository;
   private final SeatsRepository seatRepository;
   private final GetTripService getTripService;
 
-  public BookSeatService(SeatsRepository tripSeatRepository, GetEmployeeService getEmployeeService,
+  public BookSeatService(SeatsRepository tripSeatRepository, EmployeeRepository employeeRepository,
       GetTripService getTripService) {
-    this.getEmployeeService = getEmployeeService;
+    this.employeeRepository = employeeRepository;
     this.seatRepository = tripSeatRepository;
     this.getTripService = getTripService;
   }
@@ -38,7 +38,8 @@ public class BookSeatService implements Command<BookSeatDTO, Seat> {
     logger.debug("Executing: {} with input: {}", getClass(), input);
 
     final Trip trip = getTripService.execute(input.tripId());
-    final Employee employee = getEmployeeService.execute(input.ssn());
+    final var employee = employeeRepository.findById(input.ssn())
+        .orElseThrow(EmployeeNotFoundException::new);
 
     if (seatRepository.bookSeatByEmployee(employee, LocalDateTime.now(), trip, input.seatNo())
         > 0) {

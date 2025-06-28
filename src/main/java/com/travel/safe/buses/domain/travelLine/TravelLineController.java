@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/travel-line")
+@RequestMapping("/api/travel-lines")
 public class TravelLineController {
 
   private final CreateTravelLineService createTravelLineService;
