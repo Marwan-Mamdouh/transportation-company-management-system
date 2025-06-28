@@ -7,8 +7,9 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import com.travel.safe.buses.domain.department.model.Department;
+import com.travel.safe.buses.domain.employee.EmployeeMapper;
 import com.travel.safe.buses.domain.employee.EmployeeRepository;
-import com.travel.safe.buses.domain.employee.dto.EmployeeSpecificationDTO;
+import com.travel.safe.buses.domain.employee.dto.EmployeesGroupedRequestDTO;
 import com.travel.safe.buses.domain.employee.enums.Role;
 import com.travel.safe.buses.domain.employee.model.Employee;
 import com.travel.safe.buses.domain.employee.services.get.GetEmployeesBy;
@@ -26,6 +27,9 @@ class GetEmployeesBySupervisorServiceTest {
 
   @Mock
   private EmployeeRepository employeeRepository;
+
+  @Mock
+  private EmployeeMapper mapper;
 
   @InjectMocks
   private GetEmployeesBy getEmployeesBy;
@@ -49,15 +53,16 @@ class GetEmployeesBySupervisorServiceTest {
     final Employee supervisor = new Employee(supervisorId, "sup", "visor", "sup@visor.com",
         "0123456789", LocalDate.parse("2000-01-01"), null, "pass", Role.ADMIN, null, department);
     final List<Employee> employees = getEmployees(supervisor, department);
+    final var employeeDto = employees.stream().map(mapper::responseDTOFromEmployee).toList();
 
     when(employeeRepository.findAll(any(Specification.class))).thenReturn(employees);
 
     // when
-    final List<Employee> response = getEmployeesBy.execute(
-        new EmployeeSpecificationDTO(supervisorId, departmentId));
+    final var response = getEmployeesBy.execute(
+        new EmployeesGroupedRequestDTO(supervisorId, departmentId, false));
 
     // then
-    assertEquals(employees, response);
+    assertEquals(employeeDto, response);
     verify(employeeRepository, times(1)).findAll(any(Specification.class));
   }
 
@@ -69,8 +74,8 @@ class GetEmployeesBySupervisorServiceTest {
     when(employeeRepository.findAll(any(Specification.class))).thenReturn(List.of());
 
     // when
-    List<Employee> response = getEmployeesBy.execute(
-        new EmployeeSpecificationDTO(supervisorId, departmentId));
+    final var response = getEmployeesBy.execute(
+        new EmployeesGroupedRequestDTO(supervisorId, departmentId, false));
 
     // then
     assertEquals(List.of(), response);
