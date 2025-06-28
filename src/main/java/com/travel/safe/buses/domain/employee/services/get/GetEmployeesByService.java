@@ -17,7 +17,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 @Service
-public class GetEmployeesByService implements Query<EmployeesGroupedRequestDTO, List<DtoResponseI>> {
+public class GetEmployeesByService implements
+    Query<EmployeesGroupedRequestDTO, List<DtoResponseI>> {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(GetEmployeesByService.class);
   private final EmployeeRepository employeeRepository;

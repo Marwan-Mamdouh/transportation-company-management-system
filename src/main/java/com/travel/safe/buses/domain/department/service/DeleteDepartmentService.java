@@ -1,8 +1,8 @@
 package com.travel.safe.buses.domain.department.service;
 
 import com.travel.safe.buses.comman.shared.Command;
-import com.travel.safe.buses.domain.department.dto.DepartmentResponseDTO;
 import com.travel.safe.buses.domain.department.DepartmentRepository;
+import com.travel.safe.buses.domain.department.dto.DepartmentResponseDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;

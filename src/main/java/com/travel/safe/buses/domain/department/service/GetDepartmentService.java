@@ -1,9 +1,9 @@
 package com.travel.safe.buses.domain.department.service;
 
 import com.travel.safe.buses.comman.shared.Query;
-import com.travel.safe.buses.domain.department.dto.DepartmentResponseDTO;
 import com.travel.safe.buses.domain.department.DepartmentMapper;
 import com.travel.safe.buses.domain.department.DepartmentRepository;
+import com.travel.safe.buses.domain.department.dto.DepartmentResponseDTO;
 import com.travel.safe.buses.domain.department.exception.DepartmentNotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

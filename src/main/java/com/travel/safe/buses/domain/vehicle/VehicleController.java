@@ -3,7 +3,6 @@ package com.travel.safe.buses.domain.vehicle;
 import com.travel.safe.buses.domain.vehicle.dto.CreateVehicleDTO;
 import com.travel.safe.buses.domain.vehicle.dto.UpdateVehicleDTO;
 import com.travel.safe.buses.domain.vehicle.dto.VehicleResponseDTO;
-import com.travel.safe.buses.domain.vehicle.model.Vehicle;
 import com.travel.safe.buses.domain.vehicle.service.CreateVehicleService;
 import com.travel.safe.buses.domain.vehicle.service.DeleteVehicleService;
 import com.travel.safe.buses.domain.vehicle.service.GetVehicleService;
