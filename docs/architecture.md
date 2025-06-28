@@ -26,9 +26,10 @@ src/
 │   │           └── PatternLongValidator.java
 │   ├── /domain                                                      # Domain package holds main project code
 │   │    ├── /department
-│   │    │     ├── /DTO                                              # Department dto package
+│   │    │     ├── /dto                                              # Department dto package
 │   │    │     │    ├── CreateDepartmentDto.java
 │   │    │     │    ├── DepartmentResponseDTO.java
+│   │    │     │    ├── DepartmentSearchDTO.java
 │   │    │     │    ├── PromteManagerDTO.java
 │   │    │     │    └── UpdateDepartmentDTO.java
 │   │    │     ├── /exceptions                                       # Department exception package             
@@ -48,27 +49,26 @@ src/
 │   │    ├── /employee
 │   │    │     ├── /dto                                              # Employee dto package
 │   │    │     │    ├── CreateEmployeeDTO.java 
+│   │    │     │    ├── DtoResponseI.java 
 │   │    │     │    ├── EmployeeLoginDTO.java
 │   │    │     │    ├── EmployeePayCheckDTO.java
-│   │    │     │    └── EmployeeResponseDTO.java
+│   │    │     │    ├── EmployeeRequestDTO.java
+│   │    │     │    ├── EmployeeResponseDTO.java
+│   │    │     │    └── EmployeeGroupRequestDTO.java
 │   │    │     ├── /enums                                            # Employee roles enum package
 │   │    │     │    └── Role.java
 │   │    │     ├── /exceptions                                       # Employee exception package             
-│   │    │     │    ├── DuplicateEmployeeEmailException.java
-│   │    │     │    ├── DuplicateEmployeeIdException.java
-│   │    │     │    ├── DuplicateEmployeePhoneNumberException.java
-│   │    │     │    ├── EmailNotFoundException.java
+│   │    │     │    ├── DuplicateEmployeeDataException.java
 │   │    │     │    ├── EmployeeNotFoundException.java
 │   │    │     │    ├── NotValidPasswordException.java
 │   │    │     │    └── SupervisorNotFoundException.java
-│   │    │     ├── /model                                            # Employee model package
+│   │    │     ├── /model                                           # Employee model package
 │   │    │     │    ├── Emoloyee.java                               # Employee entity class
 │   │    │     │    └── EmployeeAuth.java
-│   │    │     ├── /service                                          # Employee service package
+│   │    │     ├── /service                                         # Employee service package
 │   │    │     │    ├── /get                                        # Employee get service package
 │   │    │     │    │     ├── CountEmployeesService.java
-│   │    │     │    │     ├── GetEmployeesByDepartmentIdService.java
-│   │    │     │    │     ├── GetEmployeesBySupervisorService.java
+│   │    │     │    │     ├── GetEmployeesByService.java
 │   │    │     │    │     ├── GetEmployeeService.java
 │   │    │     │    │     └── GetEmployeesService.java
 │   │    │     │    ├── CreateEmployeeService.java
@@ -77,12 +77,12 @@ src/
 │   │    │     │    └── UpdateEmployeeServicee.java
 │   │    │     ├── EmployeesController.java
 │   │    │     ├── EmployeeMapper.java 
-│   │    │     └── EmployeeRepository.java                           # Employee repository interface
+│   │    │     ├── EmployeeRepository.java                          # Employee repository interface
+│   │    │     └── EmployeeSpecification.java                           
 │   │    ├── /seats
-│   │    │     ├── /dto                                              # Seats dto package
+│   │    │     ├── /dto                                             # Seats dto package
 │   │    │     │    ├── BookSeatDTO.java
-│   │    │     │    ├── SeatResponseDTO.java
-│   │    │     │    └── UpdateTripSeatDTO.java
+│   │    │     │    └── SeatResponseDTO.java
 │   │    │     ├── /exceptions                                       # Seat exception package
 │   │    │     │    ├── NotAvaialbleSeatsFoundException.java
 │   │    │     │    └── SeatAlreadyBookedException.java
@@ -92,6 +92,7 @@ src/
 │   │    │     ├── /service                                          # Seat controller package
 │   │    │     │    ├── BookSeatService.java
 │   │    │     │    └── SearchForSeatsByTripIdService.java
+│   │    │     ├── SeatMapper.java
 │   │    │     ├── SeatController.java                               # Seat Controller class
 │   │    │     └── SeatRepository.java                               # Seat repository interface
 │   │    ├── /travelLine
@@ -110,6 +111,7 @@ src/
 │   │    │     │    ├── GetTravelLinesService.java
 │   │    │     │    └── UpdateTravelLineService.java
 │   │    │     ├── TravelLineController.java                         # Travel Line entity class
+│   │    │     ├── TravelLineMapper.java
 │   │    │     └── TravelLineRepository.java                         # Travel Line repository interface
 │   │    ├── /trip
 │   │    │     ├── /DTO                                              # Trip dto package
@@ -118,12 +120,12 @@ src/
 │   │    │     │     ├── TripResponseDTO.java
 │   │    │     │     ├── TripSearchDTO.java
 │   │    │     │     └── UpdateTripDTO.java
-│   │    │     ├── /model                                            # Trip model package 
-│   │    │     │     ├── Trip.java                                   # Trip entity class
-│   │    │     │     └── TripAvailabilityProjection.java
 │   │    │     ├── /exceptions                                       # Trip exception package
 │   │    │     │     ├── TripNotFoundException.java
 │   │    │     │     └── TripNotValidException.java
+│   │    │     ├── /model                                            # Trip model package 
+│   │    │     │     ├── Trip.java                                   # Trip entity class
+│   │    │     │     └── TripAvailabilityProjection.java
 │   │    │     ├── /service                                          # Trip service package
 │   │    │     │     ├── CreateTripService.java
 │   │    │     │     ├── DeleteTripService.java
