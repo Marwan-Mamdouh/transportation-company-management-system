@@ -19,5 +19,5 @@ public interface EmployeeMapper {
   @Mapping(target = "role", ignore = true)
   @Mapping(target = "department", ignore = true)
   @Mapping(target = "supervisor", ignore = true)
-  Employee employeeCreateEmployeeDTO(CreateEmployeeDTO dto);
+  Employee employeeFromDto(CreateEmployeeDTO dto);
 }
