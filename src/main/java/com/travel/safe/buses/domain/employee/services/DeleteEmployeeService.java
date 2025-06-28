@@ -2,7 +2,7 @@ package com.travel.safe.buses.domain.employee.services;
 
 import com.travel.safe.buses.comman.shared.Command;
 import com.travel.safe.buses.domain.employee.EmployeeRepository;
-import com.travel.safe.buses.domain.employee.model.Employee;
+import com.travel.safe.buses.domain.employee.dto.GetEmployeeRequestDto;
 import com.travel.safe.buses.domain.employee.services.get.GetEmployeeService;
 import jakarta.transaction.Transactional;
 import org.slf4j.Logger;
@@ -26,8 +26,8 @@ public class DeleteEmployeeService implements Command<Long, Void> {
   @Transactional
   public Void execute(Long input) {
     logger.debug("Executing: {} with input: {}", getClass(), input);
-    final Employee employee = getEmployeeService.execute(input);
-    employeeRepository.delete(employee);
+    getEmployeeService.execute(new GetEmployeeRequestDto(input, false));
+    employeeRepository.deleteById(input);
     return null;
   }
 }

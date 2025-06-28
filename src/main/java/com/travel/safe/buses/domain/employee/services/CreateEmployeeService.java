@@ -4,6 +4,7 @@ import com.travel.safe.buses.comman.shared.Command;
 import com.travel.safe.buses.domain.employee.EmployeeMapper;
 import com.travel.safe.buses.domain.employee.EmployeeRepository;
 import com.travel.safe.buses.domain.employee.dto.CreateEmployeeDTO;
+import com.travel.safe.buses.domain.employee.dto.EmployeeResponseDTO;
 import com.travel.safe.buses.domain.employee.enums.Role;
 import com.travel.safe.buses.domain.employee.exceptions.DuplicateEmployeeDataException;
 import com.travel.safe.buses.domain.employee.model.Employee;
@@ -14,7 +15,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
-public class CreateEmployeeService implements Command<CreateEmployeeDTO, Employee> {
+public class CreateEmployeeService implements Command<CreateEmployeeDTO, EmployeeResponseDTO> {
 
   private static final Logger logger = LoggerFactory.getLogger(CreateEmployeeService.class);
   private final EmployeeRepository employeeRepository;
@@ -30,7 +31,7 @@ public class CreateEmployeeService implements Command<CreateEmployeeDTO, Employe
 
   @Override
   @Transactional
-  public Employee execute(CreateEmployeeDTO input) {
+  public EmployeeResponseDTO execute(CreateEmployeeDTO input) {
     logger.debug("Executing: {} with input: {}", getClass(), input);
     if (employeeRepository.existsBySsnOrPhoneNumberOrEmailIgnoreCase(input.ssn(),
         input.phoneNumber(), input.email())) {
@@ -42,11 +43,11 @@ public class CreateEmployeeService implements Command<CreateEmployeeDTO, Employe
     final Employee savedEmployee = employeeRepository.save(employee);
     logger.debug("Employee created with SSN: {} and,email: {}", savedEmployee.getSsn(),
         savedEmployee.getEmail());
-    return savedEmployee;
+    return mapper.responseDTOFromEmployee(savedEmployee);
   }
 
   private Employee hashPasswordAndSetRole(CreateEmployeeDTO input) {
-    final Employee employee = mapper.employeeCreateEmployeeDTO(input);
+    final Employee employee = mapper.employeeFromDto(input);
     employee.setPassword(encoder.encode(employee.getPassword()));
     employee.setRole(Role.CLIENT);
     return employee;
