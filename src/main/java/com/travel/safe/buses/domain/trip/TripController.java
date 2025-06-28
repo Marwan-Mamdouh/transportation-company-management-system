@@ -5,8 +5,6 @@ import com.travel.safe.buses.domain.trip.DTO.TripAvailabilityDTO;
 import com.travel.safe.buses.domain.trip.DTO.TripResponseDTO;
 import com.travel.safe.buses.domain.trip.DTO.TripSearchDTO;
 import com.travel.safe.buses.domain.trip.DTO.UpdateTripDTO;
-import com.travel.safe.buses.domain.trip.model.Trip;
-import com.travel.safe.buses.domain.trip.model.TripAvailabilityProjection;
 import com.travel.safe.buses.domain.trip.service.CreateTripService;
 import com.travel.safe.buses.domain.trip.service.DeleteTripService;
 import com.travel.safe.buses.domain.trip.service.SearchForTripsService;
@@ -44,23 +42,18 @@ public class TripController {
 
   @PostMapping
   public ResponseEntity<TripResponseDTO> createTrip(@Valid @RequestBody CreateTripDTO trip) {
-    final Trip savedTrip = createTripService.execute(trip);
-    return ResponseEntity.ok(new TripResponseDTO(savedTrip));
+    return ResponseEntity.ok(createTripService.execute(trip));
   }
 
-  @PutMapping("/{tripId}")
+  @PutMapping
   public ResponseEntity<TripResponseDTO> updateTrip(@Valid @RequestBody UpdateTripDTO trip) {
-    final Trip updatedTrip = updateTripService.execute(trip);
-    return ResponseEntity.ok(new TripResponseDTO(updatedTrip));
+    return ResponseEntity.ok(updateTripService.execute(trip));
   }
 
   @GetMapping("/available")
   public ResponseEntity<List<TripAvailabilityDTO>> searchForTrips(
       @Valid @RequestBody TripSearchDTO info) {
-    final List<TripAvailabilityProjection> tripSeats = searchForTripsService.execute(info);
-    return ResponseEntity.ok(
-        tripSeats.stream().map(trip -> new TripAvailabilityDTO(trip.getTrip(), trip.getSeatCount()))
-            .toList());
+    return ResponseEntity.ok(searchForTripsService.execute(info));
   }
 
   @DeleteMapping
