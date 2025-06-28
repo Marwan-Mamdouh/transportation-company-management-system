@@ -17,13 +17,13 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 @Service
-public class GetEmployeesBy implements Query<EmployeesGroupedRequestDTO, List<DtoResponseI>> {
+public class GetEmployeesByService implements Query<EmployeesGroupedRequestDTO, List<DtoResponseI>> {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(GetEmployeesBy.class);
+  private static final Logger LOGGER = LoggerFactory.getLogger(GetEmployeesByService.class);
   private final EmployeeRepository employeeRepository;
   private final EmployeeMapper mapper;
 
-  public GetEmployeesBy(EmployeeRepository employeeRepository, EmployeeMapper mapper) {
+  public GetEmployeesByService(EmployeeRepository employeeRepository, EmployeeMapper mapper) {
     this.employeeRepository = employeeRepository;
     this.mapper = mapper;
   }

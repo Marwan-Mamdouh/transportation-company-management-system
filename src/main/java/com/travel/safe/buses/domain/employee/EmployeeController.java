@@ -12,7 +12,7 @@ import com.travel.safe.buses.domain.employee.services.EmployeeLoginService;
 import com.travel.safe.buses.domain.employee.services.UpdateEmployeeService;
 import com.travel.safe.buses.domain.employee.services.get.CountEmployeesService;
 import com.travel.safe.buses.domain.employee.services.get.GetEmployeeService;
-import com.travel.safe.buses.domain.employee.services.get.GetEmployeesBy;
+import com.travel.safe.buses.domain.employee.services.get.GetEmployeesByService;
 import jakarta.validation.Valid;
 import java.util.List;
 import org.springframework.http.ResponseEntity;
@@ -31,7 +31,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class EmployeeController {
 
   private final CountEmployeesService countEmployeesService;
-  private final GetEmployeesBy getEmployeesBy;
+  private final GetEmployeesByService getEmployeesBy;
   private final GetEmployeeService getEmployeeService;
 
   private final EmployeeLoginService employeeLoginService;
@@ -44,7 +44,7 @@ public class EmployeeController {
 
   public EmployeeController(DeleteEmployeeService deleteEmployeeService,
       GetEmployeeService getEmployeeService, UpdateEmployeeService updateEmployeeService,
-      CountEmployeesService countEmployeesService, GetEmployeesBy getEmployeesBySupervisorService,
+      CountEmployeesService countEmployeesService, GetEmployeesByService getEmployeesBySupervisorService,
       EmployeeLoginService employeeLoginService, CreateEmployeeService createEmployeeService) {
     this.deleteEmployeeService = deleteEmployeeService;
     this.getEmployeeService = getEmployeeService;

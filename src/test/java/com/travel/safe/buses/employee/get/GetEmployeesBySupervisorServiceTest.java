@@ -12,7 +12,7 @@ import com.travel.safe.buses.domain.employee.EmployeeRepository;
 import com.travel.safe.buses.domain.employee.dto.EmployeesGroupedRequestDTO;
 import com.travel.safe.buses.domain.employee.enums.Role;
 import com.travel.safe.buses.domain.employee.model.Employee;
-import com.travel.safe.buses.domain.employee.services.get.GetEmployeesBy;
+import com.travel.safe.buses.domain.employee.services.get.GetEmployeesByService;
 import java.time.LocalDate;
 import java.util.List;
 import org.junit.jupiter.api.Test;
@@ -32,7 +32,7 @@ class GetEmployeesBySupervisorServiceTest {
   private EmployeeMapper mapper;
 
   @InjectMocks
-  private GetEmployeesBy getEmployeesBy;
+  private GetEmployeesByService getEmployeesBy;
 
   private static List<Employee> getEmployees(Employee supervisor, Department department) {
     return List.of(
