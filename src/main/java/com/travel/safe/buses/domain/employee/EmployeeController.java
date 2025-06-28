@@ -4,8 +4,8 @@ import com.travel.safe.buses.domain.employee.dto.CreateEmployeeDTO;
 import com.travel.safe.buses.domain.employee.dto.DtoResponseI;
 import com.travel.safe.buses.domain.employee.dto.EmployeeLoginDTO;
 import com.travel.safe.buses.domain.employee.dto.EmployeeResponseDTO;
-import com.travel.safe.buses.domain.employee.dto.GetEmployeeRequestDTO;
-import com.travel.safe.buses.domain.employee.dto.GetEmployeeRequestDto;
+import com.travel.safe.buses.domain.employee.dto.EmployeesGroupedRequestDTO;
+import com.travel.safe.buses.domain.employee.dto.EmployeeRequestDTO;
 import com.travel.safe.buses.domain.employee.services.CreateEmployeeService;
 import com.travel.safe.buses.domain.employee.services.DeleteEmployeeService;
 import com.travel.safe.buses.domain.employee.services.EmployeeLoginService;
@@ -58,7 +58,7 @@ public class EmployeeController {
   @GetMapping("/{id}")
   public ResponseEntity<DtoResponseI> getEmployee(@PathVariable Long id,
       @RequestParam(name = "paycheck", required = false, defaultValue = "false") boolean paycheck) {
-    return ResponseEntity.ok(getEmployeeService.execute(new GetEmployeeRequestDto(id, paycheck)));
+    return ResponseEntity.ok(getEmployeeService.execute(new EmployeeRequestDTO(id, paycheck)));
   }
 
   @PutMapping
@@ -83,7 +83,7 @@ public class EmployeeController {
       @RequestParam(required = false) Integer departmentId,
       @RequestParam(name = "paycheck", required = false, defaultValue = "false") boolean isPaycheck) {
     final List<DtoResponseI> employees = getEmployeesBy.execute(
-        new GetEmployeeRequestDTO(supervisorId, departmentId, isPaycheck));
+        new EmployeesGroupedRequestDTO(supervisorId, departmentId, isPaycheck));
     return ResponseEntity.ok(employees);
   }
 

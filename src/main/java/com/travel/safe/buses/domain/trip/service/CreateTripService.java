@@ -1,8 +1,8 @@
 package com.travel.safe.buses.domain.trip.service;
 
 import com.travel.safe.buses.comman.shared.Command;
-import com.travel.safe.buses.domain.employee.model.Employee;
-import com.travel.safe.buses.domain.employee.services.get.GetEmployeeService;
+import com.travel.safe.buses.domain.employee.EmployeeRepository;
+import com.travel.safe.buses.domain.employee.exceptions.EmployeeNotFoundException;
 import com.travel.safe.buses.domain.travelLine.model.TravelLine;
 import com.travel.safe.buses.domain.travelLine.service.GetTravelLineService;
 import com.travel.safe.buses.domain.trip.DTO.CreateTripDTO;
@@ -23,16 +23,16 @@ public class CreateTripService implements Command<CreateTripDTO, Trip> {
   private final TripMapper tripMapper;
   private final TripRepository tripRepository;
   private final GetVehicleService getVehicleService;
-  private final GetEmployeeService getEmployeeService;
+  private final EmployeeRepository employeeRepository;
   private final GetTravelLineService getTravelLineService;
 
   public CreateTripService(TripRepository tripRepository, TripMapper tripMapper,
-      GetVehicleService getVehicleService, GetEmployeeService getEmployeeService,
+      GetVehicleService getVehicleService, EmployeeRepository employeeRepository,
       GetTravelLineService getTravelLineService) {
     this.tripRepository = tripRepository;
     this.tripMapper = tripMapper;
     this.getVehicleService = getVehicleService;
-    this.getEmployeeService = getEmployeeService;
+    this.employeeRepository = employeeRepository;
     this.getTravelLineService = getTravelLineService;
   }
 
@@ -42,7 +42,8 @@ public class CreateTripService implements Command<CreateTripDTO, Trip> {
     logger.debug("Executing: {} with input: {}", getClass(), input);
     // check and validate
     final Vehicle vehicle = getVehicleService.execute(input.car());
-    final Employee employee = getEmployeeService.execute(input.driver());
+    final var employee = employeeRepository.findById(input.driver()).orElseThrow(
+        EmployeeNotFoundException::new);
     final TravelLine travelLine = getTravelLineService.execute(input.travelLine());
     // map and build
     final Trip trip = tripMapper.toEntity(input);
