@@ -2,7 +2,6 @@ package com.travel.safe.buses.domain.travelLine;
 
 import com.travel.safe.buses.domain.travelLine.dto.InputTravelLineDTO;
 import com.travel.safe.buses.domain.travelLine.dto.TravelLineResponseDTO;
-import com.travel.safe.buses.domain.travelLine.model.TravelLine;
 import com.travel.safe.buses.domain.travelLine.service.CreateTravelLineService;
 import com.travel.safe.buses.domain.travelLine.service.DeleteTravelLineService;
 import com.travel.safe.buses.domain.travelLine.service.GetTravelLineService;
@@ -46,28 +45,24 @@ public class TravelLineController {
 
   @GetMapping("/{id}")
   public ResponseEntity<TravelLineResponseDTO> getTravelLine(@PathVariable Integer id) {
-    final TravelLine travelLine = getTravelLineService.execute(id);
-    return ResponseEntity.ok(new TravelLineResponseDTO(travelLine));
+    return ResponseEntity.ok(getTravelLineService.execute(id));
   }
 
   @GetMapping("/all")
   public ResponseEntity<List<TravelLineResponseDTO>> getTravelLines() {
-    final List<TravelLine> travelLines = getTravelLinesService.execute(null);
-    return ResponseEntity.ok(travelLines.stream().map(TravelLineResponseDTO::new).toList());
+    return ResponseEntity.ok(getTravelLinesService.execute(null));
   }
 
   @PutMapping
   public ResponseEntity<TravelLineResponseDTO> updateTravelLine(
       @Valid @RequestBody InputTravelLineDTO dto) {
-    final TravelLine savedTravelLine = updateTravelLineService.execute(dto);
-    return ResponseEntity.ok(new TravelLineResponseDTO(savedTravelLine));
+    return ResponseEntity.ok(updateTravelLineService.execute(dto));
   }
 
   @PostMapping
   public ResponseEntity<TravelLineResponseDTO> createTravelLine(
       @Valid @RequestBody InputTravelLineDTO dto) {
-    final TravelLine savedTravelLine = createTravelLineService.execute(dto);
-    return ResponseEntity.ok(new TravelLineResponseDTO(savedTravelLine));
+    return ResponseEntity.ok(createTravelLineService.execute(dto));
   }
 
   @DeleteMapping("/{id}")
