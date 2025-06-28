@@ -6,6 +6,7 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import com.travel.safe.buses.domain.travelLine.TravelLineMapper;
 import com.travel.safe.buses.domain.travelLine.TravelLineRepository;
 import com.travel.safe.buses.domain.travelLine.exceptions.TravelLineNotFoundException;
 import com.travel.safe.buses.domain.travelLine.model.TravelLine;
@@ -16,6 +17,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 @ExtendWith(MockitoExtension.class)
@@ -23,6 +25,8 @@ class GetTravelLineServiceTest {
 
   @Mock
   private TravelLineRepository travelLineRepository;
+  @Spy
+  private TravelLineMapper mapper;
 
   @InjectMocks
   private GetTravelLineService getTravelLineService;
@@ -36,10 +40,10 @@ class GetTravelLineServiceTest {
 
     // when
     when(travelLineRepository.findById(travelId)).thenReturn(Optional.of(travelLine));
-    final TravelLine response = getTravelLineService.execute(travelId);
+    final var response = getTravelLineService.execute(travelId);
 
     // then
-    assertEquals(travelLine, response);
+    assertEquals(mapper.toResponse(travelLine), response);
     verify(travelLineRepository, times(1)).findById(travelId);
   }
 

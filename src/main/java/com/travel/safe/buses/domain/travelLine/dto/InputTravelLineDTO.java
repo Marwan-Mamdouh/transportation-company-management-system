@@ -1,6 +1,5 @@
 package com.travel.safe.buses.domain.travelLine.dto;
 
-import com.travel.safe.buses.domain.travelLine.model.TravelLine;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
@@ -14,7 +13,4 @@ public record InputTravelLineDTO(@NotNull @Positive @Max(255) Integer lineId,
                                  @NotBlank @Size(max = 55, message = "destination name must be 55 characters max.") String destination,
                                  @NotEmpty List<String> stations) {
 
-  public TravelLine toTravelLine() {
-    return new TravelLine(lineId, startFrom, destination, stations);
-  }
 }

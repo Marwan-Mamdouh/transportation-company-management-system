@@ -2,7 +2,6 @@ package com.travel.safe.buses.domain.travelLine.service;
 
 import com.travel.safe.buses.comman.shared.Command;
 import com.travel.safe.buses.domain.travelLine.TravelLineRepository;
-import com.travel.safe.buses.domain.travelLine.model.TravelLine;
 import jakarta.transaction.Transactional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,7 +24,7 @@ public class DeleteTravelLineService implements Command<Integer, Void> {
   @Transactional
   public Void execute(Integer input) {
     logger.debug("Executing: {} with input: {}", getClass(), input);
-    final TravelLine travelLine = getTravelLineService.execute(input);
+    getTravelLineService.execute(input);
     travelLineRepository.deleteById(input);
     return null;
   }

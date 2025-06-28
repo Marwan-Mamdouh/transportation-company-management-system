@@ -1,18 +1,6 @@
 package com.travel.safe.buses.domain.vehicle.dto;
 
-import com.travel.safe.buses.domain.vehicle.model.Vehicle;
-import lombok.Data;
+public record VehicleResponseDTO(Integer vehicleId, Integer capacity, String vehicleLevel,
+                                 String plateNumber) {
 
-@Data
-public class VehicleResponseDTO {
-
-  private final Integer vehicleId, capacity;
-  private final String vehicleLevel, plateNumber;
-
-  public VehicleResponseDTO(Vehicle vehicle) {
-    this.vehicleId = vehicle.getVehicleId();
-    this.capacity = vehicle.getCapacity();
-    this.vehicleLevel = vehicle.getVehicleLevel();
-    this.plateNumber = vehicle.getPlateNumber();
-  }
 }

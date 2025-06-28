@@ -6,6 +6,7 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import com.travel.safe.buses.domain.vehicle.VehicleMapper;
 import com.travel.safe.buses.domain.vehicle.VehicleRepository;
 import com.travel.safe.buses.domain.vehicle.exceptions.VehicleNotFoundException;
 import com.travel.safe.buses.domain.vehicle.model.Vehicle;
@@ -16,6 +17,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 @ExtendWith(MockitoExtension.class)
@@ -23,6 +25,9 @@ class GetVehicleServiceTest {
 
   @Mock
   private VehicleRepository vehicleRepository;
+
+  @Spy
+  private VehicleMapper mapper;
 
   @InjectMocks
   private GetVehicleService getVehicleService;
@@ -35,9 +40,9 @@ class GetVehicleServiceTest {
         LocalDate.parse("2027-05-09"));
     // when
     when(vehicleRepository.findById(vehicleId)).thenReturn(Optional.of(vehicle));
-    final Vehicle response = getVehicleService.execute(vehicleId);
+    final var response = getVehicleService.execute(vehicleId);
     // then
-    assertEquals(vehicle, response);
+    assertEquals(mapper.toResponseDto(vehicle), response);
     verify(vehicleRepository, times(1)).findById(vehicleId);
   }
 

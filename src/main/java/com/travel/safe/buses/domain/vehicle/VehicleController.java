@@ -47,27 +47,23 @@ public class VehicleController {
   @PostMapping
   public ResponseEntity<VehicleResponseDTO> createVehicle(
       @Valid @RequestBody CreateVehicleDTO vehicle) {
-    final Vehicle savedVehicle = createVehicleService.execute(vehicle);
-    return ResponseEntity.ok(new VehicleResponseDTO(savedVehicle));
+    return ResponseEntity.ok(createVehicleService.execute(vehicle));
   }
 
   @GetMapping("/all")
   public ResponseEntity<List<VehicleResponseDTO>> getVehicles() {
-    final List<Vehicle> vehicles = getVehiclesService.execute(null);
-    return ResponseEntity.ok(vehicles.stream().map(VehicleResponseDTO::new).toList());
+    return ResponseEntity.ok(getVehiclesService.execute(null));
   }
 
   @GetMapping("/{vehicleId}")
   public ResponseEntity<VehicleResponseDTO> getVehicle(@PathVariable Integer vehicleId) {
-    final Vehicle vehicle = getVehicleService.execute(vehicleId);
-    return ResponseEntity.ok(new VehicleResponseDTO(vehicle));
+    return ResponseEntity.ok(getVehicleService.execute(vehicleId));
   }
 
   @PutMapping
   public ResponseEntity<VehicleResponseDTO> updateVehicle(
       @Valid @RequestBody UpdateVehicleDTO vehicleDto) {
-    final Vehicle updatedVehicle = updateVehicleService.execute(vehicleDto);
-    return ResponseEntity.ok(new VehicleResponseDTO(updatedVehicle));
+    return ResponseEntity.ok(updateVehicleService.execute(vehicleDto));
   }
 
   @DeleteMapping("/{vehicleId}")
