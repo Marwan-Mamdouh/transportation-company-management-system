@@ -1,119 +1,108 @@
-# Transportation management system
+# Transportation Company Management System
 
-A simple back end api project using spring boot, spring data jpa, spring security and
-MySQL for a database built for learning purposes,it's under development right now.
-You can see it in more structure way with this
-tool: [![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/Marwan-Mamdouh/transportation-company-management-system)
+[![Java](https://img.shields.io/badge/Java-21-orange.svg)](https://www.oracle.com/java/technologies/javase/jdk21-archive-downloads.html)
+[![Spring Boot](https://img.shields.io/badge/Spring_Boot-3.4.5-brightgreen.svg)](https://spring.io/projects/spring-boot)
+[![Docker](https://img.shields.io/badge/Docker-Enabled-blue.svg)](https://www.docker.com/)
+[![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-## Features
+A robust, scalable backend REST API designed for managing the complex operations of a transportation company. Built with **Domain-Driven Design (DDD)** principles, this project demonstrates a professional architecture using Spring Boot, JPA, and modern security practices.
 
-- CRUD operations for employees, departments, vehicles, trips and travel lines.
-- Seat booking.
+## 🚀 Key Features
 
-## Requirements
+- **Domain-Driven Design (DDD)**: structured by features (`department`, `employee`, `vehicle`, `trip`, `seat`) rather than technical layers.
+- **Role-Based Access Control (RBAC)**: Secure APIs using Spring Security resource servers and JWT validation.
+- **Efficient Data Access**: Optimized JPA queries and pagination integration.
+- **Comprehensive Management Modules**:
+  - **Fleet Management**: Track vehicles, bus features, and maintenance status.
+  - **HR & Organization**: Manage departments, employees, and promotions.
+  - **Trip Operations**: Schedule trips, manage travel lines, and handle seat bookings.
 
-- **Java 21** or higher
-- **Docker** needed for running the database
-- **Maven 3.6+** (if building from source)
+## 🛠️ Technology Stack
 
-## Quick Start
+- **Core**: Java 21, Spring Boot 3.4.5
+- **Data**: Spring Data JPA, MySQL 9.2
+- **Security**: Spring Security (OAuth2 Resource Server), JWT (RSA Signed)
+- **Utilities**: Lombok, MapStruct (Zero-overhead mapping)
+- **Documentation**: SpringDoc OpenAPI (Swagger UI)
+- **Deployment**: Docker Compose
 
-### Option 1: Using Pre-built JAR
+## 🏗️ Architecture
 
-1. Download the latest JAR file from the repository
-2. Run the application:
-   ```bash
-   java -jar buses-app.jar
-   ```
+The project follows a **Package-by-Feature** architecture to ensure modularity and high cohesion.
 
-### Option 2: Building from Source
-
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/Marwan-Mamdouh/transportation-company-management-system
-   cd transportation-company-management-system
-   ```
-
-2. Build the project:
-   ```bash
-   ./mvnw clean package
-   ```
-3. Run the application:
-   ```bash
-   java -jar target/buses-app/.jar
-   ```
-
-- Or run the app with one command(there is no need for no.2 or 3 if you do this):
-   ```bash
-   ./mvnw spring-boot:run
-   ```
-
-## Usage
-
-The application runs as a web-server.
-this part is under development right now and all we have is Swagger-ui
-
-### Here are some photos:
-
-- All controllers in one place
-
-![all controllers in one place:](/docs/images/all-controllers.png "all controllers")
-
-- Department controller
-  ![Departments controller:](/docs/images/department-controller.png "departments controller")
-- Employee controller
-  ![Employees controller:](/docs/images/employee-controller.png "employees controller")
-- Seat Controller
-  ![Seats controller:](/docs/images/seat-controller.png "seats controller")
-- Travel line Controller
-  ![Travel Lines controller:](/docs/images/travel-line-controller.png "travel lines controller")
-- Trip Controller
-  ![Trip controller:](/docs/images/trip-controller.png "trips controller")
-- Vehicle Controller
-  ![Vehicle controller:](/docs/images/vehicle-controller.png "vehicles controller")
-
-[//]: # (Use the following end-points &#40;APIs&#41; with their arguments:)
-
-## Data Storage
-
-- all of our date are stored in `MySQL` database living on a docker container (initialized
-  automatically)
-- The Schema will be created automatically when you run the app on your machine for the first time
-
-## Development
-
-### Project Structure
-
-You can view the [project structure here](docs/architecture.md)
-
-### Building
-
-```bash
-# Clean and compile
-./mvnw clean compile
-
-# Run tests
-./mvnw test
-
-# Create JAR
-./mvnw clean package
+```
+src/main/java/com/travel/safe/buses/
+├── domain/                  # Core business logic modules
+│   ├── department/          # Department feature (Controller, Service, Domain, Repository)
+│   ├── employee/            # Employee management
+│   ├── vehicle/             # Fleet management
+│   └── ...
+├── comman/                  # Shared utilities and configurations
+│   ├── configuration/       # Security & App config
+│   └── exceptions/          # Global exception handling
+└── BusesApplication.java    # Entry point
 ```
 
-## Technical Details
+## ⚙️ Getting Started
 
-- **Framework**: Spring Boot 3.4.5
-- **Security Framework**: Spring oauth2
-- **ORM**: Spring data JPA
-- **Database**: MySQL
-- **Build Tool**: Maven
-- **Java Version**: 21
+### Prerequisites
 
-## Contributing
+- **Java 21** SDK
+- **Docker** & **Docker Compose**
+- **Maven** (optional, wrapper included)
 
-This is primarily a learning project. Feel free to fork and experiment with your own modifications!
+### 1. Clone the Repository
 
----
+```bash
+git clone https://github.com/Marwan-Mamdouh/transportation-company-management-system.git
+cd transportation-company-management-system
+```
 
-*This project was created as a learning exercise to explore Spring Boot's capabilities, and
-practical
-application development.*
+### 2. Configure Security Keys
+
+> **Security Note**: This project uses RSA keys for JWT signing. You must generate them before running the app.
+
+```bash
+# Linux/Mac/Git Bash
+mkdir -p src/main/resources/keys
+openssl genrsa -out src/main/resources/keys/private.pem 2048
+openssl rsa -in src/main/resources/keys/private.pem -pubout -out src/main/resources/keys/public.pem
+```
+
+### 3. Database Setup
+
+Start the MySQL database using Docker:
+
+```bash
+docker-compose up -d
+```
+
+### 4. Run the Application
+
+```bash
+./mvnw spring-boot:run
+```
+
+The application will start on `http://localhost:8080`.
+
+## 📖 API Documentation
+
+Once the application is running, you can explore the REST endpoints via the Swagger UI:
+
+👉 **[http://localhost:8080/swagger-ui/index.html](http://localhost:8080/swagger-ui/index.html)**
+
+## 🛡️ Configuration
+
+The application uses `application.yml` for configuration. Sensitive values can be overridden via Environment Variables:
+
+| Variable          | Default                             | Description             |
+| ----------------- | ----------------------------------- | ----------------------- |
+| `DB_URL`          | `jdbc:mysql://localhost:3308/Buses` | Database JDBC URL       |
+| `DB_USERNAME`     | `dev`                               | Database user           |
+| `DB_PASSWORD`     | `123`                               | Database password       |
+| `JWT_PRIVATE_KEY` | `classpath:keys/private.pem`        | Path to RSA private key |
+
+## 📝 Learning Outcomes & Issues
+
+This project was built as a deep dive into Spring Boot ecosystem.
+See [ISSUES_REPORT.md](ISSUES_REPORT.md) for a self-reflection on identified improvements and architectural decisions.

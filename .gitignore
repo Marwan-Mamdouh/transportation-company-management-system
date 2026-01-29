@@ -36,3 +36,5 @@ build/
 *.gz
 *.bkp
 keypair.pem
+# Ignored Keys
+src/main/resources/keys/
