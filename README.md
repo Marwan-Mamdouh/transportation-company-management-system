@@ -3,7 +3,6 @@
 [![Java](https://img.shields.io/badge/Java-21-orange.svg)](https://www.oracle.com/java/technologies/javase/jdk21-archive-downloads.html)
 [![Spring Boot](https://img.shields.io/badge/Spring_Boot-3.4.5-brightgreen.svg)](https://spring.io/projects/spring-boot)
 [![Docker](https://img.shields.io/badge/Docker-Enabled-blue.svg)](https://www.docker.com/)
-[![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 A robust, scalable backend REST API designed for managing the complex operations of a transportation company. Built with **Domain-Driven Design (DDD)** principles, this project demonstrates a professional architecture using Spring Boot, JPA, and modern security practices.
 
